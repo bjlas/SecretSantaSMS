@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <array name="main_row_thumb_icons_array">
+        <item>@drawable/icon_ball</item>
+        <item>@drawable/icon_candy</item>
+        <item>@drawable/icon_deer</item>
+        <item>@drawable/icon_gingerbread</item>
+        <item>@drawable/icon_hat</item>
+        <item>@drawable/icon_tree</item>
+    </array>
+
+</resources>
