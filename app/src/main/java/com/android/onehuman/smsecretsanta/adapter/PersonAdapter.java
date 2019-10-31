@@ -8,12 +8,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.android.onehuman.smsecretsanta.R;
-import com.android.onehuman.smsecretsanta.listener.Main_ItemClickListener;
+import com.android.onehuman.smsecretsanta.event.Main_OnItemClickListener;
 import com.android.onehuman.smsecretsanta.model.Person;
 
 import java.util.ArrayList;
@@ -28,8 +29,6 @@ public class PersonAdapter extends RecyclerView.Adapter<PersonAdapter.PersonView
     private TypedArray icons;
     private int icon_position;
 
-    private Main_ItemClickListener recyclerItemClickListener;
-
     public PersonAdapter(Context context) {
         this.context = context;
         this.contactList = new ArrayList<>();
@@ -42,43 +41,18 @@ public class PersonAdapter extends RecyclerView.Adapter<PersonAdapter.PersonView
         notifyDataSetChanged();
     }
 
-    public void remove(Person item) {
-        int position = contactList.indexOf(item);
-        if (position > -1) {
-            contactList.remove(position);
-            notifyItemRemoved(position);
-        }
-    }
-
-    public Person getItem(int position) {
-        return contactList.get(position);
-    }
 
     @Override
     public PersonViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.main_row_item, parent, false);
 
         final PersonViewHolder contactHolder = new PersonViewHolder(view);
-
-        contactHolder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                int adapterPos = contactHolder.getAdapterPosition();
-                if (adapterPos != RecyclerView.NO_POSITION) {
-                    if (recyclerItemClickListener != null) {
-                        recyclerItemClickListener.onItemClick(adapterPos, contactHolder.itemView);
-                    }
-                }
-            }
-        });
-
         return contactHolder;
     }
 
     @Override
     public void onBindViewHolder(PersonViewHolder holder, int position) {
         final Person contact = contactList.get(position);
-        Random random = new Random();
 
         holder.thumb.setImageResource(icons.getResourceId(updateIconPosition(),-1));
 
@@ -91,15 +65,16 @@ public class PersonAdapter extends RecyclerView.Adapter<PersonAdapter.PersonView
 
         }
 
+        holder.itemView.setOnClickListener(new Main_OnItemClickListener(context, contact));
+
+
+
+
     }
 
     @Override
     public int getItemCount() {
         return contactList.size();
-    }
-
-    public void setOnItemClickListener(Main_ItemClickListener recyclerItemClickListener) {
-        this.recyclerItemClickListener = recyclerItemClickListener;
     }
 
     static class PersonViewHolder extends RecyclerView.ViewHolder {

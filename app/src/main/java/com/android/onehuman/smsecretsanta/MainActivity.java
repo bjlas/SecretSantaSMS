@@ -7,9 +7,7 @@ import android.os.Bundle;
 
 import com.android.onehuman.smsecretsanta.adapter.PersonAdapter;
 import com.android.onehuman.smsecretsanta.database.SQLiteDB;
-import com.android.onehuman.smsecretsanta.listener.Main_ItemClickListener;
 import com.android.onehuman.smsecretsanta.model.Person;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -23,7 +21,7 @@ import android.view.MenuItem;
 import java.util.List;
 import java.util.Random;
 
-public class MainActivity extends AppCompatActivity implements Main_ItemClickListener {
+public class MainActivity extends AppCompatActivity {
 
     private RecyclerView mainRecyclerView;
     private PersonAdapter personAdapter;
@@ -43,8 +41,6 @@ public class MainActivity extends AppCompatActivity implements Main_ItemClickLis
 
         linearLayoutManager = new LinearLayoutManager(this);
         personAdapter = new PersonAdapter(this);
-        personAdapter.setOnItemClickListener(this);
-
         mainRecyclerView.setLayoutManager(linearLayoutManager);
         mainRecyclerView.setAdapter(personAdapter);
 
@@ -61,13 +57,6 @@ public class MainActivity extends AppCompatActivity implements Main_ItemClickLis
         sqLiteDB = new SQLiteDB(this);
         contactList = sqLiteDB.getAllPersons();
         personAdapter.updateList(contactList);
-    }
-
-    @Override
-    public void onItemClick(int position, View view) {
-        Intent intent = new Intent(this, EditActivity.class);
-        intent.putExtra(EditActivity.class.getSimpleName(), personAdapter.getItem(position));
-        this.startActivity(intent);
     }
 
     @Override
