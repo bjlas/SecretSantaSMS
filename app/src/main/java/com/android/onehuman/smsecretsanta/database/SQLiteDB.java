@@ -40,6 +40,7 @@ public class SQLiteDB extends SQLiteOpenHelper {
         onUpgrade(db, oldVersion, newVersion);
     }
 
+    //COMMON
     public List<Person> getAllPersons() {
         List<Person> personList = new ArrayList<>();
         Person person;
@@ -79,8 +80,7 @@ public class SQLiteDB extends SQLiteOpenHelper {
         cursor.close();
         return personList;
     }
-
-    public List<Person> getAllCandidates(Person original) {
+    public List<Person> getPosibleCandidates(Person original) {
         List<Person> personList = new ArrayList<>();
         Person person;
         String selectQuery = "SELECT " +
@@ -97,6 +97,42 @@ public class SQLiteDB extends SQLiteOpenHelper {
 
         selectQuery +=" ORDER BY person."+DBContract.PersonEntry.COLUMN_NAME+" ASC";
 
+        SQLiteDatabase db = getReadableDatabase();
+        Cursor cursor = db.rawQuery(selectQuery, null);
+
+
+        if (cursor.moveToFirst()) {
+            do {
+
+                person = new Person();
+
+                person.setId(cursor.getInt(0));
+                person.setName(cursor.getString(1));
+                person.setPhone(cursor.getString(2));
+                person.setMail(cursor.getString(3));
+
+                personList.add(person);
+
+
+            } while (cursor.moveToNext());
+        }
+        cursor.close();
+        return personList;
+
+    }
+    public List<Person> getActualCandidates(Person original) {
+        List<Person> personList = new ArrayList<>();
+        Person person;
+        String selectQuery = "SELECT " +
+                "p."+DBContract.PersonEntry.COLUMN_ID+", " +
+                "p."+DBContract.PersonEntry.COLUMN_NAME+", " +
+                "p."+DBContract.PersonEntry.COLUMN_PHONE+", " +
+                "p."+DBContract.PersonEntry.COLUMN_MAIL+" " +
+                "FROM "+DBContract.PersonEntry.TABLE_NAME+" p " +
+                "WHERE p."+DBContract.PersonEntry.COLUMN_ID+"!="+original.getId()+" and p."+DBContract.PersonEntry.COLUMN_ID+" not in " +
+                "(SELECT f."+DBContract.ForbiddenEntry.COLUMN_DONTGIFTTO+" " +
+                "FROM "+DBContract.ForbiddenEntry.TABLE_NAME+" f " +
+                "WHERE f."+DBContract.ForbiddenEntry.COLUMN_PERSON+"="+original.getId()+")";
 
 
         SQLiteDatabase db = getReadableDatabase();
@@ -112,7 +148,6 @@ public class SQLiteDB extends SQLiteOpenHelper {
                 person.setName(cursor.getString(1));
                 person.setPhone(cursor.getString(2));
                 person.setMail(cursor.getString(3));
-                //person.setForbbidenList(convertStringToArray(cursor.getString(4)));
 
                 personList.add(person);
 
@@ -123,7 +158,6 @@ public class SQLiteDB extends SQLiteOpenHelper {
         return personList;
 
     }
-
     public List<Person> getForbiddenPersonInfo(int id) {
         List<Person> forbiddenList = new ArrayList<>();
         Person person;
@@ -210,9 +244,7 @@ public class SQLiteDB extends SQLiteOpenHelper {
     }
 
 
-
     //FORBIDDEN TABLE
-
     public long insertForbidden(int idPerson, int idForgibben) {
         SQLiteDatabase db = getWritableDatabase();
         ContentValues values = new ContentValues();
@@ -229,29 +261,6 @@ public class SQLiteDB extends SQLiteOpenHelper {
     }
 
 
-
-
-
-
-
-
-
-    public static String strSeparator = ";";
-
-    public static String convertArrayToString(List<String> array){
-        String str = "";
-        for (int i = 0;i<array.size(); i++) {
-            str +=array.get(i);
-            if(i<array.size()-1){
-                str = str+strSeparator;
-            }
-        }
-        return str;
-    }
-
-    public static List<String> convertStringToArray(String str){
-        return new ArrayList<String>(Arrays.asList(str.split(strSeparator)));
-    }
 
 }
 

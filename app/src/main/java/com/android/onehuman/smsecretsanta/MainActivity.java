@@ -7,6 +7,7 @@ import android.os.Bundle;
 
 import com.android.onehuman.smsecretsanta.adapter.PersonAdapter;
 import com.android.onehuman.smsecretsanta.database.SQLiteDB;
+import com.android.onehuman.smsecretsanta.graph.Graph;
 import com.android.onehuman.smsecretsanta.model.Person;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -14,10 +15,11 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TextView;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Random;
 
@@ -28,6 +30,7 @@ public class MainActivity extends AppCompatActivity {
     private LinearLayoutManager linearLayoutManager;
     private SQLiteDB sqLiteDB;
     private List<Person> contactList;
+    private HashMap<Integer, Person> allPersonsMaps;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,6 +59,11 @@ public class MainActivity extends AppCompatActivity {
     void loadData(){
         sqLiteDB = new SQLiteDB(this);
         contactList = sqLiteDB.getAllPersons();
+        allPersonsMaps = new HashMap<Integer, Person>();
+        for(Person person: contactList) {
+            allPersonsMaps.put(person.getId(), person);
+        }
+
         personAdapter.updateList(contactList);
     }
 
@@ -105,23 +113,46 @@ public class MainActivity extends AppCompatActivity {
 
     public void draw(){
         List<Person> allPersonList = sqLiteDB.getAllPersons();
-        Random rand = new Random();
-        int random;
-        Person candidate;
+        Random random = new Random();
+        Graph graph = new Graph();
 
 
-        for(int index=0; index<contactList.size(); index++) {
-            Person person = contactList.get(index);
-            random = rand.nextInt(contactList.size());
-            do {
-                random++;
-                candidate=contactList.get(random);
-            } while ((!person.getForbbidenList().contains(candidate.getName()) && person.getName().equals(candidate.getName())) || random<contactList.size() );
+
+        HashMap<Integer, Person> allPersonsMaps = new HashMap<Integer, Person>();
+        for(Person person: allPersonList) {
+            allPersonsMaps.put(person.getId(), person);
         }
 
 
-        
 
+        for(HashMap.Entry<Integer, Person> entry : allPersonsMaps.entrySet()) {
+            int id = entry.getKey();
+            Person person = entry.getValue();
+            List<Person> candidates = sqLiteDB.getActualCandidates(person);
+            for(Person candidate : candidates) {
+                Person v=allPersonsMaps.get(candidate.getId());
+                person.addAdjacentNodes(v);
+            }
+            graph.addPerson(person);
+        }
+
+        Person startPerson = allPersonList.get(random.nextInt(allPersonList.size()-1));
+
+        List<List<Person>> result = graph.findHamiltonianCycles(startPerson);
+        TextView test_textView = (TextView) findViewById(R.id.test_textView);
+        test_textView.setText(printCycles(result));
+
+    }
+
+    public static String printCycles(List<List<Person>> cycles) {
+        String result = "";
+        for(List<Person> vertexList: cycles) {
+            for(Person vertex: vertexList) {
+                result += vertex.getName() +"->";
+            }
+            result += "                  \n";
+        }
+        return result;
     }
 
 

@@ -14,14 +14,17 @@ public class Person implements Parcelable {
     private String phone;
     private String mail;
     private List<Person> forbiddenList;
+    private ArrayList<Person> adjacentNodes;
 
     public Person() {
         this.forbiddenList=new ArrayList<>();
+        this.adjacentNodes = new ArrayList<>();
     }
 
     public Person(int i) {
         this.id=i;
         this.forbiddenList=new ArrayList<>();
+        this.adjacentNodes = new ArrayList<>();
     }
 
     protected Person(Parcel in) {
@@ -31,6 +34,7 @@ public class Person implements Parcelable {
         this.mail = in.readString();
         this.forbiddenList = new ArrayList<>();
         in.readTypedList(this.forbiddenList,Person.CREATOR);
+        this.adjacentNodes = new ArrayList<>();
     }
 
     public static final Parcelable.Creator<Person> CREATOR = new Parcelable.Creator<Person>() {
@@ -66,14 +70,11 @@ public class Person implements Parcelable {
     public String getMail() {
         return this.mail;
     }
-    public void setForbbidenList(List<Person> fl) {
-        this.forbiddenList = fl;
-    }
-    public List<Person> getForbbidenList() {
-        return this.forbiddenList;
-    }
+    public void setForbbidenList(List<Person> fl) { this.forbiddenList = fl; }
+    public List<Person> getForbbidenList() { return this.forbiddenList; }
 
-
+    public void addAdjacentNodes(Person vertex){ adjacentNodes.add(vertex); }
+    public ArrayList<Person> getAdjacentNodes(){ return this.adjacentNodes; }
 
 
     public void setMail(String mail) {

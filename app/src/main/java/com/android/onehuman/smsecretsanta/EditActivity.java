@@ -71,13 +71,13 @@ public class EditActivity extends AppCompatActivity {
             name.setText(person.getName());
             phone.setText(person.getPhone());
             mail.setText(person.getMail());
-            candidates = sqLiteDB.getAllCandidates(person);
+            candidates = sqLiteDB.getPosibleCandidates(person);
             showChips(candidates, person.getForbbidenList());
 
         } else {
             deleteMenuItem.setVisible(false);
             updateMenuItem.setVisible(false);
-            candidates = sqLiteDB.getAllCandidates(person);
+            candidates = sqLiteDB.getPosibleCandidates(person);
             showChips(candidates, new ArrayList<Person>());
 
         }
