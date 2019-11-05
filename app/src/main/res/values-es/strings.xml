@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">SMSecretSanta</string>
+    <string name="action_add">añadir</string>
+    <string name="action_update">actualizar</string>
+    <string name="action_delete">borrar</string>
+
+    <string name="add">Añadir</string>
+    <string name="edit">Editar</string>
+    <string name="delete">Borrar</string>
+    <string name="action_send">Enviar</string>
+
+    <string name="main_dialog_title">Enviar resultados?</string>
+    <string name="main_dialog_message">Quieres realizar el sorteo y enviar a los ususarios su amigo invisible?</string>
+    <string name="main_dialog_bySMSButton">por SMS</string>
+    <string name="main_dialog_byMAILButton">por Email</string>
+    <string name="cancel">Cancelar</string>
+    <string name="main_dialog_success_title">Exito</string>
+    <string name="main_dialog_success_message">El resultado ha sido enviado</string>
+    <string name="main_dialog_fail_title">Fallo</string>
+    <string name="main_dialog_fail_message">No existe solución con las personas/reglas marcadas.</string>
+    <string name="edit_view_title">Añadir persona</string>
+    <string name="edit_person_created">Añadida!</string>
+    <string name="edit_person_deleted">Eliminada!</string>
+    <string name="edit_person_edited">Editada!</string>
+    <string name="edit_validation_chips">Esta persona no puede regalar a nadie</string>
+    <string name="edit_validation_mail">Email invalido</string>
+    <string name="edit_validation_field_requited">es obligatorio</string>
+    <string name="edit_validation_name">Este nombre ya existe</string>
+    <string name="edit_validation_phone">Número invalido</string>
+
+    <string name="main_dialog_smsTemplate">"Hola %1$s!, eres el amigo invisible de: %2$s</string>
+
+    <string name="edit_activity_hint_name">Nombre</string>
+    <string name="edit_activity_hint_phone">Telefono</string>
+    <string name="edit_activity_hint_email">Email</string>
+
+    <string name="edit_dialog_deleted">Quieres eliminar a %1$s</string>
+
+
+
+</resources>

@@ -2,6 +2,7 @@ package com.android.onehuman.smsecretsanta.model;
 
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,28 +14,18 @@ public class Person implements Parcelable {
     private String name;
     private String phone;
     private String mail;
-    private List<Person> forbiddenList;
-    private ArrayList<Person> adjacentNodes;
+    private List<Person> candidates;
 
     public Person() {
-        this.forbiddenList=new ArrayList<>();
-        this.adjacentNodes = new ArrayList<>();
-    }
-
-    public Person(int i) {
-        this.id=i;
-        this.forbiddenList=new ArrayList<>();
-        this.adjacentNodes = new ArrayList<>();
+        this.candidates=new ArrayList<>();
     }
 
     protected Person(Parcel in) {
-        this.id = in.readInt();
-        this.name = in.readString();
-        this.phone = in.readString();
-        this.mail = in.readString();
-        this.forbiddenList = new ArrayList<>();
-        in.readTypedList(this.forbiddenList,Person.CREATOR);
-        this.adjacentNodes = new ArrayList<>();
+            this.id = in.readInt();
+            this.name = in.readString();
+            this.phone = in.readString();
+            this.mail = in.readString();
+            this.candidates = new ArrayList<Person>();
     }
 
     public static final Parcelable.Creator<Person> CREATOR = new Parcelable.Creator<Person>() {
@@ -70,16 +61,16 @@ public class Person implements Parcelable {
     public String getMail() {
         return this.mail;
     }
-    public void setForbbidenList(List<Person> fl) { this.forbiddenList = fl; }
-    public List<Person> getForbbidenList() { return this.forbiddenList; }
-
-    public void addAdjacentNodes(Person vertex){ adjacentNodes.add(vertex); }
-    public ArrayList<Person> getAdjacentNodes(){ return this.adjacentNodes; }
-
-
     public void setMail(String mail) {
         this.mail = mail;
     }
+
+    public List<Person> getCandidates(){ return this.candidates; }
+    public void setCandidates(ArrayList<Person> c) {
+        this.candidates = c;
+    }
+    public void addCandidates(Person p){ candidates.add(p); }
+
 
 
     @Override
@@ -93,7 +84,6 @@ public class Person implements Parcelable {
         dest.writeString(this.name);
         dest.writeString(this.phone);
         dest.writeString(this.mail);
-        dest.writeTypedList(this.forbiddenList);
     }
 
     @Override
@@ -111,8 +101,10 @@ public class Person implements Parcelable {
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 31 * hash + (int) id;
+        hash = 31 * hash + Integer.valueOf(this.id);
         return hash;
     }
+
+
 
 }

@@ -25,13 +25,13 @@ public class SQLiteDB extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(DBContract.PersonEntry.SQL_CREATE_TABLE);
-        db.execSQL(DBContract.ForbiddenEntry.SQL_CREATE_TABLE);
+        db.execSQL(DBContract.CandidateEntry.SQL_CREATE_TABLE);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL(DBContract.PersonEntry.SQL_DELETE_ENTRIES);
-        db.execSQL(DBContract.ForbiddenEntry.SQL_DELETE_ENTRIES);
+        db.execSQL(DBContract.CandidateEntry.SQL_DELETE_ENTRIES);
 
         onCreate(db);
     }
@@ -70,7 +70,6 @@ public class SQLiteDB extends SQLiteOpenHelper {
                 person.setName(cursor.getString(1));
                 person.setPhone(cursor.getString(2));
                 person.setMail(cursor.getString(3));
-                person.setForbbidenList(getForbiddenPersonInfo(id));
 
                 personList.add(person);
 
@@ -80,7 +79,7 @@ public class SQLiteDB extends SQLiteOpenHelper {
         cursor.close();
         return personList;
     }
-    public List<Person> getPosibleCandidates(Person original) {
+    public List<Person> getAllCandidates(Person original) {
         List<Person> personList = new ArrayList<>();
         Person person;
         String selectQuery = "SELECT " +
@@ -120,77 +119,52 @@ public class SQLiteDB extends SQLiteOpenHelper {
         return personList;
 
     }
-    public List<Person> getActualCandidates(Person original) {
-        List<Person> personList = new ArrayList<>();
+    public List<Integer> getActualCandidates(Person original) {
+        List<Integer> idList = new ArrayList<>();
         Person person;
         String selectQuery = "SELECT " +
-                "p."+DBContract.PersonEntry.COLUMN_ID+", " +
-                "p."+DBContract.PersonEntry.COLUMN_NAME+", " +
-                "p."+DBContract.PersonEntry.COLUMN_PHONE+", " +
-                "p."+DBContract.PersonEntry.COLUMN_MAIL+" " +
+                "can."+DBContract.CandidateEntry.COLUMN_CANDIDATE+" " +
+                "FROM "+DBContract.CandidateEntry.TABLE_NAME+" can " +
+                "WHERE can."+DBContract.CandidateEntry.COLUMN_PERSON+"='"+original.getId()+"'";
+
+
+        SQLiteDatabase db = getReadableDatabase();
+        Cursor cursor = db.rawQuery(selectQuery, null);
+
+        if (cursor.moveToFirst()) {
+            do {
+                idList.add(cursor.getInt(0));
+            } while (cursor.moveToNext());
+        }
+        cursor.close();
+        return idList;
+
+    }
+
+    public List<String> getNonCandidates(Person original) {
+        List<String> nonCandidates = new ArrayList<>();
+        Person person;
+        String selectQuery = "SELECT " +
+                "p.name " +
                 "FROM "+DBContract.PersonEntry.TABLE_NAME+" p " +
-                "WHERE p."+DBContract.PersonEntry.COLUMN_ID+"!="+original.getId()+" and p."+DBContract.PersonEntry.COLUMN_ID+" not in " +
-                "(SELECT f."+DBContract.ForbiddenEntry.COLUMN_DONTGIFTTO+" " +
-                "FROM "+DBContract.ForbiddenEntry.TABLE_NAME+" f " +
-                "WHERE f."+DBContract.ForbiddenEntry.COLUMN_PERSON+"="+original.getId()+")";
-
-
-        SQLiteDatabase db = getReadableDatabase();
-        Cursor cursor = db.rawQuery(selectQuery, null);
-
-
-        if (cursor.moveToFirst()) {
-            do {
-
-                person = new Person();
-
-                person.setId(cursor.getInt(0));
-                person.setName(cursor.getString(1));
-                person.setPhone(cursor.getString(2));
-                person.setMail(cursor.getString(3));
-
-                personList.add(person);
-
-
-            } while (cursor.moveToNext());
-        }
-        cursor.close();
-        return personList;
-
-    }
-    public List<Person> getForbiddenPersonInfo(int id) {
-        List<Person> forbiddenList = new ArrayList<>();
-        Person person;
-        String selectQuery = "SELECT " +
-                "per."+DBContract.PersonEntry.COLUMN_ID+", " +
-                "per."+DBContract.PersonEntry.COLUMN_NAME+", " +
-                "per."+DBContract.PersonEntry.COLUMN_PHONE+", " +
-                "per."+DBContract.PersonEntry.COLUMN_MAIL+" " +
-                "FROM "+DBContract.ForbiddenEntry.TABLE_NAME+" forbi, "+DBContract.PersonEntry.TABLE_NAME+" per " +
-                "WHERE forbi."+DBContract.ForbiddenEntry.COLUMN_PERSON+" = "+id+" AND forbi."+DBContract.ForbiddenEntry.COLUMN_DONTGIFTTO+"=per.id";
+                "WHERE p."+DBContract.PersonEntry.COLUMN_ID+"!="+original.getId()+" AND p."+DBContract.PersonEntry.COLUMN_ID+" NOT IN (" +
+                "SELECT c."+DBContract.CandidateEntry.COLUMN_CANDIDATE+" " +
+                "FROM "+DBContract.CandidateEntry.COLUMN_PERSON+" c " +
+                "WHERE c."+DBContract.CandidateEntry.COLUMN_PERSON+"="+original.getId()+")";
 
         SQLiteDatabase db = getReadableDatabase();
         Cursor cursor = db.rawQuery(selectQuery, null);
 
-
         if (cursor.moveToFirst()) {
             do {
-
-                person = new Person();
-
-                person.setId(cursor.getInt(0));
-                person.setName(cursor.getString(1));
-                person.setPhone(cursor.getString(2));
-                person.setMail(cursor.getString(3));
-
-                forbiddenList.add(person);
-
-
+                nonCandidates.add(cursor.getString(0));
             } while (cursor.moveToNext());
         }
         cursor.close();
-        return forbiddenList;
+        return nonCandidates;
+
     }
+
 
     //PERSON TABLE
     public boolean existName(Person person) {
@@ -230,7 +204,6 @@ public class SQLiteDB extends SQLiteOpenHelper {
         values.put(DBContract.PersonEntry.COLUMN_NAME, person.getName());
         values.put(DBContract.PersonEntry.COLUMN_PHONE, person.getPhone());
         values.put(DBContract.PersonEntry.COLUMN_MAIL, person.getMail());
-        //values.put(DBContract.PersonEntry.COLUMN_FORBIDDENLIST, convertArrayToString(person.getForbbidenList()));
 
         String selection = DBContract.PersonEntry.COLUMN_ID + " = ?";
         String[] selectionArgs = { String.valueOf(person.getId()) };
@@ -245,19 +218,19 @@ public class SQLiteDB extends SQLiteOpenHelper {
 
 
     //FORBIDDEN TABLE
-    public long insertForbidden(int idPerson, int idForgibben) {
+    public long insertCandidate(int idPerson, int idCandidate) {
         SQLiteDatabase db = getWritableDatabase();
         ContentValues values = new ContentValues();
-        values.put(DBContract.ForbiddenEntry.COLUMN_PERSON, idPerson);
-        values.put(DBContract.ForbiddenEntry.COLUMN_DONTGIFTTO, idForgibben);
+        values.put(DBContract.CandidateEntry.COLUMN_PERSON, idPerson);
+        values.put(DBContract.CandidateEntry.COLUMN_CANDIDATE, idCandidate);
 
-        return db.insert(DBContract.ForbiddenEntry.TABLE_NAME, null, values);
+        return db.insert(DBContract.CandidateEntry.TABLE_NAME, null, values);
     }
-    public int deleteForbidden(int idPerson) {
+    public int deleteAllCandidates(int idPerson) {
         SQLiteDatabase db = getReadableDatabase();
-        String selection = DBContract.ForbiddenEntry.COLUMN_PERSON + " = ? ";
+        String selection = DBContract.CandidateEntry.COLUMN_PERSON + " = ? ";
         String[] selectionArgs = { String.valueOf(idPerson) };
-        return db.delete(DBContract.ForbiddenEntry.TABLE_NAME, selection, selectionArgs);
+        return db.delete(DBContract.CandidateEntry.TABLE_NAME, selection, selectionArgs);
     }
 
 

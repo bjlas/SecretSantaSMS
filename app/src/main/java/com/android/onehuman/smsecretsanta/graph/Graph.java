@@ -23,13 +23,13 @@ public class Graph {
         if(!visited.contains(current)){
             visited.add(current);
 
-            if(visited.size() == personsLit.size() && current.getAdjacentNodes().contains(visited.get(0))){
+            if(visited.size() == personsLit.size() && current.getCandidates().contains(visited.get(0))){
                 List<Person> cycle = new ArrayList<>();
                 cycle.addAll(visited);
                 cycle.add(visited.get(0));
                 cycles.add(cycle);
             } else {
-                for(Person adjacent: current.getAdjacentNodes()) {
+                for(Person adjacent: current.getCandidates()) {
                     findHamiltonianCycles(adjacent, visited, cycles);
                 }
             }

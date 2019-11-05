@@ -8,8 +8,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
-
 
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -19,7 +17,6 @@ import com.android.onehuman.smsecretsanta.model.Person;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 
 public class PersonAdapter extends RecyclerView.Adapter<PersonAdapter.PersonViewHolder>{
@@ -52,23 +49,20 @@ public class PersonAdapter extends RecyclerView.Adapter<PersonAdapter.PersonView
 
     @Override
     public void onBindViewHolder(PersonViewHolder holder, int position) {
-        final Person contact = contactList.get(position);
+        final Person person = contactList.get(position);
 
         holder.thumb.setImageResource(icons.getResourceId(updateIconPosition(),-1));
 
-        holder.name.setText(contact.getName());
-        if(contact.getForbbidenList().size()>0 ) {
-            holder.forbbidenlist.setText(getForbiddenListNames(contact.getForbbidenList()));
+        holder.name.setText(person.getName());
+
+        if(person.getCandidates().size()>0 ) {
+            holder.forbbidenlist.setText(getNonCandidates(person, person.getCandidates()));
             holder.forbbidenlist.setPaintFlags(holder.forbbidenlist.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
         } else {
             holder.forbbidenlist.setText("");
 
         }
-
-        holder.itemView.setOnClickListener(new Main_OnItemClickListener(context, contact));
-
-
-
+        holder.itemView.setOnClickListener(new Main_OnItemClickListener(context, person));
 
     }
 
@@ -102,10 +96,12 @@ public class PersonAdapter extends RecyclerView.Adapter<PersonAdapter.PersonView
         return icon_position;
     }
 
-    private String getForbiddenListNames(List<Person> forbbidenList) {
+    private String getNonCandidates(Person actual, List<Person> candidatesList) {
         String forbiddenNames="";
-        for(Person p: forbbidenList){
-            forbiddenNames +="["+p.getName()+"]";
+        for(Person person: contactList){
+            if(person!=actual && !candidatesList.contains(person)) {
+                forbiddenNames += "[" + person.getName() + "]";
+            }
         }
         return forbiddenNames;
     }

@@ -19,7 +19,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:ems="10"
-            android:hint="Name"
+            android:hint="@string/edit_activity_hint_name"
             android:inputType="textPersonName" />
 
         <ImageView
@@ -39,7 +39,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/margin_10"
         android:ems="10"
-        android:hint="Phone"
+        android:hint="@string/edit_activity_hint_phone"
         android:inputType="phone" />
 
     <EditText
@@ -48,7 +48,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/margin_10"
         android:ems="10"
-        android:hint="Email"
+        android:hint="@string/edit_activity_hint_email"
         android:inputType="textEmailAddress" />
 
     <LinearLayout
