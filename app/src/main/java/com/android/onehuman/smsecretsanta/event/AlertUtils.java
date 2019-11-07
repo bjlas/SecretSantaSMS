@@ -25,6 +25,4 @@ public class AlertUtils
         builder.setPositiveButton(android.R.string.ok, null);
         builder.show();
     }
-
-
 }

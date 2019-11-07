@@ -9,36 +9,17 @@ import android.database.sqlite.SQLiteOpenHelper;
 import com.android.onehuman.smsecretsanta.model.Person;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
-public class SQLiteDB extends SQLiteOpenHelper {
+public class DBController {
 
-    public static final int DATABASE_VERSION = 4;
-    public static final String DATABASE_NAME = "SMSecretSanta.db";
+    private DBHelper dbHelper;
 
-
-    public SQLiteDB(Context context) {
-        super(context, DATABASE_NAME, null, DATABASE_VERSION);
+    public DBController(Context context)
+    {
+        dbHelper = DBHelper.getInstance(context);
     }
 
-    @Override
-    public void onCreate(SQLiteDatabase db) {
-        db.execSQL(DBContract.PersonEntry.SQL_CREATE_TABLE);
-        db.execSQL(DBContract.CandidateEntry.SQL_CREATE_TABLE);
-    }
-
-    @Override
-    public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        db.execSQL(DBContract.PersonEntry.SQL_DELETE_ENTRIES);
-        db.execSQL(DBContract.CandidateEntry.SQL_DELETE_ENTRIES);
-
-        onCreate(db);
-    }
-
-    public void onDowngrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        onUpgrade(db, oldVersion, newVersion);
-    }
 
     //COMMON
     public List<Person> getAllPersons() {
@@ -56,7 +37,7 @@ public class SQLiteDB extends SQLiteOpenHelper {
 
 
 
-        SQLiteDatabase db = getReadableDatabase();
+        SQLiteDatabase db = dbHelper.getReadableDatabase();
         Cursor cursor = db.rawQuery(selectQuery, null);
 
 
@@ -79,7 +60,7 @@ public class SQLiteDB extends SQLiteOpenHelper {
         cursor.close();
         return personList;
     }
-    public List<Person> getAllCandidates(Person original) {
+    public List<Person> getCandidates(Person original) {
         List<Person> personList = new ArrayList<>();
         Person person;
         String selectQuery = "SELECT " +
@@ -96,7 +77,7 @@ public class SQLiteDB extends SQLiteOpenHelper {
 
         selectQuery +=" ORDER BY person."+DBContract.PersonEntry.COLUMN_NAME+" ASC";
 
-        SQLiteDatabase db = getReadableDatabase();
+        SQLiteDatabase db = dbHelper.getReadableDatabase();
         Cursor cursor = db.rawQuery(selectQuery, null);
 
 
@@ -119,16 +100,15 @@ public class SQLiteDB extends SQLiteOpenHelper {
         return personList;
 
     }
-    public List<Integer> getActualCandidates(Person original) {
+    public List<Integer> getForbiddens(Person original) {
         List<Integer> idList = new ArrayList<>();
-        Person person;
         String selectQuery = "SELECT " +
-                "can."+DBContract.CandidateEntry.COLUMN_CANDIDATE+" " +
-                "FROM "+DBContract.CandidateEntry.TABLE_NAME+" can " +
-                "WHERE can."+DBContract.CandidateEntry.COLUMN_PERSON+"='"+original.getId()+"'";
+                "can."+DBContract.ForbiddenEntry.COLUMN_FORBIDDEN+" " +
+                "FROM "+DBContract.ForbiddenEntry.TABLE_NAME+" can " +
+                "WHERE can."+DBContract.ForbiddenEntry.COLUMN_PERSON+"='"+original.getId()+"'";
 
 
-        SQLiteDatabase db = getReadableDatabase();
+        SQLiteDatabase db  = dbHelper.getReadableDatabase();
         Cursor cursor = db.rawQuery(selectQuery, null);
 
         if (cursor.moveToFirst()) {
@@ -138,30 +118,6 @@ public class SQLiteDB extends SQLiteOpenHelper {
         }
         cursor.close();
         return idList;
-
-    }
-
-    public List<String> getNonCandidates(Person original) {
-        List<String> nonCandidates = new ArrayList<>();
-        Person person;
-        String selectQuery = "SELECT " +
-                "p.name " +
-                "FROM "+DBContract.PersonEntry.TABLE_NAME+" p " +
-                "WHERE p."+DBContract.PersonEntry.COLUMN_ID+"!="+original.getId()+" AND p."+DBContract.PersonEntry.COLUMN_ID+" NOT IN (" +
-                "SELECT c."+DBContract.CandidateEntry.COLUMN_CANDIDATE+" " +
-                "FROM "+DBContract.CandidateEntry.COLUMN_PERSON+" c " +
-                "WHERE c."+DBContract.CandidateEntry.COLUMN_PERSON+"="+original.getId()+")";
-
-        SQLiteDatabase db = getReadableDatabase();
-        Cursor cursor = db.rawQuery(selectQuery, null);
-
-        if (cursor.moveToFirst()) {
-            do {
-                nonCandidates.add(cursor.getString(0));
-            } while (cursor.moveToNext());
-        }
-        cursor.close();
-        return nonCandidates;
 
     }
 
@@ -175,7 +131,7 @@ public class SQLiteDB extends SQLiteOpenHelper {
                 "WHERE person."+DBContract.PersonEntry.COLUMN_NAME+" ='" + person.getName() + "'"+
                 " AND person."+DBContract.PersonEntry.COLUMN_ID+" is not '"+person.getId()+"' ";
 
-        SQLiteDatabase db = getReadableDatabase();
+        SQLiteDatabase db  = dbHelper.getReadableDatabase();
         Cursor cursor = db.rawQuery(selectQuery, null);
 
         cursor.moveToFirst();
@@ -189,7 +145,7 @@ public class SQLiteDB extends SQLiteOpenHelper {
         }
     }
     public long insertPerson(Person person) {
-        SQLiteDatabase db = getWritableDatabase();
+        SQLiteDatabase db  = dbHelper.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put(DBContract.PersonEntry.COLUMN_NAME, person.getName());
         values.put(DBContract.PersonEntry.COLUMN_PHONE, person.getPhone());
@@ -199,7 +155,7 @@ public class SQLiteDB extends SQLiteOpenHelper {
         return db.insert(DBContract.PersonEntry.TABLE_NAME, null, values);
     }
     public int updatePerson(Person person) {
-        SQLiteDatabase db = getReadableDatabase();
+        SQLiteDatabase db  = dbHelper.getReadableDatabase();
         ContentValues values = new ContentValues();
         values.put(DBContract.PersonEntry.COLUMN_NAME, person.getName());
         values.put(DBContract.PersonEntry.COLUMN_PHONE, person.getPhone());
@@ -210,7 +166,7 @@ public class SQLiteDB extends SQLiteOpenHelper {
         return db.update(DBContract.PersonEntry.TABLE_NAME, values, selection, selectionArgs);
     }
     public int deletePerson(int id) {
-        SQLiteDatabase db = getReadableDatabase();
+        SQLiteDatabase db = dbHelper.getReadableDatabase();
         String selection = DBContract.PersonEntry.COLUMN_ID + " = ?";
         String[] selectionArgs = { String.valueOf(id) };
         return db.delete(DBContract.PersonEntry.TABLE_NAME, selection, selectionArgs);
@@ -218,19 +174,25 @@ public class SQLiteDB extends SQLiteOpenHelper {
 
 
     //FORBIDDEN TABLE
-    public long insertCandidate(int idPerson, int idCandidate) {
-        SQLiteDatabase db = getWritableDatabase();
+    public long insertForbidden(int idPerson, int idCandidate) {
+        SQLiteDatabase db  = dbHelper.getWritableDatabase();
         ContentValues values = new ContentValues();
-        values.put(DBContract.CandidateEntry.COLUMN_PERSON, idPerson);
-        values.put(DBContract.CandidateEntry.COLUMN_CANDIDATE, idCandidate);
+        values.put(DBContract.ForbiddenEntry.COLUMN_PERSON, idPerson);
+        values.put(DBContract.ForbiddenEntry.COLUMN_FORBIDDEN, idCandidate);
 
-        return db.insert(DBContract.CandidateEntry.TABLE_NAME, null, values);
+        return db.insert(DBContract.ForbiddenEntry.TABLE_NAME, null, values);
     }
-    public int deleteAllCandidates(int idPerson) {
-        SQLiteDatabase db = getReadableDatabase();
-        String selection = DBContract.CandidateEntry.COLUMN_PERSON + " = ? ";
+    public int deleteAllForbiddenRulesFromPerson(int idPerson) {
+        SQLiteDatabase db = dbHelper.getReadableDatabase();
+        String selection = DBContract.ForbiddenEntry.COLUMN_PERSON + " = ? ";
         String[] selectionArgs = { String.valueOf(idPerson) };
-        return db.delete(DBContract.CandidateEntry.TABLE_NAME, selection, selectionArgs);
+        return db.delete(DBContract.ForbiddenEntry.TABLE_NAME, selection, selectionArgs);
+    }
+    public int deletePersonAsForbiddenOfOtherPersons(int idPerson) {
+        SQLiteDatabase db = dbHelper.getReadableDatabase();
+        String selection = DBContract.ForbiddenEntry.COLUMN_FORBIDDEN + " = ? ";
+        String[] selectionArgs = { String.valueOf(idPerson) };
+        return db.delete(DBContract.ForbiddenEntry.TABLE_NAME, selection, selectionArgs);
     }
 
 

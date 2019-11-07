@@ -20,7 +20,8 @@
             android:layout_weight="1"
             android:ems="10"
             android:hint="@string/edit_activity_hint_name"
-            android:inputType="textPersonName" />
+            android:inputType="textPersonName"
+            android:maxLength="50" />
 
         <ImageView
             android:id="@+id/edit_search_button"
@@ -65,7 +66,7 @@
             android:editable="false"
             android:ems="10"
             android:focusable="true"
-            android:hint="Dont gift to:"
+            android:hint="@string/edit_activity_hint_dontgiftto"
             android:inputType="textPersonName" />
 
         <com.google.android.material.chip.ChipGroup

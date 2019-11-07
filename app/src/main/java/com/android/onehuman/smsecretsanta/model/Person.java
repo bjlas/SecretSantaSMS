@@ -2,7 +2,6 @@ package com.android.onehuman.smsecretsanta.model;
 
 import android.os.Parcel;
 import android.os.Parcelable;
-import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,10 +13,13 @@ public class Person implements Parcelable {
     private String name;
     private String phone;
     private String mail;
+    private List<Person> forbiddenList;
     private List<Person> candidates;
 
     public Person() {
         this.candidates=new ArrayList<>();
+        this.forbiddenList=new ArrayList<>();
+
     }
 
     protected Person(Parcel in) {
@@ -26,6 +28,7 @@ public class Person implements Parcelable {
             this.phone = in.readString();
             this.mail = in.readString();
             this.candidates = new ArrayList<Person>();
+            this.forbiddenList=new ArrayList<Person>();
     }
 
     public static final Parcelable.Creator<Person> CREATOR = new Parcelable.Creator<Person>() {
@@ -66,12 +69,20 @@ public class Person implements Parcelable {
     }
 
     public List<Person> getCandidates(){ return this.candidates; }
-    public void setCandidates(ArrayList<Person> c) {
-        this.candidates = c;
+    public void addCandidates(Person p){ this.candidates.add(p); }
+
+    public List<Person> getForbiddenList(){ return this.forbiddenList; }
+    public void addForbiddenList(List<Person> fl){ this.forbiddenList=fl; }
+    public void addForbidden(Person p){ this.forbiddenList.add(p); }
+
+    public String forbiddenListToString() {
+
+        String forbiddenNames="";
+        for(Person person: this.forbiddenList){
+            forbiddenNames += "[" + person.getName() + "]";
+        }
+        return forbiddenNames;
     }
-    public void addCandidates(Person p){ candidates.add(p); }
-
-
 
     @Override
     public int describeContents() {

@@ -18,14 +18,14 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.android.onehuman.smsecretsanta.database.SQLiteDB;
+import com.android.onehuman.smsecretsanta.database.DBController;
+import com.android.onehuman.smsecretsanta.database.DBHelper;
 import com.android.onehuman.smsecretsanta.model.Person;
 import com.google.android.material.chip.Chip;
 import com.google.android.material.chip.ChipGroup;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.regex.Pattern;
 
 public class EditActivity extends AppCompatActivity {
 
@@ -40,11 +40,11 @@ public class EditActivity extends AppCompatActivity {
     MenuItem deleteMenuItem;
     MenuItem updateMenuItem;
 
-    private SQLiteDB sqLiteDB;
+    private DBController dbController;
     private Person person;
     private ChipGroup chipGroup;
     private List<Person> allCandidates;
-    private List<Integer> selectedCandidates;
+    private List<Integer> selectedForbiddens;
     private Activity activity;
 
     @Override
@@ -59,7 +59,7 @@ public class EditActivity extends AppCompatActivity {
         mail = (EditText) findViewById(R.id.edit_edittext_mail);
         chips = (EditText) findViewById(R.id.edit_edittext_chips);
         chipGroup = (ChipGroup) findViewById(R.id.tag_group);
-        sqLiteDB = new SQLiteDB(this);
+        dbController = new DBController(this);
         activity=this;
     }
 
@@ -71,14 +71,14 @@ public class EditActivity extends AppCompatActivity {
         updateMenuItem = menu.findItem(R.id.edit_action_update);
 
         person = getIntent().getParcelableExtra(EditActivity.class.getSimpleName());
-        allCandidates = sqLiteDB.getAllCandidates(person);
+        allCandidates = dbController.getCandidates(person);
 
         if(person != null){
             addMenuItem.setVisible(false);
             name.setText(person.getName());
             phone.setText(person.getPhone());
             mail.setText(person.getMail());
-            showChips(allCandidates, sqLiteDB.getActualCandidates(person));
+            showChips(allCandidates, dbController.getForbiddens(person));
 
         } else {
             deleteMenuItem.setVisible(false);
@@ -94,7 +94,7 @@ public class EditActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
 
-        selectedCandidates = getNonSelectedChips();
+        selectedForbiddens = getSelectedChips();
 
         if (id == R.id.edit_action_add) {
 
@@ -103,14 +103,12 @@ public class EditActivity extends AppCompatActivity {
             person.setPhone(PhoneNumberUtils.formatNumber(phone.getText().toString().replace(" ", "")));
             person.setMail(mail.getText().toString());
 
-            if (!validateNameField(person) || !validateRequiredField(name) || !validateRequiredField(phone) || !validateRequiredField(mail) || !validateChips() || !validateMail(person.getMail()) || !validatePhone(person.getPhone())) {
+            if (!validateNameField(person) || !validateRequiredField(name) || !validateRequiredField(phone) || !validateChips() || !validateMail(person.getMail()) || !validatePhone(person.getPhone())) {
                 return false;
             }
 
-            int addedPersonID = (int) sqLiteDB.insertPerson(person);
-            for(int candidate: selectedCandidates) {
-                sqLiteDB.insertCandidate(addedPersonID, candidate);
-            }
+            int addedPersonID = (int) dbController.insertPerson(person);
+            saveForbiddens(addedPersonID);
 
             Toast.makeText(this, getResources().getString(R.string.edit_person_created), Toast.LENGTH_SHORT).show();
             finish();
@@ -126,7 +124,9 @@ public class EditActivity extends AppCompatActivity {
                     .setPositiveButton(getResources().getString(R.string.delete), new DialogInterface.OnClickListener() {
 
                         public void onClick(DialogInterface dialog, int whichButton) {
-                            sqLiteDB.deletePerson(person.getId());
+                            dbController.deletePerson(person.getId());
+                            dbController.deleteAllForbiddenRulesFromPerson(person.getId());
+                            dbController.deletePersonAsForbiddenOfOtherPersons(person.getId());
                             Toast.makeText(activity, getResources().getString(R.string.edit_person_deleted), Toast.LENGTH_SHORT).show();
                             dialog.dismiss();
                             finish();
@@ -150,15 +150,13 @@ public class EditActivity extends AppCompatActivity {
             person.setPhone(phone.getText().toString().replace(" ", ""));
             person.setMail(mail.getText().toString());
 
-            if (!validateNameField(person) || !validateRequiredField(name) || !validateRequiredField(phone) || !validateRequiredField(mail) || !validateChips() || !validateMail(person.getMail()) || !validatePhone(person.getPhone())) {
+            if (!validateNameField(person) || !validateRequiredField(name) || !validateRequiredField(phone) || !validateChips() || !validateMail(person.getMail()) || !validatePhone(person.getPhone())) {
                 return false;
             }
 
-            sqLiteDB.updatePerson(person);
-            sqLiteDB.deleteAllCandidates(person.getId());
-            for(int candidateID: selectedCandidates) {
-                sqLiteDB.insertCandidate(person.getId(), candidateID);
-            }
+            dbController.updatePerson(person);
+            dbController.deleteAllForbiddenRulesFromPerson(person.getId());
+            saveForbiddens(person.getId());
 
             Toast.makeText(this, getResources().getString(R.string.edit_person_edited), Toast.LENGTH_SHORT).show();
             finish();
@@ -167,13 +165,17 @@ public class EditActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    private void saveForbiddens(int personID) {
+        for(int forbiddenID: selectedForbiddens) {
+            dbController.insertForbidden(personID, forbiddenID);
+        }
+    }
 
-
-    private void showChips(final List<Person> candidates, List<Integer> candidatesList) {
-        for (int index = 0; index < candidates.size(); index++) {
-                final String tagName = candidates.get(index).getName();
+    private void showChips(final List<Person> candidatesList, List<Integer> forbiddenList) {
+        for (Person person :candidatesList) {
+                final String tagName = person.getName();
                 final Chip chip = new Chip(this);
-                int id=candidates.get(index).getId();
+                int id=person.getId();
                 chip.setClickable(true);
                 chip.setFocusable(true);
                 chip.setCheckable(true);
@@ -186,7 +188,7 @@ public class EditActivity extends AppCompatActivity {
                 chip.setPadding(paddingDp, paddingDp, paddingDp, paddingDp);
                 chip.setText(tagName);
 
-                if(candidatesList != null && !candidatesList.contains(id)) {
+                if(forbiddenList != null && forbiddenList.contains(id)) {
                     chip.setChecked(true);
                 }
 
@@ -196,7 +198,7 @@ public class EditActivity extends AppCompatActivity {
     }
 
     public boolean validateNameField(Person person) {
-        if(sqLiteDB.existName(person)) {
+        if(dbController.existName(person)) {
             name.setError(getResources().getString(R.string.edit_validation_name));
             return false;
         }
@@ -205,7 +207,7 @@ public class EditActivity extends AppCompatActivity {
 
     public boolean validateChips() {
 
-        if(allCandidates.size() !=0 && selectedCandidates.size() == 0) {
+        if(allCandidates.size() !=0 && selectedForbiddens.size() == allCandidates.size()) {
             //All chips selected means this person can gift to anyone. ()
             chips.setError(getResources().getString(R.string.edit_validation_chips));
             return false;
@@ -215,10 +217,10 @@ public class EditActivity extends AppCompatActivity {
 
 
     public boolean validateMail(CharSequence target) {
-        if(!android.util.Patterns.EMAIL_ADDRESS.matcher(target).matches() ) {
+/*        if(!android.util.Patterns.EMAIL_ADDRESS.matcher(target).matches() ) {
             mail.setError(getResources().getString(R.string.edit_validation_mail));
             return false;
-        }
+        }*/
         return true;
 
     }
@@ -240,15 +242,15 @@ public class EditActivity extends AppCompatActivity {
         return true;
     }
 
-    public List<Integer> getNonSelectedChips() {
-        List<Integer> nonSelectedChips=new ArrayList<>();
+    public List<Integer> getSelectedChips() {
+        List<Integer> selectedChips=new ArrayList<>();
         for(int index = 0; index < chipGroup.getChildCount(); index++){
             Chip chip = (Chip) chipGroup.getChildAt(index);
-            if (!chip.isChecked()) {
-                nonSelectedChips.add(chip.getId());
+            if (chip.isChecked()) {
+                selectedChips.add(chip.getId());
             }
         }
-        return nonSelectedChips;
+        return selectedChips;
     }
 
     public void loadContactList(View view) {

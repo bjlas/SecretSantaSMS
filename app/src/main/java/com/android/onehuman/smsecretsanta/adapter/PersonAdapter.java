@@ -12,6 +12,8 @@ import android.widget.TextView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.android.onehuman.smsecretsanta.R;
+import com.android.onehuman.smsecretsanta.database.DBController;
+import com.android.onehuman.smsecretsanta.database.DBHelper;
 import com.android.onehuman.smsecretsanta.event.Main_OnItemClickListener;
 import com.android.onehuman.smsecretsanta.model.Person;
 
@@ -25,12 +27,14 @@ public class PersonAdapter extends RecyclerView.Adapter<PersonAdapter.PersonView
     private Context context;
     private TypedArray icons;
     private int icon_position;
+    private DBController dbController;
 
     public PersonAdapter(Context context) {
         this.context = context;
         this.contactList = new ArrayList<>();
         icons = context.getResources().obtainTypedArray(R.array.main_row_thumb_icons_array);
         icon_position=0;
+        dbController = new DBController(context);
     }
 
     public void updateList(List<Person> pl) {
@@ -55,8 +59,8 @@ public class PersonAdapter extends RecyclerView.Adapter<PersonAdapter.PersonView
 
         holder.name.setText(person.getName());
 
-        if(person.getCandidates().size()>0 ) {
-            holder.forbbidenlist.setText(getNonCandidates(person, person.getCandidates()));
+        if(person.getForbiddenList().size()>0 ) {
+            holder.forbbidenlist.setText(person.forbiddenListToString());
             holder.forbbidenlist.setPaintFlags(holder.forbbidenlist.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
         } else {
             holder.forbbidenlist.setText("");
@@ -79,11 +83,9 @@ public class PersonAdapter extends RecyclerView.Adapter<PersonAdapter.PersonView
 
         public PersonViewHolder(View itemView) {
             super(itemView);
-
             thumb = (ImageView) itemView.findViewById(R.id.main_row_thumb);
             name = (TextView) itemView.findViewById(R.id.main_row_name);
             forbbidenlist = (TextView) itemView.findViewById(R.id.main_row_forbbidenlist);
-
         }
     }
 
@@ -96,13 +98,4 @@ public class PersonAdapter extends RecyclerView.Adapter<PersonAdapter.PersonView
         return icon_position;
     }
 
-    private String getNonCandidates(Person actual, List<Person> candidatesList) {
-        String forbiddenNames="";
-        for(Person person: contactList){
-            if(person!=actual && !candidatesList.contains(person)) {
-                forbiddenNames += "[" + person.getName() + "]";
-            }
-        }
-        return forbiddenNames;
-    }
 }

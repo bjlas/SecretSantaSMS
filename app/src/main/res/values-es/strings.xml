@@ -11,11 +11,10 @@
     <string name="action_send">Enviar</string>
 
     <string name="main_dialog_title">Enviar resultados?</string>
-    <string name="main_dialog_message">Quieres realizar el sorteo y enviar a los ususarios su amigo invisible?</string>
-    <string name="main_dialog_bySMSButton">por SMS</string>
-    <string name="main_dialog_byMAILButton">por Email</string>
+    <string name="main_dialog_message">Quieres enviar un SMS a cada amigo invisible? (Consulta los costes del servicio a tu proveedor)</string>
+    <string name="main_dialog_bySMSButton">SMS</string>
     <string name="cancel">Cancelar</string>
-    <string name="main_dialog_success_title">Exito</string>
+    <string name="main_dialog_success_title">Éxito</string>
     <string name="main_dialog_success_message">El resultado ha sido enviado</string>
     <string name="main_dialog_fail_title">Fallo</string>
     <string name="main_dialog_fail_message">No existe solución con las personas/reglas marcadas.</string>
@@ -29,14 +28,13 @@
     <string name="edit_validation_name">Este nombre ya existe</string>
     <string name="edit_validation_phone">Número invalido</string>
 
-    <string name="main_dialog_smsTemplate">"Hola %1$s!, eres el amigo invisible de: %2$s</string>
+    <string name="main_dialog_smsTemplate">Hola %1$s! Eres el amigo invisible de: %2$s</string>
 
     <string name="edit_activity_hint_name">Nombre</string>
-    <string name="edit_activity_hint_phone">Telefono</string>
+    <string name="edit_activity_hint_phone">Teléfono</string>
     <string name="edit_activity_hint_email">Email</string>
-
-    <string name="edit_dialog_deleted">Quieres eliminar a %1$s</string>
-
-
+    <string name="edit_dialog_deleted">Quieres eliminar a %1$s?</string>
+    <string name="main_dialog_fail_number_of_candidates">%1$s no puede regalar a nadie</string>
+    <string name="edit_activity_hint_dontgiftto">No regala a:</string>
 
 </resources>
