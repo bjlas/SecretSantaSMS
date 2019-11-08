@@ -7,7 +7,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 public class DBHelper extends SQLiteOpenHelper {
 
     private static DBHelper dbHelper;
-    public static final int DATABASE_VERSION = 6;
+    public static final int DATABASE_VERSION = 7;
     public static final String DATABASE_NAME = "SMSecretSanta.db";
 
     public static synchronized DBHelper getInstance(Context c) {
@@ -26,12 +26,15 @@ public class DBHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(DBContract.PersonEntry.SQL_CREATE_TABLE);
         db.execSQL(DBContract.ForbiddenEntry.SQL_CREATE_TABLE);
+        db.execSQL(DBContract.GroupEntry.SQL_CREATE_TABLE);
+
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL(DBContract.PersonEntry.SQL_DELETE_ENTRIES);
         db.execSQL(DBContract.ForbiddenEntry.SQL_DELETE_ENTRIES);
+        db.execSQL(DBContract.GroupEntry.SQL_DELETE_ENTRIES);
 
         onCreate(db);
     }

@@ -13,8 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.android.onehuman.smsecretsanta.R;
 import com.android.onehuman.smsecretsanta.database.DBController;
-import com.android.onehuman.smsecretsanta.database.DBHelper;
-import com.android.onehuman.smsecretsanta.event.Main_OnItemClickListener;
+import com.android.onehuman.smsecretsanta.event.Person_OnItemClickListener;
 import com.android.onehuman.smsecretsanta.model.Person;
 
 import java.util.ArrayList;
@@ -45,7 +44,7 @@ public class PersonAdapter extends RecyclerView.Adapter<PersonAdapter.PersonView
 
     @Override
     public PersonViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.main_row_item, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.person_row_item, parent, false);
 
         final PersonViewHolder contactHolder = new PersonViewHolder(view);
         return contactHolder;
@@ -66,7 +65,7 @@ public class PersonAdapter extends RecyclerView.Adapter<PersonAdapter.PersonView
             holder.forbbidenlist.setText("");
 
         }
-        holder.itemView.setOnClickListener(new Main_OnItemClickListener(context, person));
+        holder.itemView.setOnClickListener(new Person_OnItemClickListener(context, person));
 
     }
 
@@ -83,9 +82,9 @@ public class PersonAdapter extends RecyclerView.Adapter<PersonAdapter.PersonView
 
         public PersonViewHolder(View itemView) {
             super(itemView);
-            thumb = (ImageView) itemView.findViewById(R.id.main_row_thumb);
-            name = (TextView) itemView.findViewById(R.id.main_row_name);
-            forbbidenlist = (TextView) itemView.findViewById(R.id.main_row_forbbidenlist);
+            thumb = (ImageView) itemView.findViewById(R.id.person_row_thumb);
+            name = (TextView) itemView.findViewById(R.id.person_row_name);
+            forbbidenlist = (TextView) itemView.findViewById(R.id.person_row_forbbidenlist);
         }
     }
 
