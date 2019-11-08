@@ -21,7 +21,8 @@
             android:ems="10"
             android:hint="@string/edit_activity_hint_name"
             android:inputType="textPersonName"
-            android:maxLength="50" />
+            android:maxLength="50"
+            android:textColor="@color/colorTextBlack" />
 
         <ImageView
             android:id="@+id/edit_search_button"
@@ -41,7 +42,8 @@
         android:layout_marginBottom="@dimen/margin_10"
         android:ems="10"
         android:hint="@string/edit_activity_hint_phone"
-        android:inputType="phone" />
+        android:inputType="phone"
+        android:textColor="@color/colorTextBlack" />
 
     <EditText
         android:id="@+id/edit_edittext_mail"
@@ -50,7 +52,8 @@
         android:layout_marginBottom="@dimen/margin_10"
         android:ems="10"
         android:hint="@string/edit_activity_hint_email"
-        android:inputType="textEmailAddress" />
+        android:inputType="textEmailAddress"
+        android:textColor="@color/colorTextBlack" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -65,6 +68,7 @@
             android:layout_height="wrap_content"
             android:editable="false"
             android:ems="10"
+            android:enabled="false"
             android:focusable="true"
             android:hint="@string/edit_activity_hint_dontgiftto"
             android:inputType="textPersonName" />

@@ -3,13 +3,17 @@
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.MaterialComponents.Light">
         <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorText</item>
+        <item name="colorPrimaryDark">@color/colorPrimary</item>
         <item name="colorAccent">@color/colorAccent</item>
-        <item name="android:colorBackground">@color/background_color</item>
-            <item name="android:windowNoTitle">true</item>
-            <item name="android:windowActionBar">false</item>
-            <item name="android:windowFullscreen">true</item>
-            <item name="android:windowContentOverlay">@null</item>
+        <item name="android:colorBackground">@color/colorTextWhite</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowActionBar">false</item>
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+
+        <item name="android:popupMenuStyle">@style/SMSecretSanta.PopupMenu</item>
+        <item name="android:actionBarStyle">@style/SMSecretSanta.ActionBar</item>
+        <item name="android:textColorPrimary">@color/colorTextWhite</item>
     </style>
 
     <style name="AppTheme.NoActionBar">
@@ -18,19 +22,16 @@
     </style>
 
 
-    <style name="MyAppActionBarTheme" parent="android:Theme.Holo.Light">
-        <item name="android:popupMenuStyle">@style/MyApp.PopupMenu</item>
-        <item name="android:actionBarStyle">@style/MyApp.ActionBar</item>
-        <item name="android:textColorPrimary">@color/colorText</item>
-    </style>
 
-    <style name="MyApp.PopupMenu" parent="android:Widget.Holo.Light.ListPopupWindow">
+    <style name="SMSecretSanta.PopupMenu" parent="android:Widget.Holo.Light.ListPopupWindow">
         <item name="android:popupBackground">@color/colorPrimary</item>
     </style>
 
-    <style name="MyApp.ActionBar" parent="android:Widget.Holo.Light.ActionBar.Solid">
+    <style name="SMSecretSanta.ActionBar" parent="android:Widget.Holo.Light.ActionBar.Solid">
         <item name="android:background">@color/colorPrimary</item>
     </style>
+
+
 
 
 
