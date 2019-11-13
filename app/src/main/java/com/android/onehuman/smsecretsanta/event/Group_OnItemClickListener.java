@@ -2,13 +2,14 @@ package com.android.onehuman.smsecretsanta.event;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 
+import com.android.onehuman.smsecretsanta.EditGroup;
 import com.android.onehuman.smsecretsanta.EditPerson;
-import com.android.onehuman.smsecretsanta.PersonActivity;
+import com.android.onehuman.smsecretsanta.PersonsList;
 import com.android.onehuman.smsecretsanta.model.Group;
-import com.android.onehuman.smsecretsanta.model.Person;
 
 
 public class Group_OnItemClickListener implements AdapterView.OnClickListener {
@@ -23,8 +24,8 @@ public class Group_OnItemClickListener implements AdapterView.OnClickListener {
 
     @Override
     public void onClick(View view) {
-        Intent intent = new Intent(context, PersonActivity.class);
-        intent.putExtra(PersonActivity.class.getSimpleName(), group);
+        Intent intent = new Intent(context, PersonsList.class);
+        intent.putExtra("group", group);
         context.startActivity(intent);
     }
 

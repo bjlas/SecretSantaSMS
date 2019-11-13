@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.android.onehuman.smsecretsanta.R;
 import com.android.onehuman.smsecretsanta.database.DBController;
 import com.android.onehuman.smsecretsanta.event.Person_OnItemClickListener;
+import com.android.onehuman.smsecretsanta.model.Group;
 import com.android.onehuman.smsecretsanta.model.Person;
 
 import java.util.ArrayList;
@@ -26,19 +27,22 @@ public class PersonAdapter extends RecyclerView.Adapter<PersonAdapter.PersonView
     private Context context;
     private TypedArray icons;
     private int icon_position;
-    private DBController dbController;
+    private Group group;
 
     public PersonAdapter(Context context) {
         this.context = context;
         this.contactList = new ArrayList<>();
         icons = context.getResources().obtainTypedArray(R.array.main_row_thumb_icons_array);
         icon_position=0;
-        dbController = new DBController(context);
     }
 
     public void updateList(List<Person> pl) {
         contactList = pl;
         notifyDataSetChanged();
+    }
+
+    public void setGroup(Group g) {
+        this.group=g;
     }
 
 
@@ -65,7 +69,7 @@ public class PersonAdapter extends RecyclerView.Adapter<PersonAdapter.PersonView
             holder.forbbidenlist.setText("");
 
         }
-        holder.itemView.setOnClickListener(new Person_OnItemClickListener(context, person));
+        holder.itemView.setOnClickListener(new Person_OnItemClickListener(context, person, group));
 
     }
 

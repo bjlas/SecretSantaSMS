@@ -16,11 +16,11 @@
     <string name="main_dialog_success_title">Success</string>
     <string name="main_dialog_success_message">The secret santa was sent</string>
     <string name="main_dialog_fail_title">Fail</string>
-    <string name="main_dialog_fail_message">There is no solution, please change the "Dont gift to" rules</string>
-    <string name="edit_view_title">Add Person</string>
-    <string name="edit_person_created">Inserted!</string>
-    <string name="edit_person_deleted">Deleted!</string>
-    <string name="edit_person_edited">Edited!</string>
+    <string name="main_dialog_fail_message">There is no solution, please change the "Don't gift to" rules</string>
+    <string name="edit_view_title">Person</string>
+    <string name="edit_created">Inserted!</string>
+    <string name="edit_deleted">Deleted!</string>
+    <string name="edit_edited">Edited!</string>
     <string name="edit_validation_chips">This person cannot gift anyone</string>
     <string name="edit_validation_mail">Invalid email address</string>
     <string name="edit_validation_field_requited">is required</string>
@@ -32,9 +32,13 @@
     <string name="edit_activity_hint_name">Name</string>
     <string name="edit_activity_hint_phone">Phone</string>
     <string name="edit_activity_hint_email">Email</string>
-    <string name="edit_dialog_deleted">Do you want to delete %1$s</string>
-    <string name="main_dialog_fail_number_of_candidates">%1$s cannot gift anyone.</string>
+    <string name="edit_dialog_deleted_person">Do you want to delete %1$s</string>
+    <string name="edit_dialog_deleted_group">Do you want to delete %1$s group and all his members?</string>
+
+    <string name="main_dialog_fail_number_of_candidates">%1$s cannot gift anyone</string>
     <string name="edit_activity_hint_dontgiftto">Dont gift to:</string>
+    <string name="edit_activity_hint_maxprice">Price limit</string>
+    <string name="edit_group_title">Group</string>
 
 
 </resources>

@@ -1,9 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".PersonActivity">
+    android:orientation="vertical"
+    android:padding="@dimen/activity_horizontal_margin">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <EditText
+        android:id="@+id/edit_group_edittext_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/margin_10"
+        android:ems="10"
+        android:hint="@string/edit_activity_hint_name"
+        android:inputType="text"
+        android:textColor="@color/colorTextBlack" />
+
+    <EditText
+        android:id="@+id/edit_group_edittext_maxprice"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/margin_10"
+        android:ems="10"
+        android:hint="@string/edit_activity_hint_maxprice"
+        android:inputType="text"
+        android:textColor="@color/colorTextBlack" />
+
+</LinearLayout>

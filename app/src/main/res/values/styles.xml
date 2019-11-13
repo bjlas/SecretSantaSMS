@@ -32,7 +32,9 @@
     </style>
 
 
-
-
+    <style name="AlertDialog" parent="Base.Theme.AppCompat.Light.Dialog">
+        <item name="android:textColor">@color/colorTextBlack</item>
+        <item name="android:textColorPrimary">@color/colorTextBlack</item>
+    </style>
 
 </resources>

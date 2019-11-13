@@ -10,14 +10,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="80f5ace2-e317-42f0-91b7-1018a180ff4e" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/android/onehuman/smsecretsanta/EditGroup.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/android/onehuman/smsecretsanta/PersonActivity.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/android/onehuman/smsecretsanta/adapter/GroupAdapter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/android/onehuman/smsecretsanta/event/Group_OnItemClickListener.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/android/onehuman/smsecretsanta/model/Group.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_edit_group.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/person_activity.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/person_row_item.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/add_group.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/add_person.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_persons_list.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/test.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/5.4.1/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.4.1/executionHistory/executionHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/5.4.1/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.4.1/executionHistory/executionHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/5.4.1/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.4.1/fileHashes/fileHashes.bin" afterDir="false" />
@@ -25,25 +21,30 @@
       <change beforePath="$PROJECT_DIR$/.gradle/5.4.1/javaCompile/classAnalysis.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.4.1/javaCompile/classAnalysis.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/5.4.1/javaCompile/javaCompile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.4.1/javaCompile/javaCompile.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/caches/gradle_models.ser" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/caches/gradle_models.ser" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/assetWizardSettings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/assetWizardSettings.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/android/onehuman/smsecretsanta/BroadCastRecivers/DeliveredReceiver.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/android/onehuman/smsecretsanta/broadcasts/DeliveredReceiver.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/android/onehuman/smsecretsanta/BroadCastRecivers/SentReceiver.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/android/onehuman/smsecretsanta/broadcasts/SentReceiver.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/android/onehuman/smsecretsanta/EditActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/android/onehuman/smsecretsanta/EditPerson.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/android/onehuman/smsecretsanta/MainActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/android/onehuman/smsecretsanta/GroupActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/android/onehuman/smsecretsanta/EditGroup.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/android/onehuman/smsecretsanta/EditGroup.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/android/onehuman/smsecretsanta/EditPerson.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/android/onehuman/smsecretsanta/EditPerson.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/android/onehuman/smsecretsanta/GroupActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/android/onehuman/smsecretsanta/GroupsList.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/android/onehuman/smsecretsanta/PersonActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/android/onehuman/smsecretsanta/PersonsList.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/android/onehuman/smsecretsanta/adapter/PersonAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/android/onehuman/smsecretsanta/adapter/PersonAdapter.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/android/onehuman/smsecretsanta/database/DBContract.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/android/onehuman/smsecretsanta/database/DBContract.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/android/onehuman/smsecretsanta/database/DBController.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/android/onehuman/smsecretsanta/database/DBController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/android/onehuman/smsecretsanta/database/DBHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/android/onehuman/smsecretsanta/database/DBHelper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/android/onehuman/smsecretsanta/event/Main_OnItemClickListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/android/onehuman/smsecretsanta/event/Person_OnItemClickListener.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_edit.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_edit_person.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/android/onehuman/smsecretsanta/event/Group_OnItemClickListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/android/onehuman/smsecretsanta/event/Group_OnItemClickListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/android/onehuman/smsecretsanta/event/Person_OnItemClickListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/android/onehuman/smsecretsanta/event/Person_OnItemClickListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_edit_group.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_edit_group.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/content_main.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/content_main_group.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/main_row_item.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/group_row_item.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/menu/menu_edit.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/menu/menu_person_edit.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/menu/menu_main.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/menu/menu_person_activity.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/content_main_group.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_groups_list.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/person_activity.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/menu/menu_person_activity.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/menu/menu_group.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/menu/menu_person_edit.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/menu/menu_edit.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/values-es/strings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values-es/strings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/values/colors.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values/colors.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/values/dimens.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values/dimens.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/values/styles.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values/styles.xml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -75,47 +76,49 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/android/onehuman/smsecretsanta/GroupActivity.java">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/android/onehuman/smsecretsanta/database/DBController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="452">
-              <caret line="86" selection-start-line="86" selection-end-line="86" />
+            <state relative-caret-position="450">
+              <caret line="76" selection-start-line="76" selection-end-line="76" />
               <folding>
-                <element signature="imports" expanded="true" />
+                <element signature="method#getAllPersons#0;class#DBController#0" />
+                <element signature="method#getForbiddens#0;class#DBController#0" />
+                <element signature="method#updatePerson#0;class#DBController#0" />
+                <element signature="method#deletePerson#0;class#DBController#0" />
+                <element signature="method#insertForbidden#0;class#DBController#0" />
+                <element signature="method#getAllGroups#0;class#DBController#0" />
+                <element signature="method#insertGroup#0;class#DBController#0" />
+                <element signature="method#deleteGroup#0;class#DBController#0" />
+                <element signature="method#updateGroup#0;class#DBController#0" />
+                <element signature="method#existGroupName#0;class#DBController#0" />
+                <element signature="method#getGroup#0;class#DBController#0" />
+                <element signature="method#insertPersonInGroup#0;class#DBController#0" />
+                <element signature="method#deleteAllGroupPersons#0;class#DBController#0" />
+                <element signature="method#deleteAPersonsOfAGroup#0;class#DBController#0" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/android/onehuman/smsecretsanta/model/Group.java">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/android/onehuman/smsecretsanta/PersonsList.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="252">
-              <caret line="27" column="20" selection-start-line="27" selection-start-column="15" selection-end-line="27" selection-end-column="20" />
+            <state relative-caret-position="2055">
+              <caret line="137" selection-start-line="137" selection-end-line="137" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#651#652#0" expanded="true" />
-                <element signature="e#699#700#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/android/onehuman/smsecretsanta/event/Group_OnItemClickListener.java">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/android/onehuman/smsecretsanta/EditGroup.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="270">
-              <caret line="26" column="38" selection-start-line="26" selection-start-column="38" selection-end-line="26" selection-end-column="38" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/android/onehuman/smsecretsanta/PersonActivity.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="185">
-              <caret line="34" column="27" selection-start-line="34" selection-start-column="13" selection-end-line="34" selection-end-column="27" />
+            <state relative-caret-position="466">
+              <caret line="123" column="28" selection-start-line="123" selection-start-column="28" selection-end-line="123" selection-end-column="28" />
               <folding>
-                <element signature="imports" expanded="true" />
+                <element signature="e#4156#4203#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -126,44 +129,44 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="layoutResourceFile_vertical" />
         <option value="valueResourceFile" />
+        <option value="layoutResourceFile_vertical" />
         <option value="Class" />
       </list>
     </option>
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>&quot;&quot;</find>
-      <find>add</find>
-      <find>packagename</find>
-      <find>getmail</find>
-      <find>getActualCandidates</find>
-      <find>validate</find>
-      <find>esta</find>
-      <find>getCandidates(</find>
-      <find>dbcontroller.getcandidate</find>
-      <find>showChips</find>
-      <find>createMap</find>
-      <find>getCandidates</find>
-      <find>map</find>
-      <find>string.for</find>
-      <find>deletePersonAsForbiddenOfOtherPersons</find>
-      <find>MY_PERMISSIONS_REQUEST_SEND_SMS</find>
-      <find>regite</find>
-      <find>sendSMS</find>
-      <find>showOKDialog</find>
-      <find>string</find>
-      <find>checkForSmsPermission</find>
-      <find>settitl</find>
-      <find>colorText</find>
-      <find>edit_activity_hint_dontgiftto</find>
-      <find>edit_edittext_chips</find>
-      <find>chips</find>
-      <find>_row_</find>
+      <find>edit_dialog_deleted_group</find>
+      <find>AlertDialogCustom</find>
+      <find>AlertDialog</find>
+      <find>floating</find>
+      <find>dbcon</find>
+      <find>settitle</find>
+      <find>activity_group</find>
+      <find>activity_groups_list</find>
+      <find>toast.</find>
+      <find>Toast</find>
+      <find>putextra</find>
+      <find>in</find>
+      <find>onstar</find>
+      <find>setid</find>
       <find>person</find>
-      <find>Group_OnItemClickListener</find>
-      <find>parcelable</find>
+      <find>person =</find>
+      <find>Person_OnItemClickListener</find>
+      <find>PersonAdapter</find>
+      <find>existPersonName</find>
+      <find>group</find>
+      <find>group =</find>
+      <find>dbController.getCandidates</find>
+      <find>getCandidates</find>
+      <find>GROUP</find>
+      <find>&quot;group&quot;</find>
+      <find>personList_fab_add_person</find>
+      <find>extra_group</find>
+      <find>añadir person</find>
+      <find>edit_view_title</find>
+      <find>intent</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -172,19 +175,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/app/src/main/java/com/android/onehuman/smsecretsanta/graph/Vertex.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/android/onehuman/smsecretsanta/graph/Graph.java" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/main_dialog.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/android/onehuman/smsecretsanta/event/DialogAlert.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/android/onehuman/smsecretsanta/event/DialogAlert2.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/android/onehuman/smsecretsanta/event/CustomDialog.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/android/onehuman/smsecretsanta/event/AlertUtils.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/android/onehuman/smsecretsanta/database/SQLiteDB.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/android/onehuman/smsecretsanta/model/Person.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/SendSms.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/android/onehuman/smsecretsanta/SmsActivity.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/android/onehuman/smsecretsanta/SendSms.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/android/onehuman/smsecretsanta/SMS.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/android/onehuman/smsecretsanta/SMSUtils.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/android/onehuman/smsecretsanta/SMSReceiver.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/android/onehuman/smsecretsanta/BroadCastRecivers/BroadCastRecivers.java" />
@@ -194,43 +184,56 @@
         <option value="$PROJECT_DIR$/app/src/main/java/com/android/onehuman/smsecretsanta/BroadCastRecivers/DeliveredReceiver.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/android/onehuman/smsecretsanta/BroadCastRecivers/SentReceiver.java" />
         <option value="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/res/values/strings.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/res/values-es/strings.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/android/onehuman/smsecretsanta/MainActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/menu/menu_main.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/res/values/colors.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/res/values/styles.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_edit.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/android/onehuman/smsecretsanta/EditActivity.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/android/onehuman/smsecretsanta/database/DBHelper.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/android/onehuman/smsecretsanta/database/DBContract.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/android/onehuman/smsecretsanta/EditGroupActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/content_main.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/content_main_group.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/person_row_item.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/group_row_item.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/android/onehuman/smsecretsanta/adapter/PersonAdapter.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/android/onehuman/smsecretsanta/EditPerson.java" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/android/onehuman/smsecretsanta/database/DBController.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/android/onehuman/smsecretsanta/EditGroup.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/android/onehuman/smsecretsanta/event/Person_OnItemClickListener.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/android/onehuman/smsecretsanta/adapter/GroupAdapter.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/menu/menu_person_activity.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/content_main_person.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/android/onehuman/smsecretsanta/PersonActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/person_activity.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/android/onehuman/smsecretsanta/GroupActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/android/onehuman/smsecretsanta/model/Group.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/android/onehuman/smsecretsanta/PersonActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/android/onehuman/smsecretsanta/GroupActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_groupsList.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_personsList.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_personslist.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_edit_group.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/menu/menu_group.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/menu/menu_edit.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/values/styles.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/values/colors.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/values/dimens.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/test.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_groups_list.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/android/onehuman/smsecretsanta/database/DBHelper.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/android/onehuman/smsecretsanta/GroupsList.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/android/onehuman/smsecretsanta/utils/IntentUtils.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/android/onehuman/smsecretsanta/event/Group_OnItemClickListener.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_persons_list.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/android/onehuman/smsecretsanta/database/DBContract.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/android/onehuman/smsecretsanta/event/Person_OnItemClickListener.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/android/onehuman/smsecretsanta/adapter/PersonAdapter.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/android/onehuman/smsecretsanta/EditPerson.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/values/strings.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/values-es/strings.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/android/onehuman/smsecretsanta/database/DBController.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/android/onehuman/smsecretsanta/PersonsList.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/android/onehuman/smsecretsanta/EditGroup.java" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="1440" />
-    <option name="y" value="22" />
-    <option name="width" value="1920" />
-    <option name="height" value="1058" />
+    <option name="x" value="1383" />
+    <option name="y" value="46" />
+    <option name="width" value="1440" />
+    <option name="height" value="877" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="2" id="Add" />
@@ -240,7 +243,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
       <pane id="AndroidView">
         <subPane>
           <expand>
@@ -264,38 +266,7 @@
               <item name="app" type="feadf853:AndroidModuleNode" />
               <item name="java" type="edd41e36:AndroidSourceTypeNode" />
               <item name="smsecretsanta" type="cbb59c9e:AndroidPsiDirectoryNode" />
-              <item name="adapter" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="SMSecretSanta" type="1abcf292:AndroidViewProjectNode" />
-              <item name="app" type="feadf853:AndroidModuleNode" />
-              <item name="java" type="edd41e36:AndroidSourceTypeNode" />
-              <item name="smsecretsanta" type="cbb59c9e:AndroidPsiDirectoryNode" />
               <item name="event" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="SMSecretSanta" type="1abcf292:AndroidViewProjectNode" />
-              <item name="app" type="feadf853:AndroidModuleNode" />
-              <item name="java" type="edd41e36:AndroidSourceTypeNode" />
-              <item name="smsecretsanta" type="cbb59c9e:AndroidPsiDirectoryNode" />
-              <item name="model" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="SMSecretSanta" type="1abcf292:AndroidViewProjectNode" />
-              <item name="app" type="feadf853:AndroidModuleNode" />
-              <item name="res" type="d4f16f75:AndroidResFolderNode" />
-            </path>
-            <path>
-              <item name="SMSecretSanta" type="1abcf292:AndroidViewProjectNode" />
-              <item name="app" type="feadf853:AndroidModuleNode" />
-              <item name="res" type="d4f16f75:AndroidResFolderNode" />
-              <item name="layout" type="ddeffd01:AndroidResFolderTypeNode" />
-            </path>
-            <path>
-              <item name="SMSecretSanta" type="1abcf292:AndroidViewProjectNode" />
-              <item name="app" type="feadf853:AndroidModuleNode" />
-              <item name="res" type="d4f16f75:AndroidResFolderNode" />
-              <item name="menu" type="ddeffd01:AndroidResFolderTypeNode" />
             </path>
           </expand>
           <select />
@@ -303,6 +274,7 @@
       </pane>
       <pane id="Scope" />
       <pane id="ProjectPane" />
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -429,28 +401,28 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="1440" y="22" width="1920" height="1058" extended-state="6" />
+    <frame x="1440" y="23" width="1920" height="1057" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Captures" order="0" side_tool="true" weight="0.25" />
-      <window_info active="true" content_ui="combo" id="Project" order="1" visible="true" weight="0.1544196" />
-      <window_info id="Structure" order="2" side_tool="true" />
+      <window_info active="true" content_ui="combo" id="Project" order="1" sideWeight="0.49688473" visible="true" weight="0.13099042" />
+      <window_info id="Structure" order="2" sideWeight="0.50311524" side_tool="true" weight="0.11075612" />
       <window_info id="Favorites" order="3" side_tool="true" />
       <window_info id="Build Variants" order="4" side_tool="true" />
       <window_info id="Image Layers" order="5" />
       <window_info id="Designer" order="6" />
       <window_info id="Resources Explorer" order="7" />
       <window_info id="Capture Tool" order="8" />
-      <window_info anchor="bottom" id="Run" order="0" weight="0.32919255" />
-      <window_info anchor="bottom" id="Logcat" order="1" weight="0.32712215" />
+      <window_info anchor="bottom" id="Run" order="0" weight="0.1573499" />
+      <window_info anchor="bottom" id="Logcat" order="1" weight="0.26915115" />
       <window_info anchor="bottom" id="TODO" order="2" weight="0.32919255" />
       <window_info anchor="bottom" id="Find" order="3" weight="0.32919255" />
       <window_info anchor="bottom" id="Terminal" order="4" weight="0.32919255" />
       <window_info anchor="bottom" id="Event Log" order="5" side_tool="true" />
       <window_info anchor="bottom" id="Version Control" order="6" />
-      <window_info anchor="bottom" id="Build" order="7" weight="0.26190478" />
-      <window_info anchor="bottom" id="Debug" order="8" visible="true" weight="0.33540374" />
-      <window_info anchor="bottom" id="Android Profiler" order="9" />
+      <window_info anchor="bottom" id="Build" order="7" visible="true" weight="0.14404145" />
+      <window_info anchor="bottom" id="Debug" order="8" weight="0.26839378" />
+      <window_info anchor="bottom" id="Android Profiler" order="9" show_stripe_button="false" />
       <window_info anchor="right" id="Device File Explorer" order="0" side_tool="true" weight="0.32960597" />
       <window_info anchor="right" id="Capture Analysis" order="1" />
       <window_info anchor="right" id="Gradle" order="2" sideWeight="0.49609375" weight="0.32960597" />
@@ -477,46 +449,62 @@
           <option name="timeStamp" value="91" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/app/src/main/java/com/android/onehuman/smsecretsanta/GroupActivity.java</url>
-          <line>256</line>
-          <properties />
-          <option name="timeStamp" value="92" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/app/src/main/java/com/android/onehuman/smsecretsanta/broadcasts/SentReceiver.java</url>
           <line>22</line>
           <properties />
           <option name="timeStamp" value="94" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/android/onehuman/smsecretsanta/EditGroup.java</url>
+          <line>152</line>
+          <properties />
+          <option name="timeStamp" value="115" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/app/src/main/java/com/android/onehuman/smsecretsanta/database/DBController.java</url>
-          <line>126</line>
+          <line>173</line>
           <properties />
-          <option name="timeStamp" value="96" />
+          <option name="timeStamp" value="117" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/app/src/main/java/com/android/onehuman/smsecretsanta/PersonActivity.java</url>
-          <line>101</line>
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/android/onehuman/smsecretsanta/EditPerson.java</url>
+          <line>218</line>
           <properties />
-          <option name="timeStamp" value="98" />
+          <option name="timeStamp" value="162" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/app/src/main/java/com/android/onehuman/smsecretsanta/PersonActivity.java</url>
-          <line>99</line>
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/android/onehuman/smsecretsanta/event/Person_OnItemClickListener.java</url>
+          <line>33</line>
           <properties />
-          <option name="timeStamp" value="99" />
+          <option name="timeStamp" value="164" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/app/src/main/java/com/android/onehuman/smsecretsanta/event/Group_OnItemClickListener.java</url>
-          <line>25</line>
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/android/onehuman/smsecretsanta/EditPerson.java</url>
+          <line>90</line>
           <properties />
-          <option name="timeStamp" value="100" />
+          <option name="timeStamp" value="174" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/android/onehuman/smsecretsanta/EditGroup.java</url>
+          <line>111</line>
+          <properties />
+          <option name="timeStamp" value="178" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
   </component>
   <component name="debuggerHistoryManager">
     <expressions id="evaluateExpression">
+      <expression>
+        <expression-string>getIntent().getExtras()</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>getResources().getString(R.string.edit_dialog_deleted_group)</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
       <expression>
         <expression-string>resultMap.get(idCandidate)</expression-string>
         <language-id>JAVA</language-id>
@@ -530,18 +518,6 @@
     </expressions>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$USER_HOME$/Desktop/SMSecretSanta/app/src/main/java/com/android/onehuman/smsecretsanta/model/Person.java" />
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/main_dialog.xml" />
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/android/onehuman/smsecretsanta/event/DialogAlert.java" />
-    <entry file="file://$USER_HOME$/Downloads/MyAndroidApp/res/layout/custom.xml" />
-    <entry file="file://$USER_HOME$/Downloads/MyAndroidApp/src/com/mkyong/android/MainActivity.java" />
-    <entry file="file://$PROJECT_DIR$/app/src/androidTest/java/com/android/onehuman/smsecretsanta/ExampleInstrumentedTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="27" selection-start-line="27" selection-end-line="27" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/android/onehuman/smsecretsanta/graph/Graph.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="315">
@@ -623,16 +599,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/values-es/strings.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="40">
-          <caret line="25" column="26" selection-start-line="25" selection-start-column="26" selection-end-line="25" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/values/arrays.xml">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
       <provider editor-type-id="android-manifest" />
       <provider selected="true" editor-type-id="text-editor">
@@ -641,167 +607,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/values/strings.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="540">
-          <caret line="36" column="47" selection-start-line="36" selection-start-column="18" selection-end-line="36" selection-end-column="47" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/values/colors.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="6" column="31" selection-start-line="6" selection-start-column="17" selection-end-line="6" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/values/styles.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="195">
-          <caret line="13" column="80" selection-start-line="13" selection-start-column="80" selection-end-line="13" selection-end-column="80" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/values/icon_launcher_background.xml">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/values/dimens.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
-          <caret line="11" lean-forward="true" selection-start-line="11" selection-end-line="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/android/onehuman/smsecretsanta/database/DBHelper.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="9" column="48" selection-start-line="9" selection-start-column="48" selection-end-line="9" selection-end-column="48" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/android/onehuman/smsecretsanta/database/DBContract.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="123">
-          <caret line="40" column="56" selection-start-line="40" selection-start-column="56" selection-end-line="40" selection-end-column="56" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/person_row_item.xml">
       <provider selected="true" editor-type-id="android-designer2" />
       <provider editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/group_row_item.xml">
-      <provider selected="true" editor-type-id="android-designer2" />
-      <provider editor-type-id="text-editor">
-        <state relative-caret-position="405">
-          <caret line="33" column="38" selection-start-line="33" selection-start-column="38" selection-end-line="33" selection-end-column="38" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_edit_group2.xml">
-      <provider selected="true" editor-type-id="android-designer2" />
-      <provider editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_edit_group.xml">
-      <provider selected="true" editor-type-id="android-designer2" />
-      <provider editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/android/onehuman/smsecretsanta/database/DBController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="438">
-          <caret line="196" column="35" selection-start-line="196" selection-start-column="23" selection-end-line="196" selection-end-column="35" />
-          <folding>
-            <element signature="method#getCandidates#0;class#DBController#0" />
-            <element signature="method#getForbiddens#0;class#DBController#0" />
-            <element signature="method#existName#0;class#DBController#0" />
-            <element signature="method#insertPerson#0;class#DBController#0" />
-            <element signature="method#updatePerson#0;class#DBController#0" />
-            <element signature="method#deletePerson#0;class#DBController#0" />
-            <element signature="method#insertForbidden#0;class#DBController#0" />
-            <element signature="method#deleteAllForbiddenRulesFromPerson#0;class#DBController#0" />
-            <element signature="method#deletePersonAsForbiddenOfOtherPersons#0;class#DBController#0" />
-            <element signature="method#getAllPersons#1;class#DBController#0" />
-            <element signature="method#insertGroup#0;class#DBController#0" />
-            <element signature="method#deleteGroup#0;class#DBController#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/menu/menu_person_edit.xml">
-      <provider selected="true" editor-type-id="android-designer2" />
-      <provider editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/menu/menu_group_activity.xml">
-      <provider selected="true" editor-type-id="android-designer2" />
-      <provider editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/android/onehuman/smsecretsanta/adapter/GroupAdapter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="425">
-          <caret line="61" column="65" lean-forward="true" selection-start-line="61" selection-start-column="65" selection-end-line="61" selection-end-column="65" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/content_main_group.xml">
-      <provider selected="true" editor-type-id="android-designer2" />
-      <provider editor-type-id="text-editor">
-        <state relative-caret-position="315">
-          <caret line="21" column="15" selection-start-line="21" selection-start-column="15" selection-end-line="21" selection-end-column="15" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_edit_person.xml">
-      <provider selected="true" editor-type-id="android-designer2" />
-      <provider editor-type-id="text-editor">
-        <state relative-caret-position="214">
-          <caret line="49" column="43" selection-end-line="81" selection-end-column="15" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/person_activity.xml">
-      <provider editor-type-id="android-designer2" />
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="16" lean-forward="true" selection-start-line="16" selection-end-line="16" />
-          <folding>
-            <element signature="e#367#402#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml">
-      <provider selected="true" editor-type-id="android-designer2" />
-      <provider editor-type-id="text-editor">
-        <state relative-caret-position="360">
-          <caret line="24" column="20" selection-start-line="24" selection-start-column="20" selection-end-line="24" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/android/onehuman/smsecretsanta/adapter/PersonAdapter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="22" column="62" selection-start-line="22" selection-start-column="62" selection-end-line="22" selection-end-column="62" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/menu/menu_person_activity.xml">
-      <provider selected="true" editor-type-id="android-designer2" />
-      <provider editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="19" selection-start-line="19" selection-end-line="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/android/onehuman/smsecretsanta/event/Person_OnItemClickListener.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="11" column="80" lean-forward="true" selection-start-line="11" selection-start-column="80" selection-end-line="11" selection-end-column="80" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_edit_group2.xml" />
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/menu/menu_group_activity.xml" />
     <entry file="jar://$USER_HOME$/Library/Android/sdk/platforms/android-29/android.jar!/android/view/View.class">
       <provider selected="true" editor-type-id="text-editor">
         <state>
@@ -825,6 +636,172 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/group_row_item.xml">
+      <provider selected="true" editor-type-id="android-designer2" />
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="495">
+          <caret line="33" column="38" selection-start-line="33" selection-start-column="38" selection-end-line="33" selection-end-column="38" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/android/onehuman/smsecretsanta/model/Group.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="360">
+          <caret line="27" column="20" selection-start-line="27" selection-start-column="15" selection-end-line="27" selection-end-column="20" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/values/icon_launcher_background.xml">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/values/arrays.xml">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/values/styles.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="375">
+          <caret line="25" column="93" lean-forward="true" selection-start-line="25" selection-start-column="93" selection-end-line="25" selection-end-column="93" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/androidx.appcompat/appcompat/1.1.0/9865019bbd2d95e41dede3d8ebf964aa93f97766/appcompat-1.1.0-sources.jar!/androidx/appcompat/app/AppCompatActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="148" column="16" selection-start-line="148" selection-start-column="16" selection-end-line="148" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/menu/menu_group.xml">
+      <provider selected="true" editor-type-id="android-designer2" />
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="285">
+          <caret line="19" selection-start-line="19" selection-end-line="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/values/colors.xml">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/values/dimens.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="9" selection-start-line="9" selection-end-line="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_edit_person.xml">
+      <provider selected="true" editor-type-id="android-designer2" />
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="330">
+          <caret line="22" column="45" selection-start-line="22" selection-start-column="31" selection-end-line="22" selection-end-column="45" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/menu/menu_edit.xml">
+      <provider selected="true" editor-type-id="android-designer2" />
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="5" column="20" selection-start-line="5" selection-start-column="20" selection-end-line="5" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_edit_group.xml">
+      <provider selected="true" editor-type-id="android-designer2" />
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="195">
+          <caret line="13" column="24" selection-start-line="13" selection-start-column="24" selection-end-line="13" selection-end-column="24" />
+          <folding>
+            <element signature="e#299#334#0" expanded="true" />
+            <element signature="e#527#545#0" expanded="true" />
+            <element signature="e#907#925#0" expanded="true" />
+            <element signature="e#972#1009#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/test.xml">
+      <provider editor-type-id="android-designer2" />
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="6" column="30" selection-start-line="6" selection-start-column="30" selection-end-line="6" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_groups_list.xml">
+      <provider selected="true" editor-type-id="android-designer2" />
+      <provider editor-type-id="text-editor">
+        <state>
+          <caret column="38" lean-forward="true" selection-start-column="38" selection-end-column="38" />
+          <folding>
+            <element signature="e#365#405#0" expanded="true" />
+            <element signature="e#958#977#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml">
+      <provider selected="true" editor-type-id="android-designer2" />
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="345">
+          <caret line="23" selection-start-line="23" selection-end-line="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/android/onehuman/smsecretsanta/database/DBHelper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="9" column="48" selection-start-line="9" selection-start-column="48" selection-end-line="9" selection-end-column="48" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/Library/Android/sdk/platforms/android-29/android.jar!/android/content/Intent.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="637" column="18" selection-start-line="637" selection-start-column="18" selection-end-line="637" selection-end-column="18" />
+          <folding>
+            <element signature="e#35025#35026#0" expanded="true" />
+            <element signature="e#35076#35077#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/android/onehuman/smsecretsanta/utils/IntentUtils.java" />
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/android/onehuman/smsecretsanta/model/Person.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="14" column="24" lean-forward="true" selection-start-line="14" selection-start-column="24" selection-end-line="14" selection-end-column="24" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/Library/Android/sdk/platforms/android-29/android.jar!/android/app/Instrumentation.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="200">
+          <caret line="241" column="16" selection-start-line="241" selection-start-column="16" selection-end-line="241" selection-end-column="16" />
+          <folding>
+            <element signature="e#7684#7685#0" expanded="true" />
+            <element signature="e#7735#7736#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/Library/Android/sdk/platforms/android-29/android.jar!/android/app/Activity.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <folding>
+            <element signature="e#0#34696#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="jar://$USER_HOME$/Library/Android/sdk/platforms/android-29/android.jar!/android/os/Looper.class">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="225">
@@ -836,66 +813,125 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/android/onehuman/smsecretsanta/EditGroup.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/android/onehuman/smsecretsanta/database/DBContract.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="11" column="51" selection-start-line="11" selection-start-column="51" selection-end-line="11" selection-end-column="51" />
+        <state relative-caret-position="90">
+          <caret line="6" lean-forward="true" selection-start-line="6" selection-end-line="6" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/android/onehuman/smsecretsanta/EditPerson.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/android/onehuman/smsecretsanta/GroupsList.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="28" column="49" selection-start-line="28" selection-start-column="32" selection-end-line="28" selection-end-column="49" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/android/onehuman/smsecretsanta/model/Person.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="888">
-          <caret line="92" column="55" lean-forward="true" selection-start-line="92" selection-start-column="55" selection-end-line="92" selection-end-column="55" />
+        <state relative-caret-position="242">
+          <caret line="44" column="36" lean-forward="true" selection-start-line="44" selection-start-column="36" selection-end-line="44" selection-end-column="36" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#1573#1811#0" expanded="true" />
+            <element signature="e#1810#1811#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/android/onehuman/smsecretsanta/GroupActivity.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/android/onehuman/smsecretsanta/adapter/GroupAdapter.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="452">
-          <caret line="86" selection-start-line="86" selection-end-line="86" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state relative-caret-position="430">
+          <caret line="56" column="50" lean-forward="true" selection-start-line="56" selection-start-column="50" selection-end-line="56" selection-end-column="50" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/android/onehuman/smsecretsanta/model/Group.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/android/onehuman/smsecretsanta/adapter/PersonAdapter.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="252">
-          <caret line="27" column="20" selection-start-line="27" selection-start-column="15" selection-end-line="27" selection-end-column="20" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#651#652#0" expanded="true" />
-            <element signature="e#699#700#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="375">
+          <caret line="43" column="10" selection-start-line="43" selection-start-column="10" selection-end-line="43" selection-end-column="10" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/android/onehuman/smsecretsanta/PersonActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="185">
-          <caret line="34" column="27" selection-start-line="34" selection-start-column="13" selection-end-line="34" selection-end-column="27" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_persons_list.xml">
+      <provider selected="true" editor-type-id="android-designer2" />
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="195">
+          <caret line="13" column="20" selection-start-line="13" selection-start-column="20" selection-end-line="13" selection-end-column="20" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/android/onehuman/smsecretsanta/event/Group_OnItemClickListener.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="26" column="38" selection-start-line="26" selection-start-column="38" selection-end-line="26" selection-end-column="38" />
+        <state relative-caret-position="75">
+          <caret line="14" column="13" selection-start-line="14" selection-start-column="13" selection-end-line="14" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/values/strings.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="226">
+          <caret line="19" column="33" selection-start-line="19" selection-start-column="18" selection-end-line="19" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/values-es/strings.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="124">
+          <caret line="14" column="55" lean-forward="true" selection-start-line="14" selection-start-column="55" selection-end-line="14" selection-end-column="55" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/android/onehuman/smsecretsanta/event/Person_OnItemClickListener.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="285">
+          <caret line="28" selection-start-line="28" selection-end-line="33" selection-end-column="38" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/android/onehuman/smsecretsanta/EditPerson.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="201">
+          <caret line="165" column="49" lean-forward="true" selection-start-line="165" selection-start-column="49" selection-end-line="165" selection-end-column="49" />
+          <folding>
+            <element signature="e#1631#1681#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/android/onehuman/smsecretsanta/database/DBController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="450">
+          <caret line="76" selection-start-line="76" selection-end-line="76" />
+          <folding>
+            <element signature="method#getAllPersons#0;class#DBController#0" />
+            <element signature="method#getForbiddens#0;class#DBController#0" />
+            <element signature="method#updatePerson#0;class#DBController#0" />
+            <element signature="method#deletePerson#0;class#DBController#0" />
+            <element signature="method#insertForbidden#0;class#DBController#0" />
+            <element signature="method#getAllGroups#0;class#DBController#0" />
+            <element signature="method#insertGroup#0;class#DBController#0" />
+            <element signature="method#deleteGroup#0;class#DBController#0" />
+            <element signature="method#updateGroup#0;class#DBController#0" />
+            <element signature="method#existGroupName#0;class#DBController#0" />
+            <element signature="method#getGroup#0;class#DBController#0" />
+            <element signature="method#insertPersonInGroup#0;class#DBController#0" />
+            <element signature="method#deleteAllGroupPersons#0;class#DBController#0" />
+            <element signature="method#deleteAPersonsOfAGroup#0;class#DBController#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/android/onehuman/smsecretsanta/PersonsList.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2055">
+          <caret line="137" selection-start-line="137" selection-end-line="137" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/android/onehuman/smsecretsanta/EditGroup.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="466">
+          <caret line="123" column="28" selection-start-line="123" selection-start-column="28" selection-end-line="123" selection-end-column="28" />
+          <folding>
+            <element signature="e#4156#4203#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

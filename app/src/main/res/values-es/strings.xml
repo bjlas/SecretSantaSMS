@@ -18,10 +18,10 @@
     <string name="main_dialog_success_message">El resultado ha sido enviado</string>
     <string name="main_dialog_fail_title">Fallo</string>
     <string name="main_dialog_fail_message">No existe solución con las personas/reglas marcadas.</string>
-    <string name="edit_view_title">Añadir persona</string>
-    <string name="edit_person_created">Añadida!</string>
-    <string name="edit_person_deleted">Eliminada!</string>
-    <string name="edit_person_edited">Editada!</string>
+    <string name="edit_view_title">Persona</string>
+    <string name="edit_created">Añadida!</string>
+    <string name="edit_deleted">Eliminada!</string>
+    <string name="edit_edited">Editada!</string>
     <string name="edit_validation_chips">Esta persona no puede regalar a nadie</string>
     <string name="edit_validation_mail">Email invalido</string>
     <string name="edit_validation_field_requited">es obligatorio</string>
@@ -33,8 +33,12 @@
     <string name="edit_activity_hint_name">Nombre</string>
     <string name="edit_activity_hint_phone">Teléfono</string>
     <string name="edit_activity_hint_email">Email</string>
-    <string name="edit_dialog_deleted">Quieres eliminar a %1$s?</string>
+    <string name="edit_dialog_deleted_person">Quieres eliminar a %1$s?</string>
+    <string name="edit_dialog_deleted_group">Quieres eliminar a %1$s y a todos sus miembros?</string>
     <string name="main_dialog_fail_number_of_candidates">%1$s no puede regalar a nadie</string>
     <string name="edit_activity_hint_dontgiftto">No regala a:</string>
+    <string name="edit_activity_hint_maxprice">Limite de precio</string>
+    <string name="edit_group_title">Grupo</string>
+
 
 </resources>

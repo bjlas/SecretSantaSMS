@@ -19,6 +19,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.android.onehuman.smsecretsanta.database.DBController;
+import com.android.onehuman.smsecretsanta.model.Group;
 import com.android.onehuman.smsecretsanta.model.Person;
 import com.google.android.material.chip.Chip;
 import com.google.android.material.chip.ChipGroup;
@@ -46,6 +47,8 @@ public class EditPerson extends AppCompatActivity {
     private List<Integer> selectedForbiddens;
     private Activity activity;
 
+    private Group group;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -60,17 +63,32 @@ public class EditPerson extends AppCompatActivity {
         chipGroup = (ChipGroup) findViewById(R.id.tag_group);
         dbController = new DBController(this);
         activity=this;
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        initData();
+    }
+
+    void initData(){
+        if (getIntent().getExtras() != null) {
+            person = getIntent().getExtras().getParcelable("person");
+            group = getIntent().getExtras().getParcelable("group");
+        }
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_person_edit, menu);
-        addMenuItem = menu.findItem(R.id.edit_action_add);
-        deleteMenuItem = menu.findItem(R.id.edit_action_delete);
-        updateMenuItem = menu.findItem(R.id.edit_action_update);
+        getMenuInflater().inflate(R.menu.menu_edit, menu);
+        addMenuItem = menu.findItem(R.id.menu_edit_action_add);
+        deleteMenuItem = menu.findItem(R.id.menu_edit_action_delete);
+        updateMenuItem = menu.findItem(R.id.menu_edit_action_update);
 
-        person = getIntent().getParcelableExtra(EditPerson.class.getSimpleName());
-        allCandidates = dbController.getCandidates(person);
+        allCandidates = dbController.getCandidates(person, group);
 
         if(person != null){
             addMenuItem.setVisible(false);
@@ -83,7 +101,6 @@ public class EditPerson extends AppCompatActivity {
             deleteMenuItem.setVisible(false);
             updateMenuItem.setVisible(false);
             showChips(allCandidates, null);
-
         }
 
         return true;
@@ -95,7 +112,7 @@ public class EditPerson extends AppCompatActivity {
 
         selectedForbiddens = getSelectedChips();
 
-        if (id == R.id.edit_action_add) {
+        if (id == R.id.menu_edit_action_add) {
 
             person = new Person();
             person.setName(name.getText().toString());
@@ -108,16 +125,17 @@ public class EditPerson extends AppCompatActivity {
 
             int addedPersonID = (int) dbController.insertPerson(person);
             saveForbiddens(addedPersonID);
+            dbController.insertPersonInGroup(group.getGroupID(), addedPersonID);
 
-            Toast.makeText(this, getResources().getString(R.string.edit_person_created), Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, getResources().getString(R.string.edit_created), Toast.LENGTH_SHORT).show();
             finish();
             return true;
         }
-        if (id == R.id.edit_action_delete) {
+        if (id == R.id.menu_edit_action_delete) {
 
             AlertDialog myQuittingDialogBox = new AlertDialog.Builder(this)
                     .setTitle(getResources().getString(R.string.delete))
-                    .setMessage(String.format(getResources().getString(R.string.edit_dialog_deleted), person.getName()))
+                    .setMessage(String.format(getResources().getString(R.string.edit_dialog_deleted_person), person.getName()))
                     .setIcon(R.drawable.icon_candy)
 
                     .setPositiveButton(getResources().getString(R.string.delete), new DialogInterface.OnClickListener() {
@@ -126,7 +144,8 @@ public class EditPerson extends AppCompatActivity {
                             dbController.deletePerson(person.getId());
                             dbController.deleteAllForbiddenRulesFromPerson(person.getId());
                             dbController.deletePersonAsForbiddenOfOtherPersons(person.getId());
-                            Toast.makeText(activity, getResources().getString(R.string.edit_person_deleted), Toast.LENGTH_SHORT).show();
+                            dbController.deleteAPersonsOfAGroup(person.getId());
+                            Toast.makeText(activity, getResources().getString(R.string.edit_deleted), Toast.LENGTH_SHORT).show();
                             dialog.dismiss();
                             finish();
                         }
@@ -144,7 +163,7 @@ public class EditPerson extends AppCompatActivity {
             myQuittingDialogBox.show();
             return true;
         }
-        if (id == R.id.edit_action_update) {
+        if (id == R.id.menu_edit_action_update) {
             person.setName(name.getText().toString());
             person.setPhone(phone.getText().toString().replace(" ", ""));
             person.setMail(mail.getText().toString());
@@ -157,7 +176,7 @@ public class EditPerson extends AppCompatActivity {
             dbController.deleteAllForbiddenRulesFromPerson(person.getId());
             saveForbiddens(person.getId());
 
-            Toast.makeText(this, getResources().getString(R.string.edit_person_edited), Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, getResources().getString(R.string.edit_edited), Toast.LENGTH_SHORT).show();
             finish();
             return true;
         }
@@ -197,7 +216,7 @@ public class EditPerson extends AppCompatActivity {
     }
 
     public boolean validateNameField(Person person) {
-        if(dbController.existName(person)) {
+        if(dbController.existPersonName(person, group)) {
             name.setError(getResources().getString(R.string.edit_validation_name));
             return false;
         }
@@ -291,7 +310,11 @@ public class EditPerson extends AppCompatActivity {
 
 
 
-
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return true;
+    }
 
 
 

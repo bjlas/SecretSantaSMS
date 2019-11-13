@@ -1,0 +1,23 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.android.onehuman.smsecretsanta.GroupsList">
+    <item
+        android:id="@+id/menu_edit_action_add"
+        android:icon="@android:drawable/ic_menu_save"
+        android:orderInCategory="100"
+        android:title="@string/action_add"
+        app:showAsAction="always|never" />
+    <item
+        android:id="@+id/menu_edit_action_delete"
+        android:icon="@android:drawable/ic_menu_delete"
+        android:orderInCategory="100"
+        android:title="@string/action_delete"
+        app:showAsAction="always|never" />
+    <item
+        android:id="@+id/menu_edit_action_update"
+        android:icon="@android:drawable/ic_menu_save"
+        android:orderInCategory="100"
+        android:title="@string/action_update"
+        app:showAsAction="always|never" />
+</menu>
