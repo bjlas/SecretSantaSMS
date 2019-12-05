@@ -29,16 +29,20 @@
     <string name="edit_validation_phone">Número invalido</string>
 
     <string name="main_dialog_smsTemplate">Hola %1$s! Eres el amigo invisible de: %2$s</string>
+    <string name="main_dialog_sms_plus_maxPrice">.Precio límite %1$s</string>
 
     <string name="edit_activity_hint_name">Nombre</string>
     <string name="edit_activity_hint_phone">Teléfono</string>
     <string name="edit_activity_hint_email">Email</string>
     <string name="edit_dialog_deleted_person">Quieres eliminar a %1$s?</string>
-    <string name="edit_dialog_deleted_group">Quieres eliminar a %1$s y a todos sus miembros?</string>
+    <string name="edit_dialog_deleted_group">Quieres eliminar el grupo %1$s y a todos sus miembros?</string>
     <string name="main_dialog_fail_number_of_candidates">%1$s no puede regalar a nadie</string>
     <string name="edit_activity_hint_dontgiftto">No regala a:</string>
     <string name="edit_activity_hint_maxprice">Limite de precio</string>
     <string name="edit_group_title">Grupo</string>
+
+    <string name="main_dialog_fail_only_two_candidates">Hay menos de dos personas en el grupo</string>
+
 
 
 </resources>

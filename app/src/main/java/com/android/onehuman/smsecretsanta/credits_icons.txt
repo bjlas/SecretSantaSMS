@@ -1,0 +1,33 @@
+icon_ball.xml
+icon_candles.xml
+icon_candy.xml
+icon_hat.xml
+icon_misletoe.xml
+icon_snowflake.xml
+icon_sock.xml
+icon_tree.xml
+icon_wreath.xml
+app_icon.xml
+--------------
+Icons made by ArtDesigner.lv (Tanya) from http://www.iconarchive.com
+http://www.iconarchive.com/show/xmas-deco-icons-by-artdesigner.html
+
+icon_gift01.xml
+--------------
+Icon made by Freepik from www.flaticon.com
+https://www.flaticon.es/icono-gratis/regalo_415587
+
+icon_gift02.xml
+--------------
+Icon made by Nikita Golubev from www.flaticon.com
+https://www.flaticon.es/icono-gratis/regalo_363507
+
+icon_gift03.xml
+--------------
+Icon made by Freepik from www.flaticon.com
+https://www.flaticon.es/icono-gratis/caja-para-regalo_1530849
+
+icon_gift04.xml
+--------------
+Icon made by Freepik from www.flaticon.com
+https://www.flaticon.es/icono-gratis/regalo_2251209

@@ -83,10 +83,10 @@ public class EditPerson extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_edit, menu);
-        addMenuItem = menu.findItem(R.id.menu_edit_action_add);
-        deleteMenuItem = menu.findItem(R.id.menu_edit_action_delete);
-        updateMenuItem = menu.findItem(R.id.menu_edit_action_update);
+        getMenuInflater().inflate(R.menu.menu_person, menu);
+        addMenuItem = menu.findItem(R.id.menu_edit_person_action_add);
+        deleteMenuItem = menu.findItem(R.id.menu_edit_person_action_delete);
+        updateMenuItem = menu.findItem(R.id.menu_edit_person_action_update);
 
         allCandidates = dbController.getCandidates(person, group);
 
@@ -112,7 +112,7 @@ public class EditPerson extends AppCompatActivity {
 
         selectedForbiddens = getSelectedChips();
 
-        if (id == R.id.menu_edit_action_add) {
+        if (id == R.id.menu_edit_person_action_add) {
 
             person = new Person();
             person.setName(name.getText().toString());
@@ -131,7 +131,7 @@ public class EditPerson extends AppCompatActivity {
             finish();
             return true;
         }
-        if (id == R.id.menu_edit_action_delete) {
+        if (id == R.id.menu_edit_person_action_delete) {
 
             AlertDialog myQuittingDialogBox = new AlertDialog.Builder(this)
                     .setTitle(getResources().getString(R.string.delete))
@@ -163,7 +163,7 @@ public class EditPerson extends AppCompatActivity {
             myQuittingDialogBox.show();
             return true;
         }
-        if (id == R.id.menu_edit_action_update) {
+        if (id == R.id.menu_edit_person_action_update) {
             person.setName(name.getText().toString());
             person.setPhone(phone.getText().toString().replace(" ", ""));
             person.setMail(mail.getText().toString());
@@ -228,6 +228,7 @@ public class EditPerson extends AppCompatActivity {
         if(allCandidates.size() !=0 && selectedForbiddens.size() == allCandidates.size()) {
             //All chips selected means this person can gift to anyone. ()
             chips.setError(getResources().getString(R.string.edit_validation_chips));
+            chips.requestFocus();
             return false;
         }
         return true;

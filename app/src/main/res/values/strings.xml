@@ -27,7 +27,8 @@
     <string name="edit_validation_name">Name already exist</string>
     <string name="edit_validation_phone">Invalid phone number</string>
 
-    <string name="main_dialog_smsTemplate">"Hi %1$s! You are the secret santa of: %2$s</string>
+    <string name="main_dialog_smsTemplate">Hi %1$s! You are the secret santa of: %2$s</string>
+    <string name="main_dialog_sms_plus_maxPrice">.Price limit %1$s</string>
 
     <string name="edit_activity_hint_name">Name</string>
     <string name="edit_activity_hint_phone">Phone</string>
@@ -36,6 +37,8 @@
     <string name="edit_dialog_deleted_group">Do you want to delete %1$s group and all his members?</string>
 
     <string name="main_dialog_fail_number_of_candidates">%1$s cannot gift anyone</string>
+    <string name="main_dialog_fail_only_two_candidates">There is less than two persons in the group</string>
+
     <string name="edit_activity_hint_dontgiftto">Dont gift to:</string>
     <string name="edit_activity_hint_maxprice">Price limit</string>
     <string name="edit_group_title">Group</string>

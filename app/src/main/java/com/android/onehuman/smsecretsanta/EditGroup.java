@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -60,14 +59,15 @@ public class EditGroup extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_edit, menu);
-        addMenuItem = menu.findItem(R.id.menu_edit_action_add);
-        deleteMenuItem = menu.findItem(R.id.menu_edit_action_delete);
-        updateMenuItem = menu.findItem(R.id.menu_edit_action_update);
+        getMenuInflater().inflate(R.menu.menu_person, menu);
+        addMenuItem = menu.findItem(R.id.menu_edit_person_action_add);
+        deleteMenuItem = menu.findItem(R.id.menu_edit_person_action_delete);
+        updateMenuItem = menu.findItem(R.id.menu_edit_person_action_update);
 
 
         if(group != null){
             addMenuItem.setVisible(false);
+            deleteMenuItem.setVisible(false);
             name.setText(group.getGroupName());
             maxprice.setText(group.getMaxPrice());
         } else {
@@ -83,7 +83,7 @@ public class EditGroup extends AppCompatActivity {
         int id = item.getItemId();
 
 
-        if (id == R.id.menu_edit_action_add) {
+        if (id == R.id.menu_edit_person_action_add) {
 
             group = new Group();
             group.setGroupName(name.getText().toString());
@@ -99,48 +99,8 @@ public class EditGroup extends AppCompatActivity {
             finish();
             return true;
         }
-        if (id == R.id.menu_edit_action_delete) {
 
-            AlertDialog myQuittingDialogBox = new AlertDialog.Builder(this)
-                    .setTitle(getResources().getString(R.string.delete))
-                    .setMessage(String.format(getResources().getString(R.string.edit_dialog_deleted_group), group.getGroupName()))
-                    .setIcon(R.drawable.icon_candy)
-
-                    .setPositiveButton(getResources().getString(R.string.delete), new DialogInterface.OnClickListener() {
-
-                        public void onClick(DialogInterface dialog, int whichButton) {
-                            List<Integer> allPersonsOfGroup = dbController.getAllPersonsOfAGroup(group.getGroupID());
-
-                            dbController.deleteAllGroupPersons(group.getGroupID());
-
-                            for(int personID: allPersonsOfGroup) {
-                                dbController.deleteAllForbiddenRulesFromPerson(personID);
-                                dbController.deletePerson(personID);
-                            }
-                            dbController.deleteGroup(group.getGroupID());
-
-                            Toast.makeText(activity, getResources().getString(R.string.edit_deleted), Toast.LENGTH_SHORT).show();
-                            dialog.dismiss();
-                            
-                            finish();
-
-
-                        }
-
-                    })
-                    .setNegativeButton(getResources().getString(R.string.cancel), new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int which) {
-
-                            dialog.dismiss();
-
-                        }
-                    })
-                    .create();
-
-            myQuittingDialogBox.show();
-            return true;
-        }
-        if (id == R.id.menu_edit_action_update) {
+        if (id == R.id.menu_edit_person_action_update) {
             group.setGroupName(name.getText().toString());
             group.setMaxPrice(maxprice.getText().toString());
 

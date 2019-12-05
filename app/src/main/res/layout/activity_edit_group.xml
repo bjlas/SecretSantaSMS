@@ -24,6 +24,7 @@
         android:ems="10"
         android:hint="@string/edit_activity_hint_maxprice"
         android:inputType="text"
+        android:maxLength="8"
         android:textColor="@color/colorTextBlack" />
 
 </LinearLayout>

@@ -1,13 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <array name="main_row_thumb_icons_array">
+    <array name="personlist_row_icons_array">
         <item>@drawable/icon_ball</item>
+        <item>@drawable/icon_candles</item>
         <item>@drawable/icon_candy</item>
-        <item>@drawable/icon_deer</item>
-        <item>@drawable/icon_gingerbread</item>
         <item>@drawable/icon_hat</item>
+        <item>@drawable/icon_misletoe</item>
+        <item>@drawable/icon_snowflake</item>
+        <item>@drawable/icon_sock</item>
         <item>@drawable/icon_tree</item>
+        <item>@drawable/icon_wreath</item>
+    </array>
+
+    <array name="grouplist_row_icons_array">
+        <item>@drawable/icon_gift01</item>
+        <item>@drawable/icon_gift02</item>
+        <item>@drawable/icon_gift03</item>
+        <item>@drawable/icon_gift04</item>
     </array>
 
 </resources>

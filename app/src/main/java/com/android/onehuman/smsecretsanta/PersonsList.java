@@ -138,7 +138,7 @@ public class PersonsList extends AppCompatActivity {
 
             return true;
         }
-        if (id == R.id.menu_group_action_send) {
+        if (id == R.id.menu_edit_group_action_send) {
             if(checkValidData()) {
                 showDialog();
                 return true;
@@ -147,10 +147,56 @@ public class PersonsList extends AppCompatActivity {
             }
 
         }
+        if (id == R.id.menu_edit_group_action_delete) {
+
+            AlertDialog myQuittingDialogBox = new AlertDialog.Builder(this)
+                    .setTitle(getResources().getString(R.string.delete))
+                    .setMessage(String.format(getResources().getString(R.string.edit_dialog_deleted_group), group.getGroupName()))
+                    .setIcon(R.drawable.icon_candy)
+
+                    .setPositiveButton(getResources().getString(R.string.delete), new DialogInterface.OnClickListener() {
+
+                        public void onClick(DialogInterface dialog, int whichButton) {
+                            List<Integer> allPersonsOfGroup = dbController.getAllPersonsOfAGroup(group.getGroupID());
+
+                            dbController.deleteAllGroupPersons(group.getGroupID());
+
+                            for(int personID: allPersonsOfGroup) {
+                                dbController.deleteAllForbiddenRulesFromPerson(personID);
+                                dbController.deletePerson(personID);
+                            }
+                            dbController.deleteGroup(group.getGroupID());
+
+                            Toast.makeText(activity, getResources().getString(R.string.edit_deleted), Toast.LENGTH_SHORT).show();
+                            dialog.dismiss();
+
+                            finish();
+
+
+                        }
+
+                    })
+                    .setNegativeButton(getResources().getString(R.string.cancel), new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+
+                            dialog.dismiss();
+
+                        }
+                    })
+                    .create();
+
+            myQuittingDialogBox.show();
+            return true;
+        }
         return super.onOptionsItemSelected(item);
     }
 
     private boolean checkValidData() {
+        if(allPersonsMaps.size() < 2) {
+            AlertUtils.showOKDialog(activity,getResources().getString(R.string.main_dialog_fail_title), getResources().getString(R.string.main_dialog_fail_only_two_candidates));
+            return false;
+        }
+
         for(HashMap.Entry<Integer, Person> entry : allPersonsMaps.entrySet()) {
             if(entry.getValue().getCandidates().size() == 0) {
                 AlertUtils.showOKDialog(activity,getResources().getString(R.string.main_dialog_fail_title), String.format(getResources().getString(R.string.main_dialog_fail_number_of_candidates), entry.getValue().getName()));
@@ -256,7 +302,12 @@ public class PersonsList extends AppCompatActivity {
         PendingIntent deliveredPI = PendingIntent.getBroadcast(this, 0, new Intent(DELIVERED), 0);
 
         SmsManager sms = SmsManager.getDefault();
-        sms.sendTextMessage(phoneNumber, null, message, sentPI, deliveredPI);
+        if (group.getMaxPrice() != null) {
+            message = message + String.format(getResources().getString(R.string.main_dialog_sms_plus_maxPrice), group.getMaxPrice());
+        }
+
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+        //sms.sendTextMessage(phoneNumber, null, message, sentPI, deliveredPI);
     }
 
     @Override

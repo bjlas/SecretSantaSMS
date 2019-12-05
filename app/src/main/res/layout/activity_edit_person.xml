@@ -21,7 +21,7 @@
             android:ems="10"
             android:hint="@string/edit_activity_hint_name"
             android:inputType="textPersonName"
-            android:maxLength="50"
+            android:maxLength="40"
             android:textColor="@color/colorTextBlack" />
 
         <ImageView
@@ -53,7 +53,8 @@
         android:ems="10"
         android:hint="@string/edit_activity_hint_email"
         android:inputType="textEmailAddress"
-        android:textColor="@color/colorTextBlack" />
+        android:textColor="@color/colorTextBlack"
+        android:visibility="gone" />
 
     <LinearLayout
         android:layout_width="match_parent"

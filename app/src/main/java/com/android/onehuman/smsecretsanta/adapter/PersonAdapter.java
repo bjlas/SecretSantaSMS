@@ -32,7 +32,7 @@ public class PersonAdapter extends RecyclerView.Adapter<PersonAdapter.PersonView
     public PersonAdapter(Context context) {
         this.context = context;
         this.contactList = new ArrayList<>();
-        icons = context.getResources().obtainTypedArray(R.array.main_row_thumb_icons_array);
+        icons = context.getResources().obtainTypedArray(R.array.personlist_row_icons_array);
         icon_position=0;
     }
 

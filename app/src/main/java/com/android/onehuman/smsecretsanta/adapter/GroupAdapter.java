@@ -31,7 +31,7 @@ public class GroupAdapter extends RecyclerView.Adapter<GroupAdapter.GroupViewHol
     public GroupAdapter(Context context) {
         this.context = context;
         this.groupList = new ArrayList<>();
-        icons = context.getResources().obtainTypedArray(R.array.main_row_thumb_icons_array);
+        icons = context.getResources().obtainTypedArray(R.array.grouplist_row_icons_array);
         icon_position=0;
         dbController = new DBController(context);
     }
