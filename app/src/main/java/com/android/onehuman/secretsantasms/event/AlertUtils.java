@@ -1,18 +1,9 @@
-package com.android.onehuman.smsecretsanta.event;
+package com.android.onehuman.secretsantasms.event;
 
-import android.app.Activity;
 import android.app.AlertDialog;
-import android.app.Dialog;
 import android.content.Context;
-import android.content.DialogInterface;
-import android.os.Bundle;
-import android.view.View;
-import android.view.Window;
-import android.widget.Button;
 
-import androidx.fragment.app.DialogFragment;
-
-import com.android.onehuman.smsecretsanta.R;
+import com.android.onehuman.secretsantasms.R;
 
 public class AlertUtils
 {

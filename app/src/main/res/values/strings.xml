@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">SMSecretSanta</string>
+    <string name="app_name">SecretSantaSMS</string>
     <string name="action_add">add</string>
     <string name="action_update">update</string>
     <string name="action_delete">delete</string>

@@ -1,4 +1,4 @@
-package com.android.onehuman.smsecretsanta.database;
+package com.android.onehuman.secretsantasms.database;
 
 import android.provider.BaseColumns;
 

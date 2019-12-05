@@ -1,4 +1,4 @@
-package com.android.onehuman.smsecretsanta;
+package com.android.onehuman.secretsantasms;
 
 import org.junit.Test;
 

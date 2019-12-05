@@ -1,4 +1,4 @@
-package com.android.onehuman.smsecretsanta;
+package com.android.onehuman.secretsantasms;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -18,9 +18,9 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.android.onehuman.smsecretsanta.database.DBController;
-import com.android.onehuman.smsecretsanta.model.Group;
-import com.android.onehuman.smsecretsanta.model.Person;
+import com.android.onehuman.secretsantasms.database.DBController;
+import com.android.onehuman.secretsantasms.model.Group;
+import com.android.onehuman.secretsantasms.model.Person;
 import com.google.android.material.chip.Chip;
 import com.google.android.material.chip.ChipGroup;
 

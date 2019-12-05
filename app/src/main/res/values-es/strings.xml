@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">SMSecretSanta</string>
+    <string name="app_name">SecretSantaSMS</string>
     <string name="action_add">añadir</string>
     <string name="action_update">actualizar</string>
     <string name="action_delete">borrar</string>

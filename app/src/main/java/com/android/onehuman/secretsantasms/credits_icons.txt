@@ -9,7 +9,7 @@ icon_tree.xml
 icon_wreath.xml
 app_icon.xml
 --------------
-Icons made by ArtDesigner.lv (Tanya) from http://www.iconarchive.com
+Icons made by ArtDesigner.lv (Tanya) from www.iconarchive.com
 http://www.iconarchive.com/show/xmas-deco-icons-by-artdesigner.html
 
 icon_gift01.xml

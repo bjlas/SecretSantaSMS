@@ -1,4 +1,4 @@
-package com.android.onehuman.smsecretsanta.model;
+package com.android.onehuman.secretsantasms.model;
 
 import android.os.Parcel;
 import android.os.Parcelable;

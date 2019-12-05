@@ -1,4 +1,4 @@
-package com.android.onehuman.smsecretsanta;
+package com.android.onehuman.secretsantasms;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -8,14 +8,14 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
 
-import com.android.onehuman.smsecretsanta.broadcasts.DeliveredReceiver;
-import com.android.onehuman.smsecretsanta.broadcasts.SentReceiver;
-import com.android.onehuman.smsecretsanta.adapter.PersonAdapter;
-import com.android.onehuman.smsecretsanta.database.DBController;
-import com.android.onehuman.smsecretsanta.event.AlertUtils;
-import com.android.onehuman.smsecretsanta.graph.Graph;
-import com.android.onehuman.smsecretsanta.model.Group;
-import com.android.onehuman.smsecretsanta.model.Person;
+import com.android.onehuman.secretsantasms.broadcasts.DeliveredReceiver;
+import com.android.onehuman.secretsantasms.broadcasts.SentReceiver;
+import com.android.onehuman.secretsantasms.adapter.PersonAdapter;
+import com.android.onehuman.secretsantasms.database.DBController;
+import com.android.onehuman.secretsantasms.event.AlertUtils;
+import com.android.onehuman.secretsantasms.graph.Graph;
+import com.android.onehuman.secretsantasms.model.Group;
+import com.android.onehuman.secretsantasms.model.Person;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import androidx.appcompat.app.AppCompatActivity;

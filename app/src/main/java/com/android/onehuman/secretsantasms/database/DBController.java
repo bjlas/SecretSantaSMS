@@ -1,12 +1,12 @@
-package com.android.onehuman.smsecretsanta.database;
+package com.android.onehuman.secretsantasms.database;
 
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
-import com.android.onehuman.smsecretsanta.model.Group;
-import com.android.onehuman.smsecretsanta.model.Person;
+import com.android.onehuman.secretsantasms.model.Group;
+import com.android.onehuman.secretsantasms.model.Person;
 
 import java.util.ArrayList;
 import java.util.List;

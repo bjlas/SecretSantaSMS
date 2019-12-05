@@ -1,4 +1,4 @@
-package com.android.onehuman.smsecretsanta.adapter;
+package com.android.onehuman.secretsantasms.adapter;
 
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -11,11 +11,10 @@ import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.android.onehuman.smsecretsanta.R;
-import com.android.onehuman.smsecretsanta.database.DBController;
-import com.android.onehuman.smsecretsanta.event.Person_OnItemClickListener;
-import com.android.onehuman.smsecretsanta.model.Group;
-import com.android.onehuman.smsecretsanta.model.Person;
+import com.android.onehuman.secretsantasms.R;
+import com.android.onehuman.secretsantasms.event.Person_OnItemClickListener;
+import com.android.onehuman.secretsantasms.model.Group;
+import com.android.onehuman.secretsantasms.model.Person;
 
 import java.util.ArrayList;
 import java.util.List;

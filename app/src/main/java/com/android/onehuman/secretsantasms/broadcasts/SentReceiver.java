@@ -1,4 +1,4 @@
-package com.android.onehuman.smsecretsanta.broadcasts;
+package com.android.onehuman.secretsantasms.broadcasts;
 
 import android.app.Activity;
 import android.content.BroadcastReceiver;
@@ -6,7 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.telephony.SmsManager;
 
-import com.android.onehuman.smsecretsanta.event.AlertUtils;
+import com.android.onehuman.secretsantasms.event.AlertUtils;
 
 public class SentReceiver extends BroadcastReceiver {
 

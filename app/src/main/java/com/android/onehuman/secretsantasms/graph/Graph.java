@@ -1,6 +1,6 @@
-package com.android.onehuman.smsecretsanta.graph;
+package com.android.onehuman.secretsantasms.graph;
 
-import com.android.onehuman.smsecretsanta.model.Person;
+import com.android.onehuman.secretsantasms.model.Person;
 
 import java.util.ArrayList;
 import java.util.List;

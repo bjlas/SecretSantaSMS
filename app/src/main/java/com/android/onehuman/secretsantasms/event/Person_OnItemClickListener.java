@@ -1,4 +1,4 @@
-package com.android.onehuman.smsecretsanta.event;
+package com.android.onehuman.secretsantasms.event;
 
 import android.content.Context;
 import android.content.Intent;
@@ -6,10 +6,9 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 
-import com.android.onehuman.smsecretsanta.EditPerson;
-import com.android.onehuman.smsecretsanta.PersonsList;
-import com.android.onehuman.smsecretsanta.model.Group;
-import com.android.onehuman.smsecretsanta.model.Person;
+import com.android.onehuman.secretsantasms.EditPerson;
+import com.android.onehuman.secretsantasms.model.Group;
+import com.android.onehuman.secretsantasms.model.Person;
 
 
 public class Person_OnItemClickListener implements AdapterView.OnClickListener {

@@ -1,4 +1,4 @@
-package com.android.onehuman.smsecretsanta;
+package com.android.onehuman.secretsantasms;
 
 import android.Manifest;
 import android.app.Activity;
@@ -6,9 +6,9 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 
-import com.android.onehuman.smsecretsanta.adapter.GroupAdapter;
-import com.android.onehuman.smsecretsanta.database.DBController;
-import com.android.onehuman.smsecretsanta.model.Group;
+import com.android.onehuman.secretsantasms.adapter.GroupAdapter;
+import com.android.onehuman.secretsantasms.database.DBController;
+import com.android.onehuman.secretsantasms.model.Group;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import androidx.appcompat.app.AppCompatActivity;
