@@ -87,8 +87,6 @@ public class PersonsList extends AppCompatActivity {
         registerReceiver(deliveredReceiver, new IntentFilter(DELIVERED));
     }
 
-
-
     @Override
     protected void onStart() {
         super.onStart();
@@ -302,12 +300,12 @@ public class PersonsList extends AppCompatActivity {
         PendingIntent deliveredPI = PendingIntent.getBroadcast(this, 0, new Intent(DELIVERED), 0);
 
         SmsManager sms = SmsManager.getDefault();
-        if (group.getMaxPrice() != null) {
+        if (!"".equals(group.getMaxPrice())) {
             message = message + String.format(getResources().getString(R.string.main_dialog_sms_plus_maxPrice), group.getMaxPrice());
         }
 
-        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
-        //sms.sendTextMessage(phoneNumber, null, message, sentPI, deliveredPI);
+        //Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+        sms.sendTextMessage(phoneNumber, null, message, sentPI, deliveredPI);
     }
 
     @Override

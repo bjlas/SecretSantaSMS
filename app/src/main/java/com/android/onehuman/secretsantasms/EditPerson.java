@@ -286,7 +286,7 @@ public class EditPerson extends AppCompatActivity {
                 case SELECT_PHONE_NUMBER:
                     Cursor cursor = null;
                     try {
-                        String phoneNo,ContactName, email;
+                        String phoneNo,ContactName;
 
                         Uri uri = data.getData();
                         cursor = getContentResolver().query(uri, null, null, null, null);
