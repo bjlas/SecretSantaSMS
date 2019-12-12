@@ -42,7 +42,7 @@
     <string name="edit_group_title">Grupo</string>
 
     <string name="main_dialog_fail_only_two_candidates">Hay menos de dos personas en el grupo</string>
-
+    <string name="edit_validation_emojis">Emojis no permitidos</string>
 
 
 </resources>

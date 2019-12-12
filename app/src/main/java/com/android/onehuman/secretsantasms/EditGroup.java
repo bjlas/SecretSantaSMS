@@ -4,12 +4,16 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.text.InputFilter;
+import android.text.Spanned;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.EditText;
 import android.widget.Toast;
 
 import com.android.onehuman.secretsantasms.database.DBController;
+import com.android.onehuman.secretsantasms.filter.EmojiExcludeFilter;
 import com.android.onehuman.secretsantasms.model.Group;
 
 public class EditGroup extends AppCompatActivity {
@@ -34,6 +38,9 @@ public class EditGroup extends AppCompatActivity {
         activity=this;
 
         setTitle(getResources().getString(R.string.edit_group_title));
+
+        name.setFilters(new InputFilter[]{new EmojiExcludeFilter(activity)});
+        maxprice.setFilters(new InputFilter[]{new EmojiExcludeFilter(activity)});
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
@@ -85,12 +92,11 @@ public class EditGroup extends AppCompatActivity {
             group.setGroupName(name.getText().toString());
             group.setMaxPrice(maxprice.getText().toString());
 
-            if (!validateNameField(group) || !validateRequiredField(name)) {
+            if (!validations()) {
                 return false;
             }
 
-            int addedGroupID = (int) dbController.insertGroup(group);
-
+            dbController.insertGroup(group);
             Toast.makeText(this, getResources().getString(R.string.edit_created), Toast.LENGTH_SHORT).show();
             finish();
             return true;
@@ -100,12 +106,11 @@ public class EditGroup extends AppCompatActivity {
             group.setGroupName(name.getText().toString());
             group.setMaxPrice(maxprice.getText().toString());
 
-            if (!validateNameField(group) || !validateRequiredField(name)) {
+            if (!validations()) {
                 return false;
             }
 
             dbController.updateGroup(group);
-
             Toast.makeText(this, getResources().getString(R.string.edit_edited), Toast.LENGTH_SHORT).show();
             
             finish();
@@ -115,8 +120,15 @@ public class EditGroup extends AppCompatActivity {
     }
 
 
+    public boolean validations() {
+        if (!validateRequiredField(name) || !validateDuplicateNameField(group) ) {
+            return false;
+        }
+        return true;
+    }
 
-    public boolean validateNameField(Group group) {
+
+    public boolean validateDuplicateNameField(Group group) {
         if(dbController.existGroupName(group)) {
             name.setError(getResources().getString(R.string.edit_validation_name));
             return false;
@@ -138,4 +150,8 @@ public class EditGroup extends AppCompatActivity {
         onBackPressed();
         return true;
     }
+
+
+
+
 }

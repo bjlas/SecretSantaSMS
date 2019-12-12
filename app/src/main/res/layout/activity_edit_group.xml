@@ -23,7 +23,7 @@
         android:layout_marginBottom="@dimen/margin_10"
         android:ems="10"
         android:hint="@string/edit_activity_hint_maxprice"
-        android:inputType="text"
+        android:inputType="textMultiLine"
         android:maxLength="8"
         android:textColor="@color/colorTextBlack" />
 

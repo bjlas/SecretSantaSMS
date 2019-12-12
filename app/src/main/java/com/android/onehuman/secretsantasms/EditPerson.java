@@ -11,6 +11,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.telephony.PhoneNumberUtils;
+import android.text.InputFilter;
 import android.util.TypedValue;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -19,6 +20,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.android.onehuman.secretsantasms.database.DBController;
+import com.android.onehuman.secretsantasms.filter.EmojiExcludeFilter;
 import com.android.onehuman.secretsantasms.model.Group;
 import com.android.onehuman.secretsantasms.model.Person;
 import com.google.android.material.chip.Chip;
@@ -63,6 +65,10 @@ public class EditPerson extends AppCompatActivity {
         chipGroup = (ChipGroup) findViewById(R.id.tag_group);
         dbController = new DBController(this);
         activity=this;
+
+        name.setFilters(new InputFilter[]{new EmojiExcludeFilter(activity)});
+        phone.setFilters(new InputFilter[]{new EmojiExcludeFilter(activity)});
+        mail.setFilters(new InputFilter[]{new EmojiExcludeFilter(activity)});
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);

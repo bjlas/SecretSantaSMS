@@ -42,6 +42,7 @@
     <string name="edit_activity_hint_dontgiftto">Dont gift to:</string>
     <string name="edit_activity_hint_maxprice">Price limit</string>
     <string name="edit_group_title">Group</string>
+    <string name="edit_validation_emojis">No emojis allowed</string>
 
 
 </resources>

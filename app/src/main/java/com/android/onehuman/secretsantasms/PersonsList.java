@@ -222,10 +222,15 @@ public class PersonsList extends AppCompatActivity {
                             List<Person> randomSolution = selectSolution(allPosiblesSolutions);
                             for(int index=0; index<randomSolution.size()-1; index++) {
                                 String message = String.format(getResources().getString(R.string.main_dialog_smsTemplate), randomSolution.get(index).getName(), randomSolution.get(index+1).getName());
+                                if (!"".equals(group.getMaxPrice())) {
+                                    message = message + String.format(getResources().getString(R.string.main_dialog_sms_plus_maxPrice), group.getMaxPrice());
+                                }
+
                                 sendSMS(randomSolution.get(index).getPhone(), message);
                             }
 
                             AlertUtils.showOKDialog(activity,getResources().getString(R.string.main_dialog_success_title),getResources().getString(R.string.main_dialog_success_message));
+
                         }
 
                     }
@@ -300,11 +305,6 @@ public class PersonsList extends AppCompatActivity {
         PendingIntent deliveredPI = PendingIntent.getBroadcast(this, 0, new Intent(DELIVERED), 0);
 
         SmsManager sms = SmsManager.getDefault();
-        if (!"".equals(group.getMaxPrice())) {
-            message = message + String.format(getResources().getString(R.string.main_dialog_sms_plus_maxPrice), group.getMaxPrice());
-        }
-
-        //Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
         sms.sendTextMessage(phoneNumber, null, message, sentPI, deliveredPI);
     }
 
