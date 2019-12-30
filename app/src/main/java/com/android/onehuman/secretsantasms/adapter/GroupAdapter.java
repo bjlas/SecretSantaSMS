@@ -25,14 +25,13 @@ public class GroupAdapter extends RecyclerView.Adapter<GroupAdapter.GroupViewHol
     private Context context;
     private TypedArray icons;
     private int icon_position;
-    private DBController dbController;
+
 
     public GroupAdapter(Context context) {
         this.context = context;
         this.groupList = new ArrayList<>();
         icons = context.getResources().obtainTypedArray(R.array.grouplist_row_icons_array);
         icon_position=0;
-        dbController = new DBController(context);
     }
 
     public void updateList(List<Group> pl) {
@@ -67,6 +66,15 @@ public class GroupAdapter extends RecyclerView.Adapter<GroupAdapter.GroupViewHol
         return groupList.size();
     }
 
+    private int updateIconPosition() {
+        icon_position++;
+        if (icon_position >= icons.length()) {
+            icon_position=0;
+        }
+
+        return icon_position;
+    }
+
     static class GroupViewHolder extends RecyclerView.ViewHolder {
 
         ImageView thumb;
@@ -81,13 +89,6 @@ public class GroupAdapter extends RecyclerView.Adapter<GroupAdapter.GroupViewHol
         }
     }
 
-    private int updateIconPosition() {
-        icon_position++;
-        if (icon_position >= icons.length()) {
-            icon_position=0;
-        }
 
-        return icon_position;
-    }
 
 }

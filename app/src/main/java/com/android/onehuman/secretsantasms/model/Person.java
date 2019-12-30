@@ -116,6 +116,4 @@ public class Person implements Parcelable {
         return hash;
     }
 
-
-
 }

@@ -5,7 +5,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 
-import com.android.onehuman.secretsantasms.event.AlertUtils;
+import com.android.onehuman.secretsantasms.dialog.CustomDialog;
 
 public class DeliveredReceiver extends BroadcastReceiver {
 
@@ -21,7 +21,7 @@ public class DeliveredReceiver extends BroadcastReceiver {
             case Activity.RESULT_OK:
                 break;
             case Activity.RESULT_CANCELED:
-                AlertUtils.showOKDialog(context, "ERROR", "SMS error");
+                CustomDialog.showOKDialog(context, "ERROR", "SMS error");
                 break;
         }
     }

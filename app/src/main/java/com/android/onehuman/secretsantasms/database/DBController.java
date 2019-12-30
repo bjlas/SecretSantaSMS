@@ -346,5 +346,24 @@ public class DBController {
         String[] selectionArgs = { String.valueOf(idPerson) };
         return db.delete(DBContract.PersonsInGroupEntry.TABLE_NAME, selection, selectionArgs);
     }
+
+
+    //SOLUTION TABLE
+    public long insertSolution(int groupID, int personID, int gifttoID ) {
+        SQLiteDatabase db  = dbHelper.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(DBContract.SolutionEntry.COLUMN_GROUP_ID, groupID);
+        values.put(DBContract.SolutionEntry.COLUMN_PERSON_ID, personID);
+        values.put(DBContract.SolutionEntry.COLUMN_GIFT_TO, gifttoID);
+
+        return db.insert(DBContract.PersonEntry.TABLE_NAME, null, values);
+    }
+    public int deleteSolution(int groupID) {
+        SQLiteDatabase db = dbHelper.getReadableDatabase();
+        String selection = DBContract.SolutionEntry.COLUMN_GROUP_ID + " = ?";
+        String[] selectionArgs = { String.valueOf(groupID) };
+        return db.delete(DBContract.SolutionEntry.TABLE_NAME, selection, selectionArgs);
+    }
+
 }
 

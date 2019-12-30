@@ -12,7 +12,7 @@ import com.android.onehuman.secretsantasms.broadcasts.DeliveredReceiver;
 import com.android.onehuman.secretsantasms.broadcasts.SentReceiver;
 import com.android.onehuman.secretsantasms.adapter.PersonAdapter;
 import com.android.onehuman.secretsantasms.database.DBController;
-import com.android.onehuman.secretsantasms.event.AlertUtils;
+import com.android.onehuman.secretsantasms.dialog.CustomDialog;
 import com.android.onehuman.secretsantasms.graph.Graph;
 import com.android.onehuman.secretsantasms.model.Group;
 import com.android.onehuman.secretsantasms.model.Person;
@@ -83,14 +83,15 @@ public class PersonsList extends AppCompatActivity {
 
         sentReceiver = new SentReceiver(activity);
         deliveredReceiver = new DeliveredReceiver(activity);
-        registerReceiver(sentReceiver, new IntentFilter(SENT));
-        registerReceiver(deliveredReceiver, new IntentFilter(DELIVERED));
+
     }
 
     @Override
     protected void onStart() {
         super.onStart();
         initData();
+        registerReceiver(sentReceiver, new IntentFilter(SENT));
+        registerReceiver(deliveredReceiver, new IntentFilter(DELIVERED));
     }
 
 
@@ -191,13 +192,13 @@ public class PersonsList extends AppCompatActivity {
 
     private boolean checkValidData() {
         if(allPersonsMaps.size() < 2) {
-            AlertUtils.showOKDialog(activity,getResources().getString(R.string.main_dialog_fail_title), getResources().getString(R.string.main_dialog_fail_only_two_candidates));
+            CustomDialog.showOKDialog(activity,getResources().getString(R.string.main_dialog_fail_title), getResources().getString(R.string.main_dialog_fail_only_two_candidates));
             return false;
         }
 
         for(HashMap.Entry<Integer, Person> entry : allPersonsMaps.entrySet()) {
             if(entry.getValue().getCandidates().size() == 0) {
-                AlertUtils.showOKDialog(activity,getResources().getString(R.string.main_dialog_fail_title), String.format(getResources().getString(R.string.main_dialog_fail_number_of_candidates), entry.getValue().getName()));
+                CustomDialog.showOKDialog(activity,getResources().getString(R.string.main_dialog_fail_title), String.format(getResources().getString(R.string.main_dialog_fail_number_of_candidates), entry.getValue().getName()));
                 return false;
             }
         }
@@ -217,9 +218,10 @@ public class PersonsList extends AppCompatActivity {
 
                         List<List<Person>> allPosiblesSolutions = draw();
                         if(allPosiblesSolutions.size()==0) {
-                            AlertUtils.showOKDialog(activity,getResources().getString(R.string.main_dialog_fail_title),getResources().getString(R.string.main_dialog_fail_message));
+                            CustomDialog.showOKDialog(activity,getResources().getString(R.string.main_dialog_fail_title),getResources().getString(R.string.main_dialog_fail_message));
                         } else {
                             List<Person> randomSolution = selectSolution(allPosiblesSolutions);
+                            dbController.deleteSolution(group.getGroupID());
                             for(int index=0; index<randomSolution.size()-1; index++) {
                                 String message = String.format(getResources().getString(R.string.main_dialog_smsTemplate), randomSolution.get(index).getName(), randomSolution.get(index+1).getName());
                                 if (!"".equals(group.getMaxPrice())) {
@@ -227,9 +229,10 @@ public class PersonsList extends AppCompatActivity {
                                 }
 
                                 sendSMS(randomSolution.get(index).getPhone(), message);
+                                dbController.insertSolution(group.getGroupID(), randomSolution.get(index).getId(), randomSolution.get(index+1).getId());
                             }
 
-                            AlertUtils.showOKDialog(activity,getResources().getString(R.string.main_dialog_success_title),getResources().getString(R.string.main_dialog_success_message));
+                            CustomDialog.showOKDialog(activity,getResources().getString(R.string.main_dialog_success_title),getResources().getString(R.string.main_dialog_success_message));
 
                         }
 

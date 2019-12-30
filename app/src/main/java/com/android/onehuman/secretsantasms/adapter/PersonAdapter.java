@@ -6,6 +6,7 @@ import android.graphics.Paint;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -70,25 +71,12 @@ public class PersonAdapter extends RecyclerView.Adapter<PersonAdapter.PersonView
         }
         holder.itemView.setOnClickListener(new Person_OnItemClickListener(context, person, group));
 
+        holder.resendButton.setVisibility(View.GONE);
     }
 
     @Override
     public int getItemCount() {
         return contactList.size();
-    }
-
-    static class PersonViewHolder extends RecyclerView.ViewHolder {
-
-        ImageView thumb;
-        TextView name;
-        TextView forbbidenlist;
-
-        public PersonViewHolder(View itemView) {
-            super(itemView);
-            thumb = (ImageView) itemView.findViewById(R.id.person_row_thumb);
-            name = (TextView) itemView.findViewById(R.id.person_row_name);
-            forbbidenlist = (TextView) itemView.findViewById(R.id.person_row_forbbidenlist);
-        }
     }
 
     private int updateIconPosition() {
@@ -99,5 +87,24 @@ public class PersonAdapter extends RecyclerView.Adapter<PersonAdapter.PersonView
 
         return icon_position;
     }
+
+    static class PersonViewHolder extends RecyclerView.ViewHolder {
+
+        ImageView thumb;
+        TextView name;
+        TextView forbbidenlist;
+        ImageButton resendButton;
+
+
+        public PersonViewHolder(View itemView) {
+            super(itemView);
+            thumb = (ImageView) itemView.findViewById(R.id.person_row_thumb);
+            name = (TextView) itemView.findViewById(R.id.person_row_name);
+            forbbidenlist = (TextView) itemView.findViewById(R.id.person_row_forbbidenlist);
+            resendButton = (ImageButton) itemView.findViewById(R.id.person_row_button_resend);
+        }
+    }
+
+
 
 }

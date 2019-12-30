@@ -86,5 +86,28 @@ public class DBContract {
 
     }
 
+    public static class SolutionEntry implements BaseColumns {
+
+        public static final String TABLE_NAME = "SolutionTable";
+        public static final String COLUMN_GROUP_ID = "groupID";
+        public static final String COLUMN_PERSON_ID = "personID";
+        public static final String COLUMN_GIFT_TO = "giftTo";
+
+
+        public static final String SQL_CREATE_TABLE =
+                "CREATE TABLE " + TABLE_NAME + " (" +
+                        COLUMN_GROUP_ID + " INTEGER NOT NULL, " +
+                        COLUMN_PERSON_ID + " INTEGER NOT NULL, " +
+                        COLUMN_GIFT_TO + " INTEGER NOT NULL, " +
+                        "PRIMARY KEY ("+COLUMN_GROUP_ID+", "+COLUMN_PERSON_ID+"), "+
+                        "FOREIGN KEY ("+COLUMN_PERSON_ID+") REFERENCES "+PersonEntry.TABLE_NAME+"("+PersonEntry.COLUMN_PERSON_ID+"), "+
+                        "FOREIGN KEY ("+COLUMN_GIFT_TO+") REFERENCES "+PersonEntry.TABLE_NAME+"("+PersonEntry.COLUMN_PERSON_ID+"));";
+
+
+        public static final String SQL_DELETE_ENTRIES =
+                "DROP TABLE IF EXISTS " + TABLE_NAME;
+
+    }
+
 
 }

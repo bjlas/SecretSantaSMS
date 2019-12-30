@@ -28,7 +28,7 @@ public class DBHelper extends SQLiteOpenHelper {
         db.execSQL(DBContract.ForbiddenEntry.SQL_CREATE_TABLE);
         db.execSQL(DBContract.GroupEntry.SQL_CREATE_TABLE);
         db.execSQL(DBContract.PersonsInGroupEntry.SQL_CREATE_TABLE);
-
+        db.execSQL(DBContract.SolutionEntry.SQL_CREATE_TABLE);
 
     }
 
@@ -38,7 +38,7 @@ public class DBHelper extends SQLiteOpenHelper {
         db.execSQL(DBContract.ForbiddenEntry.SQL_DELETE_ENTRIES);
         db.execSQL(DBContract.GroupEntry.SQL_DELETE_ENTRIES);
         db.execSQL(DBContract.PersonsInGroupEntry.SQL_DELETE_ENTRIES);
-
+        db.execSQL(DBContract.SolutionEntry.SQL_DELETE_ENTRIES);
 
         onCreate(db);
     }

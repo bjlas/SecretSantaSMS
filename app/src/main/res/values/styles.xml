@@ -16,6 +16,8 @@
         <item name="android:textColorPrimary">@color/colorTextWhite</item>
         <item name="android:alertDialogTheme">@style/SMSecretSanta.AlertDialog</item>
 
+        <item name="android:imageButtonStyle">@style/ImageButtonStyle</item>
+
     </style>
 
     <style name="AppTheme.NoActionBar">
@@ -39,5 +41,8 @@
         <item name="android:textColorPrimary">@color/colorTextBlack</item>
     </style>
 
+    <style name="ImageButtonStyle" parent="android:Widget.ImageButton">
+        <item name="android:background">@color/colorPrimary</item>
+    </style>
 
 </resources>
