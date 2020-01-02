@@ -7,7 +7,7 @@
     <string name="add">Add</string>
     <string name="edit">Edit</string>
     <string name="delete">Delete</string>
-    <string name="action_send">Send</string>
+    <string name="send">Send</string>
     <string name="cancel">Cancel</string>
 
     <string name="main_dialog_title">Send results?</string>
@@ -43,6 +43,9 @@
     <string name="edit_activity_hint_maxprice">Price limit</string>
     <string name="edit_group_title">Group</string>
     <string name="edit_validation_emojis">No emojis allowed</string>
+
+    <string name="resend_dialog_text">Do you want to send again Secret Santa to %1$s?</string>
+
 
 
 </resources>

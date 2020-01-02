@@ -5,14 +5,16 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 
-import com.android.onehuman.secretsantasms.dialog.CustomDialog;
+import com.android.onehuman.secretsantasms.dialog.DialogUtils;
 
 public class DeliveredReceiver extends BroadcastReceiver {
 
     private Context context;
+    private DialogUtils dialogUtils;
 
     public DeliveredReceiver(Context c) {
         this.context = c;
+        this.dialogUtils = DialogUtils.getInstance(c);
     }
 
     @Override
@@ -21,7 +23,7 @@ public class DeliveredReceiver extends BroadcastReceiver {
             case Activity.RESULT_OK:
                 break;
             case Activity.RESULT_CANCELED:
-                CustomDialog.showOKDialog(context, "ERROR", "SMS error");
+                dialogUtils.okDialog(context, "ERROR", "SMS error");
                 break;
         }
     }

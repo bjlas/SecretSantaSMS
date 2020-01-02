@@ -6,14 +6,16 @@ import android.content.Context;
 import android.content.Intent;
 import android.telephony.SmsManager;
 
-import com.android.onehuman.secretsantasms.dialog.CustomDialog;
+import com.android.onehuman.secretsantasms.dialog.DialogUtils;
 
 public class SentReceiver extends BroadcastReceiver {
 
     private Context context;
+    private DialogUtils dialogUtils;
 
     public SentReceiver(Context c) {
         this.context = c;
+        this.dialogUtils = DialogUtils.getInstance(c);
     }
 
     @Override
@@ -22,16 +24,16 @@ public class SentReceiver extends BroadcastReceiver {
             case Activity.RESULT_OK:
                 break;
             case SmsManager.RESULT_ERROR_GENERIC_FAILURE:
-                CustomDialog.showOKDialog(context, "ERROR", "SMS Generic failure");
+                dialogUtils.okDialog(context, "ERROR", "SMS Generic failure");
                 break;
             case SmsManager.RESULT_ERROR_NO_SERVICE:
-                CustomDialog.showOKDialog(context, "ERROR", "SMS No service");
+                dialogUtils.okDialog(context, "ERROR", "SMS No service");
                 break;
             case SmsManager.RESULT_ERROR_NULL_PDU:
-                CustomDialog.showOKDialog(context, "ERROR", "SMS Null PDU");
+                dialogUtils.okDialog(context, "ERROR", "SMS Null PDU");
                 break;
             case SmsManager.RESULT_ERROR_RADIO_OFF:
-                CustomDialog.showOKDialog(context, "ERROR", "SMS Radio off");
+                dialogUtils.okDialog(context, "ERROR", "SMS Radio off");
                 break;
         }
     }

@@ -20,6 +20,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.android.onehuman.secretsantasms.database.DBController;
+import com.android.onehuman.secretsantasms.dialog.DialogUtils;
 import com.android.onehuman.secretsantasms.filter.EmojiExcludeFilter;
 import com.android.onehuman.secretsantasms.model.Group;
 import com.android.onehuman.secretsantasms.model.Person;
@@ -49,6 +50,7 @@ public class EditPerson extends AppCompatActivity {
     private List<Integer> selectedForbiddens;
     private Activity activity;
 
+    private DialogUtils dialogUtils;
     private Group group;
 
     @Override
@@ -64,7 +66,7 @@ public class EditPerson extends AppCompatActivity {
         chips = (EditText) findViewById(R.id.edit_edittext_chips);
         chipGroup = (ChipGroup) findViewById(R.id.tag_group);
         dbController = new DBController(this);
-        activity=this;
+        this.activity=this;
 
         name.setFilters(new InputFilter[]{new EmojiExcludeFilter(activity)});
         phone.setFilters(new InputFilter[]{new EmojiExcludeFilter(activity)});
@@ -72,6 +74,8 @@ public class EditPerson extends AppCompatActivity {
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
+
+        dialogUtils = DialogUtils.getInstance(activity);
     }
 
     @Override
@@ -139,34 +143,7 @@ public class EditPerson extends AppCompatActivity {
         }
         if (id == R.id.menu_edit_person_action_delete) {
 
-            AlertDialog myQuittingDialogBox = new AlertDialog.Builder(this)
-                    .setTitle(getResources().getString(R.string.delete))
-                    .setMessage(String.format(getResources().getString(R.string.edit_dialog_deleted_person), person.getName()))
-                    .setIcon(R.drawable.icon_candy)
-
-                    .setPositiveButton(getResources().getString(R.string.delete), new DialogInterface.OnClickListener() {
-
-                        public void onClick(DialogInterface dialog, int whichButton) {
-                            dbController.deletePerson(person.getId());
-                            dbController.deleteAllForbiddenRulesFromPerson(person.getId());
-                            dbController.deletePersonAsForbiddenOfOtherPersons(person.getId());
-                            dbController.deleteAPersonsOfAGroup(person.getId());
-                            Toast.makeText(activity, getResources().getString(R.string.edit_deleted), Toast.LENGTH_SHORT).show();
-                            dialog.dismiss();
-                            finish();
-                        }
-
-                    })
-                    .setNegativeButton(getResources().getString(R.string.cancel), new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int which) {
-
-                            dialog.dismiss();
-
-                        }
-                    })
-                    .create();
-
-            myQuittingDialogBox.show();
+            dialogUtils.deletePersonDialog(activity, person);
             return true;
         }
         if (id == R.id.menu_edit_person_action_update) {

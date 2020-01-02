@@ -1,9 +1,7 @@
 package com.android.onehuman.secretsantasms;
 
 import android.app.Activity;
-import android.app.AlertDialog;
 import android.app.PendingIntent;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
@@ -12,8 +10,8 @@ import com.android.onehuman.secretsantasms.broadcasts.DeliveredReceiver;
 import com.android.onehuman.secretsantasms.broadcasts.SentReceiver;
 import com.android.onehuman.secretsantasms.adapter.PersonAdapter;
 import com.android.onehuman.secretsantasms.database.DBController;
-import com.android.onehuman.secretsantasms.dialog.CustomDialog;
-import com.android.onehuman.secretsantasms.graph.Graph;
+import com.android.onehuman.secretsantasms.dialog.DialogUtils;
+import com.android.onehuman.secretsantasms.graph.GraphUtils;
 import com.android.onehuman.secretsantasms.model.Group;
 import com.android.onehuman.secretsantasms.model.Person;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -26,7 +24,6 @@ import android.telephony.SmsManager;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Toast;
 
 import java.util.HashMap;
 import java.util.List;
@@ -48,6 +45,7 @@ public class PersonsList extends AppCompatActivity {
     private DeliveredReceiver deliveredReceiver;
     private Group group;
     private FloatingActionButton personFAB;
+    private DialogUtils dialogUtils;
 
 
     @Override
@@ -83,6 +81,8 @@ public class PersonsList extends AppCompatActivity {
 
         sentReceiver = new SentReceiver(activity);
         deliveredReceiver = new DeliveredReceiver(activity);
+
+        dialogUtils = DialogUtils.getInstance(activity);
 
     }
 
@@ -139,7 +139,7 @@ public class PersonsList extends AppCompatActivity {
         }
         if (id == R.id.menu_edit_group_action_send) {
             if(checkValidData()) {
-                showDialog();
+                showSendDialog();
                 return true;
             } else {
                 return false;
@@ -148,115 +148,40 @@ public class PersonsList extends AppCompatActivity {
         }
         if (id == R.id.menu_edit_group_action_delete) {
 
-            AlertDialog myQuittingDialogBox = new AlertDialog.Builder(this)
-                    .setTitle(getResources().getString(R.string.delete))
-                    .setMessage(String.format(getResources().getString(R.string.edit_dialog_deleted_group), group.getGroupName()))
-                    .setIcon(R.drawable.icon_candy)
-
-                    .setPositiveButton(getResources().getString(R.string.delete), new DialogInterface.OnClickListener() {
-
-                        public void onClick(DialogInterface dialog, int whichButton) {
-                            List<Integer> allPersonsOfGroup = dbController.getAllPersonsOfAGroup(group.getGroupID());
-
-                            dbController.deleteAllGroupPersons(group.getGroupID());
-
-                            for(int personID: allPersonsOfGroup) {
-                                dbController.deleteAllForbiddenRulesFromPerson(personID);
-                                dbController.deletePerson(personID);
-                            }
-                            dbController.deleteGroup(group.getGroupID());
-
-                            Toast.makeText(activity, getResources().getString(R.string.edit_deleted), Toast.LENGTH_SHORT).show();
-                            dialog.dismiss();
-
-                            finish();
-
-
-                        }
-
-                    })
-                    .setNegativeButton(getResources().getString(R.string.cancel), new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int which) {
-
-                            dialog.dismiss();
-
-                        }
-                    })
-                    .create();
-
-            myQuittingDialogBox.show();
+            dialogUtils.deleteGroupDialog(activity, group);
             return true;
         }
         return super.onOptionsItemSelected(item);
     }
 
     private boolean checkValidData() {
+        //There is less than two persons in the group
         if(allPersonsMaps.size() < 2) {
-            CustomDialog.showOKDialog(activity,getResources().getString(R.string.main_dialog_fail_title), getResources().getString(R.string.main_dialog_fail_only_two_candidates));
+            dialogUtils.okDialog(activity,getResources().getString(R.string.main_dialog_fail_title), getResources().getString(R.string.main_dialog_fail_only_two_candidates));
             return false;
         }
 
+        //One candidate cannot gift anyone
         for(HashMap.Entry<Integer, Person> entry : allPersonsMaps.entrySet()) {
             if(entry.getValue().getCandidates().size() == 0) {
-                CustomDialog.showOKDialog(activity,getResources().getString(R.string.main_dialog_fail_title), String.format(getResources().getString(R.string.main_dialog_fail_number_of_candidates), entry.getValue().getName()));
+                dialogUtils.okDialog(activity,getResources().getString(R.string.main_dialog_fail_title), String.format(getResources().getString(R.string.main_dialog_fail_number_of_candidates), entry.getValue().getName()));
                 return false;
             }
         }
+
+
         return true;
     }
 
-    public void showDialog() {
+    public void showSendDialog() {
 
-        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
-        alertDialogBuilder.setTitle(getResources().getString(R.string.main_dialog_title));
-        alertDialogBuilder
-                .setMessage(getResources().getString(R.string.main_dialog_message))
-                .setCancelable(false)
-                .setIcon(R.drawable.icon_ball)
-                .setPositiveButton(getResources().getString(R.string.main_dialog_bySMSButton),new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog,int id) {
+        List<Person> solution = GraphUtils.draw(allPersonsMaps, personList.get(random.nextInt(personList.size())));
+        if(solution.size()==0) {
+            dialogUtils.okDialog(activity,getResources().getString(R.string.main_dialog_fail_title),getResources().getString(R.string.main_dialog_fail_message));
+        } else {
+            dialogUtils.sendDialog(activity, group, solution);
+        }
 
-                        List<List<Person>> allPosiblesSolutions = draw();
-                        if(allPosiblesSolutions.size()==0) {
-                            CustomDialog.showOKDialog(activity,getResources().getString(R.string.main_dialog_fail_title),getResources().getString(R.string.main_dialog_fail_message));
-                        } else {
-                            List<Person> randomSolution = selectSolution(allPosiblesSolutions);
-                            dbController.deleteSolution(group.getGroupID());
-                            for(int index=0; index<randomSolution.size()-1; index++) {
-                                String message = String.format(getResources().getString(R.string.main_dialog_smsTemplate), randomSolution.get(index).getName(), randomSolution.get(index+1).getName());
-                                if (!"".equals(group.getMaxPrice())) {
-                                    message = message + String.format(getResources().getString(R.string.main_dialog_sms_plus_maxPrice), group.getMaxPrice());
-                                }
-
-                                sendSMS(randomSolution.get(index).getPhone(), message);
-                                dbController.insertSolution(group.getGroupID(), randomSolution.get(index).getId(), randomSolution.get(index+1).getId());
-                            }
-
-                            CustomDialog.showOKDialog(activity,getResources().getString(R.string.main_dialog_success_title),getResources().getString(R.string.main_dialog_success_message));
-
-                        }
-
-                    }
-                })
-                .setNegativeButton(getResources().getString(R.string.cancel),new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog,int id) {
-                        dialog.cancel();
-                    }
-                });
-
-        AlertDialog alertDialog = alertDialogBuilder.create();
-        alertDialog.show();
-    }
-
-    public List<List<Person>> draw(){
-        Graph graph = createGraph(allPersonsMaps);
-        Person startPerson = personList.get(random.nextInt(personList.size()));
-        return graph.findHamiltonianCycles(startPerson);
-    }
-
-    public List<Person> selectSolution(List<List<Person>> cycles) {
-        int randomSolution = random.nextInt(cycles.size());
-        return cycles.get(randomSolution);
     }
 
 
@@ -282,34 +207,12 @@ public class PersonsList extends AppCompatActivity {
                 }
             }
 
-
         }
-
         return resultMap;
     }
 
-    public Graph createGraph(HashMap<Integer, Person> map) {
-        Graph graph = new Graph();
-        for(HashMap.Entry<Integer, Person> entry : map.entrySet()) {
-            graph.addPerson(entry.getValue());
-        }
-        return graph;
-    }
 
 
-
-
-    public void sendSMS(String phoneNumber, String message)
-    {
-        String SENT = "SMS_SENT";
-        String DELIVERED = "SMS_DELIVERED";
-
-        PendingIntent sentPI = PendingIntent.getBroadcast(this, 0, new Intent(SENT), 0);
-        PendingIntent deliveredPI = PendingIntent.getBroadcast(this, 0, new Intent(DELIVERED), 0);
-
-        SmsManager sms = SmsManager.getDefault();
-        sms.sendTextMessage(phoneNumber, null, message, sentPI, deliveredPI);
-    }
 
     @Override
     public boolean onSupportNavigateUp() {

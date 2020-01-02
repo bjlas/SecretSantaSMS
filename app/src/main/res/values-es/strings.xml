@@ -8,7 +8,7 @@
     <string name="add">Añadir</string>
     <string name="edit">Editar</string>
     <string name="delete">Borrar</string>
-    <string name="action_send">Enviar</string>
+    <string name="send">Enviar</string>
 
     <string name="main_dialog_title">Enviar resultados?</string>
     <string name="main_dialog_message">Quieres enviar un SMS a cada amigo invisible? (Consulta los costes del servicio a tu proveedor)</string>
@@ -43,6 +43,9 @@
 
     <string name="main_dialog_fail_only_two_candidates">Hay menos de dos personas en el grupo</string>
     <string name="edit_validation_emojis">Emojis no permitidos</string>
+
+    <string name="resend_dialog_text">Desea enviar de nuevo el amigo invisible a %1$s?</string>
+
 
 
 </resources>

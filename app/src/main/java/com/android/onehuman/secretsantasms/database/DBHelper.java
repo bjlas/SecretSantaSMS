@@ -7,8 +7,8 @@ import android.database.sqlite.SQLiteOpenHelper;
 public class DBHelper extends SQLiteOpenHelper {
 
     private static DBHelper dbHelper;
-    public static final int DATABASE_VERSION = 8;
-    public static final String DATABASE_NAME = "SMSecretSanta.db";
+    public static final int DATABASE_VERSION = 9;
+    public static final String DATABASE_NAME = "SecretSantaSMS.db";
 
     public static synchronized DBHelper getInstance(Context c) {
         if (dbHelper == null) {

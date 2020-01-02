@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.android.onehuman.secretsantasms.R;
 import com.android.onehuman.secretsantasms.event.Person_OnItemClickListener;
+import com.android.onehuman.secretsantasms.event.Resend_OnItemClickListener;
 import com.android.onehuman.secretsantasms.model.Group;
 import com.android.onehuman.secretsantasms.model.Person;
 
@@ -71,7 +72,7 @@ public class PersonAdapter extends RecyclerView.Adapter<PersonAdapter.PersonView
         }
         holder.itemView.setOnClickListener(new Person_OnItemClickListener(context, person, group));
 
-        holder.resendButton.setVisibility(View.GONE);
+        holder.resendButton.setOnClickListener(new Resend_OnItemClickListener(context, person));
     }
 
     @Override
