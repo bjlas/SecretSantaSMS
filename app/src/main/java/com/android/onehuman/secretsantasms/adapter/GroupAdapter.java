@@ -50,7 +50,7 @@ public class GroupAdapter extends RecyclerView.Adapter<GroupAdapter.GroupViewHol
     public void onBindViewHolder(GroupViewHolder holder, int position) {
         Group group = groupList.get(position);
 
-        holder.thumb.setImageResource(icons.getResourceId(updateIconPosition(),-1));
+        holder.thumb.setImageResource(icons.getResourceId(Math.abs(group.getGroupID()%10) ,-1));
 
         holder.name.setText(group.getGroupName());
 
@@ -64,15 +64,6 @@ public class GroupAdapter extends RecyclerView.Adapter<GroupAdapter.GroupViewHol
     @Override
     public int getItemCount() {
         return groupList.size();
-    }
-
-    private int updateIconPosition() {
-        icon_position++;
-        if (icon_position >= icons.length()) {
-            icon_position=0;
-        }
-
-        return icon_position;
     }
 
     static class GroupViewHolder extends RecyclerView.ViewHolder {

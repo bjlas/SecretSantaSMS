@@ -29,6 +29,7 @@
 
     <string name="main_dialog_smsTemplate">Hi %1$s! You are the secret santa of: %2$s</string>
     <string name="main_dialog_sms_plus_maxPrice">.Price limit %1$s</string>
+    <string name="main_dialog_validation_error">Error</string>
 
     <string name="edit_activity_hint_name">Name</string>
     <string name="edit_activity_hint_phone">Phone</string>

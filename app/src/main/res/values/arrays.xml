@@ -11,6 +11,7 @@
         <item>@drawable/icon_sock</item>
         <item>@drawable/icon_tree</item>
         <item>@drawable/icon_wreath</item>
+        <item>@drawable/icon_bell</item>
     </array>
 
     <array name="grouplist_row_icons_array">
@@ -18,6 +19,12 @@
         <item>@drawable/icon_gift02</item>
         <item>@drawable/icon_gift03</item>
         <item>@drawable/icon_gift04</item>
+        <item>@drawable/icon_gift01</item>
+        <item>@drawable/icon_gift02</item>
+        <item>@drawable/icon_gift03</item>
+        <item>@drawable/icon_gift04</item>
+        <item>@drawable/icon_gift01</item>
+        <item>@drawable/icon_gift02</item>
     </array>
 
 </resources>

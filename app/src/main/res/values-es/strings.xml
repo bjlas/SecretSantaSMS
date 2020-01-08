@@ -43,6 +43,7 @@
 
     <string name="main_dialog_fail_only_two_candidates">Hay menos de dos personas en el grupo</string>
     <string name="edit_validation_emojis">Emojis no permitidos</string>
+    <string name="main_dialog_validation_error">Error</string>
 
     <string name="resend_dialog_text">Desea enviar de nuevo el amigo invisible a %1$s?</string>
 

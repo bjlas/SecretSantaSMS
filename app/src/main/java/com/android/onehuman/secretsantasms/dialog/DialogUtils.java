@@ -50,7 +50,7 @@ public class DialogUtils
         builder.show();
     }
 
-    public void deletePersonDialog(final Context context, final Person person){
+    public void deletePersonDialog(final Context context, final Group group, final Person person){
 
         AlertDialog.Builder deletePersonDialog = new AlertDialog.Builder(context);
 
@@ -65,6 +65,11 @@ public class DialogUtils
                 dbController.deleteAllForbiddenRulesFromPerson(person.getId());
                 dbController.deletePersonAsForbiddenOfOtherPersons(person.getId());
                 dbController.deleteAPersonsOfAGroup(person.getId());
+
+                if(dbController.existSolution(person.getId())) {
+                    dbController.deleteSolution(group.getGroupID());
+                }
+
                 Toast.makeText(context, context.getResources().getString(R.string.edit_deleted), Toast.LENGTH_SHORT).show();
                 dialog.dismiss();
                 ((Activity) context).finish();
@@ -97,6 +102,7 @@ public class DialogUtils
                 List<Integer> allPersonsOfGroup = dbController.getAllPersonsOfAGroup(group.getGroupID());
 
                 dbController.deleteAllGroupPersons(group.getGroupID());
+                dbController.deleteSolution(group.getGroupID());
 
                 for(int personID: allPersonsOfGroup) {
                     dbController.deleteAllForbiddenRulesFromPerson(personID);
@@ -135,12 +141,8 @@ public class DialogUtils
             public void onClick(DialogInterface dialog,int id) {
                 dbController.deleteSolution(group.getGroupID());
                 for(int index=0; index<solution.size()-1; index++) {
-                    String message = String.format(context.getResources().getString(R.string.main_dialog_smsTemplate), solution.get(index).getName(), solution.get(index+1).getName());
-                    if (!"".equals(group.getMaxPrice())) {
-                        message = message + String.format(context.getResources().getString(R.string.main_dialog_sms_plus_maxPrice), group.getMaxPrice());
-                    }
 
-                    smsUtils.sendSMS(solution.get(index).getPhone(), message);
+                    smsUtils.sendSMS(solution.get(index).getPhone(), generateSMSMessage(context, group, solution.get(index).getName(), solution.get(index+1).getName()));
                     dbController.insertSolution(group.getGroupID(), solution.get(index).getId(), solution.get(index+1).getId());
                 }
                 dialogUtils.okDialog(context,context.getResources().getString(R.string.main_dialog_success_title),context.getResources().getString(R.string.main_dialog_success_message));
@@ -157,7 +159,7 @@ public class DialogUtils
         sendDialog.show();
     }
 
-    public void resendDialog(final Context context, final Person person){
+    public void resendDialog(final Context context, final Group group, final Person person){
         final Dialog dialog = new Dialog(context);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setCancelable(false);
@@ -170,13 +172,17 @@ public class DialogUtils
         editTextPhone.setText(person.getPhone());
 
         Button resendButton = (Button) dialog.findViewById(R.id.dialog_resend_resend_button);
-        Person gifToPerson = dbController.getGiftToSolution(person.getId());
 
         resendButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(context, person.getName()+" SEND"+editTextPhone.getText(), Toast.LENGTH_SHORT).show();
-                dialog.dismiss();
+
+                if(android.util.Patterns.PHONE.matcher(editTextPhone.getText().toString()).matches() ) {
+                    smsUtils.sendSMS(editTextPhone.getText().toString(), generateSMSMessage(context, group, person.getName(), dbController.getPerson(person.getGiftTo()).getName()));
+                    dialog.dismiss();
+                } else {
+                    dialogUtils.okDialog(context,context.getResources().getString(R.string.main_dialog_validation_error),context.getResources().getString(R.string.edit_validation_phone));
+                }
             }
         });
 
@@ -188,6 +194,16 @@ public class DialogUtils
             }
         });
         dialog.show();
+    }
+
+
+    public String generateSMSMessage(Context context, Group group, String personName, String giftTo) {
+        String message = String.format(context.getResources().getString(R.string.main_dialog_smsTemplate), personName, giftTo);
+        if (!"".equals(group.getMaxPrice())) {
+            message = message + String.format(context.getResources().getString(R.string.main_dialog_sms_plus_maxPrice), group.getMaxPrice());
+        }
+
+        return message;
     }
 
 }

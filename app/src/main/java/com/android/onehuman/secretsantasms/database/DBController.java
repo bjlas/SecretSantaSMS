@@ -22,18 +22,22 @@ public class DBController {
 
 
     //COMMON
-    public List<Person> getAllPersons(int GroupID) {
+    public List<Person> getAllPersons(int groupID) {
         List<Person> personList = new ArrayList<>();
         Person person;
+
+
         String selectQuery = "SELECT " +
                 "per."+DBContract.PersonEntry.COLUMN_PERSON_ID+", " +
                 "per."+DBContract.PersonEntry.COLUMN_PERSON_NAME+", " +
                 "per."+DBContract.PersonEntry.COLUMN_PERSON_PHONE+", " +
-                "per."+DBContract.PersonEntry.COLUMN_PERSON_MAIL+" " +
-                "FROM "+DBContract.PersonEntry.TABLE_NAME+" per " +
-                "LEFT JOIN "+DBContract.PersonsInGroupEntry.TABLE_NAME+" pig " +
-                "ON pig."+DBContract.PersonsInGroupEntry.COLUMN_PERSON_ID+"=per."+DBContract.PersonEntry.COLUMN_PERSON_ID+" " +
-                "WHERE pig."+DBContract.PersonsInGroupEntry.COLUMN_GROUP_ID+"="+GroupID;
+                "per."+DBContract.PersonEntry.COLUMN_PERSON_MAIL+", " +
+                "sol."+DBContract.SolutionEntry.COLUMN_GIFT_TO+" " +
+                "FROM " +
+                ""+DBContract.PersonEntry.TABLE_NAME+" per " +
+                "LEFT JOIN "+DBContract.PersonsInGroupEntry.TABLE_NAME+" pig ON pig."+DBContract.PersonsInGroupEntry.COLUMN_PERSON_ID+" = per."+DBContract.PersonEntry.COLUMN_PERSON_ID+" " +
+                "LEFT JOIN "+DBContract.SolutionEntry.TABLE_NAME+" sol on sol."+DBContract.SolutionEntry.COLUMN_PERSON_ID+" = pig."+DBContract.PersonsInGroupEntry.COLUMN_PERSON_ID+" " +
+                "WHERE pig."+DBContract.PersonsInGroupEntry.COLUMN_GROUP_ID+"="+groupID+"";
 
         SQLiteDatabase db = dbHelper.getReadableDatabase();
         Cursor cursor = db.rawQuery(selectQuery, null);
@@ -49,8 +53,10 @@ public class DBController {
                 person.setPhone(cursor.getString(2));
                 person.setMail(cursor.getString(3));
 
+                if (!cursor.isNull(4)) {
+                    person.setGiftTo(cursor.getString(4));
+                }
                 personList.add(person);
-
 
             } while (cursor.moveToNext());
         }
@@ -168,6 +174,37 @@ public class DBController {
             return false;
         }
     }
+
+    public Person getPerson(String personID) {
+        Person person=null;
+
+
+        String selectQuery = "SELECT " +
+                "per."+DBContract.PersonEntry.COLUMN_PERSON_ID+", " +
+                "per."+DBContract.PersonEntry.COLUMN_PERSON_NAME+", " +
+                "per."+DBContract.PersonEntry.COLUMN_PERSON_PHONE+", " +
+                "per."+DBContract.PersonEntry.COLUMN_PERSON_MAIL+" " +
+                "FROM " +
+                ""+DBContract.PersonEntry.TABLE_NAME+" per " +
+                "WHERE per."+DBContract.PersonEntry.COLUMN_PERSON_ID+"="+personID+"";
+
+        SQLiteDatabase db = dbHelper.getReadableDatabase();
+        Cursor cursor = db.rawQuery(selectQuery, null);
+
+
+        if (cursor.moveToFirst()) {
+            do {
+                person = new Person();
+                person.setId(cursor.getInt(0));
+                person.setName(cursor.getString(1));
+                person.setPhone(cursor.getString(2));
+                person.setMail(cursor.getString(3));
+            } while (cursor.moveToNext());
+        }
+        cursor.close();
+        return person;
+    }
+
 
     //FORBIDDEN TABLE
     public long insertForbidden(int idPerson, int idCandidate) {
@@ -364,39 +401,24 @@ public class DBController {
         String[] selectionArgs = { String.valueOf(groupID) };
         return db.delete(DBContract.SolutionEntry.TABLE_NAME, selection, selectionArgs);
     }
+    public boolean existSolution(int personID) {
 
-    public Person getGiftToSolution(int personID) {
+        String selectQuery = "SELECT COUNT(*) " +
+                "FROM "+DBContract.SolutionEntry.TABLE_NAME+" " +
+                "WHERE "+DBContract.SolutionEntry.COLUMN_PERSON_ID+"="+personID;
 
-//        SELECT per.personID, per.personName, per.personPhone, per.personMail FROM person per, SolutionTable sol
-  //      WHERE sol.personID = '1' AND per.personID =  sol.giftTo;
-
-       /* Group group=new Group();
-        String selectQuery = "SELECT " +
-                "gru."+DBContract.SolutionEntry.COLUMN_GROUP_ID+", " +
-                "gru."+DBContract.SolutionEntry.COLUMN_PERSON_ID+", " +
-                "gru."+DBContract.SolutionEntry.COLUMN_GIFT_TO+" " +
-                "FROM " +
-                ""+DBContract.SolutionEntry.TABLE_NAME+" gru " +
-                "WHERE gru."+DBContract.SolutionEntry.COLUMN_GROUP_ID+" ="+groupID;
-
-        SQLiteDatabase db = dbHelper.getReadableDatabase();
+        SQLiteDatabase db  = dbHelper.getReadableDatabase();
         Cursor cursor = db.rawQuery(selectQuery, null);
 
-        if (cursor.moveToFirst()) {
-            do {
+        cursor.moveToFirst();
+        int count=cursor.getInt(0);
+        cursor.close();
 
-
-
-                group.setGroupID(cursor.getInt(0));
-                group.setGroupName(cursor.getString(1));
-                group.setMaxPrice(cursor.getString(2));
-
-
-
-            } while (cursor.moveToNext());
+        if (count>0) {
+            return true;
+        } else {
+            return false;
         }
-        cursor.close();*/
-        return new Person();
     }
 
 }

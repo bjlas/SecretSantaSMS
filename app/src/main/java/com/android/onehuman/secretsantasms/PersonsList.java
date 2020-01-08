@@ -89,10 +89,22 @@ public class PersonsList extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        initData();
         registerReceiver(sentReceiver, new IntentFilter(SENT));
         registerReceiver(deliveredReceiver, new IntentFilter(DELIVERED));
     }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        initData();
+    }
+
+    @Override
+    public void onWindowFocusChanged(boolean hasFocus) {
+        super.onWindowFocusChanged(hasFocus);
+        initData();
+    }
+
 
 
     @Override

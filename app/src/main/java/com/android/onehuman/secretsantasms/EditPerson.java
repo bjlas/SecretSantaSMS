@@ -143,7 +143,7 @@ public class EditPerson extends AppCompatActivity {
         }
         if (id == R.id.menu_edit_person_action_delete) {
 
-            dialogUtils.deletePersonDialog(activity, person);
+            dialogUtils.deletePersonDialog(activity, group, person);
             return true;
         }
         if (id == R.id.menu_edit_person_action_update) {

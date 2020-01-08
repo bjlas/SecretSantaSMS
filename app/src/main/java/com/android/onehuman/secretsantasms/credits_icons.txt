@@ -8,6 +8,7 @@ icon_sock.xml
 icon_tree.xml
 icon_wreath.xml
 app_icon.xml
+icon_bell.xml
 --------------
 Icons made by ArtDesigner.lv (Tanya) from www.iconarchive.com
 http://www.iconarchive.com/show/xmas-deco-icons-by-artdesigner.html

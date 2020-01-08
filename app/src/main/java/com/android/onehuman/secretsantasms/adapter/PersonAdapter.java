@@ -24,7 +24,7 @@ import java.util.List;
 
 public class PersonAdapter extends RecyclerView.Adapter<PersonAdapter.PersonViewHolder>{
 
-    private List<Person> contactList;
+    private List<Person> personList;
     private Context context;
     private TypedArray icons;
     private int icon_position;
@@ -32,13 +32,13 @@ public class PersonAdapter extends RecyclerView.Adapter<PersonAdapter.PersonView
 
     public PersonAdapter(Context context) {
         this.context = context;
-        this.contactList = new ArrayList<>();
+        this.personList = new ArrayList<>();
         icons = context.getResources().obtainTypedArray(R.array.personlist_row_icons_array);
         icon_position=0;
     }
 
     public void updateList(List<Person> pl) {
-        contactList = pl;
+        personList = pl;
         notifyDataSetChanged();
     }
 
@@ -57,9 +57,9 @@ public class PersonAdapter extends RecyclerView.Adapter<PersonAdapter.PersonView
 
     @Override
     public void onBindViewHolder(PersonViewHolder holder, int position) {
-        final Person person = contactList.get(position);
+        final Person person = personList.get(position);
 
-        holder.thumb.setImageResource(icons.getResourceId(updateIconPosition(),-1));
+        holder.thumb.setImageResource(icons.getResourceId(Math.abs(person.getId()%10) ,-1));
 
         holder.name.setText(person.getName());
 
@@ -72,21 +72,17 @@ public class PersonAdapter extends RecyclerView.Adapter<PersonAdapter.PersonView
         }
         holder.itemView.setOnClickListener(new Person_OnItemClickListener(context, person, group));
 
-        holder.resendButton.setOnClickListener(new Resend_OnItemClickListener(context, person));
+        if(person.getGiftTo() != null) {
+            holder.resendButton.setOnClickListener(new Resend_OnItemClickListener(context, group, person));
+            holder.resendButton.setVisibility(View.VISIBLE);
+        } else {
+            holder.resendButton.setVisibility(View.GONE);
+        }
     }
 
     @Override
     public int getItemCount() {
-        return contactList.size();
-    }
-
-    private int updateIconPosition() {
-        icon_position++;
-        if (icon_position >= icons.length()) {
-            icon_position=0;
-        }
-
-        return icon_position;
+        return personList.size();
     }
 
     static class PersonViewHolder extends RecyclerView.ViewHolder {

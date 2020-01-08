@@ -15,6 +15,7 @@ public class Person implements Parcelable {
     private String mail;
     private List<Person> forbiddenList;
     private List<Person> candidates;
+    private String giftTo;
 
     public Person() {
         this.candidates=new ArrayList<>();
@@ -72,8 +73,13 @@ public class Person implements Parcelable {
     public void addCandidates(Person p){ this.candidates.add(p); }
 
     public List<Person> getForbiddenList(){ return this.forbiddenList; }
-    public void addForbiddenList(List<Person> fl){ this.forbiddenList=fl; }
     public void addForbidden(Person p){ this.forbiddenList.add(p); }
+
+    public void setGiftTo(String giftTo) {
+        this.giftTo = giftTo;
+    }
+    public String getGiftTo() { return this.giftTo; }
+
 
     public String forbiddenListToString() {
 
