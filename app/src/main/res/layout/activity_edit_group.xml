@@ -6,25 +6,46 @@
     android:orientation="vertical"
     android:padding="@dimen/activity_horizontal_margin">
 
-    <EditText
-        android:id="@+id/edit_group_edittext_name"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/margin_10"
-        android:ems="10"
-        android:hint="@string/edit_activity_hint_name"
-        android:inputType="text"
-        android:textColor="@color/colorTextBlack" />
 
-    <EditText
-        android:id="@+id/edit_group_edittext_maxprice"
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/edit_group_errorlayout_name"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/margin_10"
-        android:ems="10"
-        android:hint="@string/edit_activity_hint_maxprice"
-        android:inputType="textMultiLine"
-        android:maxLength="8"
-        android:textColor="@color/colorTextBlack" />
+        android:layout_height="wrap_content">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edit_group_edittext_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/margin_10"
+            android:ems="10"
+            android:hint="@string/edit_activity_hint_name"
+            android:inputType="text"
+            android:textColor="@color/colorTextBlack"
+            />
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+    <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/edit_group_errorlayout_maxprice"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edit_group_edittext_maxprice"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/margin_10"
+                android:ems="10"
+                android:hint="@string/edit_activity_hint_maxprice"
+                android:inputType="textMultiLine"
+                android:maxLength="8"
+                android:textColor="@color/colorTextBlack"
+
+                />
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+
+
 
 </LinearLayout>

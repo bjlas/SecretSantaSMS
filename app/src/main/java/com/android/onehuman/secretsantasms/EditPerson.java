@@ -24,8 +24,11 @@ import com.android.onehuman.secretsantasms.dialog.DialogUtils;
 import com.android.onehuman.secretsantasms.filter.EmojiExcludeFilter;
 import com.android.onehuman.secretsantasms.model.Group;
 import com.android.onehuman.secretsantasms.model.Person;
+import com.android.onehuman.secretsantasms.utils.ValidationHelper;
 import com.google.android.material.chip.Chip;
 import com.google.android.material.chip.ChipGroup;
+import com.google.android.material.textfield.TextInputEditText;
+import com.google.android.material.textfield.TextInputLayout;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,10 +37,9 @@ public class EditPerson extends AppCompatActivity {
 
 
     private static final int SELECT_PHONE_NUMBER = 1;
-    private EditText name;
-    private EditText phone;
-    private EditText mail;
-    private EditText chips;
+
+    private TextInputEditText nameEditText,phoneEditText,chipsEditText;
+    private TextInputLayout nameErrorEditText,phoneErrorEditText, chipsErrorEditText;
 
     MenuItem addMenuItem;
     MenuItem deleteMenuItem;
@@ -52,6 +54,7 @@ public class EditPerson extends AppCompatActivity {
 
     private DialogUtils dialogUtils;
     private Group group;
+    private ValidationHelper validationHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,22 +63,24 @@ public class EditPerson extends AppCompatActivity {
 
         setTitle(getResources().getString(R.string.edit_view_title));
 
-        name = (EditText) findViewById(R.id.edit_edittext_name);
-        phone = (EditText) findViewById(R.id.edit_edittext_phone);
-        mail = (EditText) findViewById(R.id.edit_edittext_mail);
-        chips = (EditText) findViewById(R.id.edit_edittext_chips);
+        nameEditText = (TextInputEditText) findViewById(R.id.edit_edittext_name);
+        phoneEditText = (TextInputEditText) findViewById(R.id.edit_edittext_phone);
+
+        nameErrorEditText = (TextInputLayout) findViewById(R.id.edit_errorlayout_name);
+        phoneErrorEditText = (TextInputLayout) findViewById(R.id.edit_errorlayout_phone);
+        chipsErrorEditText = (TextInputLayout) findViewById(R.id.edit_errorlayout_chips);
+
         chipGroup = (ChipGroup) findViewById(R.id.tag_group);
         dbController = new DBController(this);
         this.activity=this;
 
-        name.setFilters(new InputFilter[]{new EmojiExcludeFilter(activity)});
-        phone.setFilters(new InputFilter[]{new EmojiExcludeFilter(activity)});
-        mail.setFilters(new InputFilter[]{new EmojiExcludeFilter(activity)});
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
 
         dialogUtils = DialogUtils.getInstance(activity);
+
+        validationHelper = new ValidationHelper(activity);
     }
 
     @Override
@@ -102,9 +107,8 @@ public class EditPerson extends AppCompatActivity {
 
         if(person != null){
             addMenuItem.setVisible(false);
-            name.setText(person.getName());
-            phone.setText(person.getPhone());
-            mail.setText(person.getMail());
+            nameEditText.setText(person.getName());
+            phoneEditText.setText(person.getPhone());
             showChips(allCandidates, dbController.getForbiddens(person));
 
         } else {
@@ -125,11 +129,10 @@ public class EditPerson extends AppCompatActivity {
         if (id == R.id.menu_edit_person_action_add) {
 
             person = new Person();
-            person.setName(name.getText().toString());
-            person.setPhone(PhoneNumberUtils.formatNumber(phone.getText().toString().replace(" ", "")));
-            person.setMail(mail.getText().toString());
+            person.setName(nameEditText.getText().toString());
+            person.setPhone(PhoneNumberUtils.formatNumber(phoneEditText.getText().toString().replace(" ", "")));
 
-            if (!validateNameField(person) || !validateRequiredField(name) || !validateRequiredField(phone) || !validateChips() || !validateMail(person.getMail()) || !validatePhone(person.getPhone())) {
+            if (!validations()) {
                 return false;
             }
 
@@ -147,11 +150,10 @@ public class EditPerson extends AppCompatActivity {
             return true;
         }
         if (id == R.id.menu_edit_person_action_update) {
-            person.setName(name.getText().toString());
-            person.setPhone(phone.getText().toString().replace(" ", ""));
-            person.setMail(mail.getText().toString());
+            person.setName(nameEditText.getText().toString());
+            person.setPhone(phoneEditText.getText().toString().replace(" ", ""));
 
-            if (!validateNameField(person) || !validateRequiredField(name) || !validateRequiredField(phone) || !validateChips() || !validateMail(person.getMail()) || !validatePhone(person.getPhone())) {
+            if (!validations()) {
                 return false;
             }
 
@@ -195,54 +197,27 @@ public class EditPerson extends AppCompatActivity {
 
                 chipGroup.addView(chip);
             }
-
     }
 
-    public boolean validateNameField(Person person) {
-        if(dbController.existPersonName(person, group)) {
-            name.setError(getResources().getString(R.string.edit_validation_name));
-            return false;
-        }
+
+    public boolean validations() {
+        if (!validationHelper.validateRequiredField(nameEditText, nameErrorEditText, nameEditText.getHint()+" "+getResources().getString(R.string.edit_validation_field_requited))) { return false; }
+
+        if (!validationHelper.validateRequiredField(phoneEditText, phoneErrorEditText, phoneEditText.getHint()+" "+getResources().getString(R.string.edit_validation_field_requited))) { return false; }
+
+        if (!validationHelper.validateDuplicatePersonNameField(group, person, nameErrorEditText, getResources().getString(R.string.edit_validation_name))) { return false; }
+
+        if (!validationHelper.validateChips(allCandidates, selectedForbiddens, chipsErrorEditText, getResources().getString(R.string.edit_validation_chips))) { return false; }
+
+        if (!validationHelper.validatePhoneNumber(person.getPhone(), phoneErrorEditText, getResources().getString(R.string.edit_validation_phone))) { return false; }
+
+        if (!validationHelper.validateEmoji(nameEditText, nameErrorEditText, getResources().getString(R.string.edit_validation_emojis))) { return false; }
+
+        if (!validationHelper.validateEmoji(phoneEditText, phoneErrorEditText, getResources().getString(R.string.edit_validation_emojis))) { return false; }
+
         return true;
     }
 
-    public boolean validateChips() {
-
-        if(allCandidates.size() !=0 && selectedForbiddens.size() == allCandidates.size()) {
-            //All chips selected means this person can gift to anyone. ()
-            chips.setError(getResources().getString(R.string.edit_validation_chips));
-            chips.requestFocus();
-            return false;
-        }
-        return true;
-    }
-
-
-    public boolean validateMail(CharSequence target) {
-/*        if(!android.util.Patterns.EMAIL_ADDRESS.matcher(target).matches() ) {
-            mail.setError(getResources().getString(R.string.edit_validation_mail));
-            return false;
-        }*/
-        return true;
-
-    }
-
-
-    public boolean validateRequiredField(EditText field) {
-        if(field.getText().toString().length() == 0 ) {
-            field.setError(field.getHint()+" "+getResources().getString(R.string.edit_validation_field_requited));
-            return false;
-        }
-        return true;
-    }
-
-    private boolean validatePhone(String number) {
-        if(!android.util.Patterns.PHONE.matcher(number).matches() ) {
-            phone.setError(getResources().getString(R.string.edit_validation_phone));
-            return false;
-        }
-        return true;
-    }
 
     public List<Integer> getSelectedChips() {
         List<Integer> selectedChips=new ArrayList<>();
@@ -279,8 +254,8 @@ public class EditPerson extends AppCompatActivity {
                         phoneNo = cursor.getString(cursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER));
                         ContactName = cursor.getString(cursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME));
 
-                        name.setText(ContactName);
-                        phone.setText(phoneNo);
+                        nameEditText.setText(ContactName);
+                        phoneEditText.setText(phoneNo);
 
 
                     } catch (Exception e) {
