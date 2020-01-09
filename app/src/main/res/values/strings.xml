@@ -22,7 +22,6 @@
     <string name="edit_deleted">Deleted!</string>
     <string name="edit_edited">Edited!</string>
     <string name="edit_validation_chips">This person cannot gift anyone</string>
-    <string name="edit_validation_mail">Invalid email address</string>
     <string name="edit_validation_field_requited">is required</string>
     <string name="edit_validation_name">Name already exist</string>
     <string name="edit_validation_phone">Invalid phone number</string>

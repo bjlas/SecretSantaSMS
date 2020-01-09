@@ -11,7 +11,6 @@ import android.widget.TextView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.android.onehuman.secretsantasms.R;
-import com.android.onehuman.secretsantasms.database.DBController;
 import com.android.onehuman.secretsantasms.event.Group_OnItemClickListener;
 import com.android.onehuman.secretsantasms.model.Group;
 
@@ -24,14 +23,11 @@ public class GroupAdapter extends RecyclerView.Adapter<GroupAdapter.GroupViewHol
     private List<Group> groupList;
     private Context context;
     private TypedArray icons;
-    private int icon_position;
-
 
     public GroupAdapter(Context context) {
         this.context = context;
         this.groupList = new ArrayList<>();
         icons = context.getResources().obtainTypedArray(R.array.grouplist_row_icons_array);
-        icon_position=0;
     }
 
     public void updateList(List<Group> pl) {

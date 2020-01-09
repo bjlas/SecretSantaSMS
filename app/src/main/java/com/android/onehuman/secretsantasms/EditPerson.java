@@ -3,25 +3,23 @@ package com.android.onehuman.secretsantasms;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
-import android.app.AlertDialog;
-import android.content.DialogInterface;
+
 import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.telephony.PhoneNumberUtils;
-import android.text.InputFilter;
+
 import android.util.TypedValue;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.EditText;
+
 import android.widget.Toast;
 
 import com.android.onehuman.secretsantasms.database.DBController;
 import com.android.onehuman.secretsantasms.dialog.DialogUtils;
-import com.android.onehuman.secretsantasms.filter.EmojiExcludeFilter;
 import com.android.onehuman.secretsantasms.model.Group;
 import com.android.onehuman.secretsantasms.model.Person;
 import com.android.onehuman.secretsantasms.utils.ValidationHelper;

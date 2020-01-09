@@ -12,7 +12,6 @@ public class Person implements Parcelable {
     private int id;
     private String name;
     private String phone;
-    private String mail;
     private List<Person> forbiddenList;
     private List<Person> candidates;
     private String giftTo;
@@ -27,7 +26,6 @@ public class Person implements Parcelable {
             this.id = in.readInt();
             this.name = in.readString();
             this.phone = in.readString();
-            this.mail = in.readString();
             this.candidates = new ArrayList<Person>();
             this.forbiddenList=new ArrayList<Person>();
     }
@@ -62,12 +60,6 @@ public class Person implements Parcelable {
     public void setPhone(String phone) {
         this.phone = phone;
     }
-    public String getMail() {
-        return this.mail;
-    }
-    public void setMail(String mail) {
-        this.mail = mail;
-    }
 
     public List<Person> getCandidates(){ return this.candidates; }
     public void addCandidates(Person p){ this.candidates.add(p); }
@@ -100,7 +92,6 @@ public class Person implements Parcelable {
         dest.writeInt(this.id);
         dest.writeString(this.name);
         dest.writeString(this.phone);
-        dest.writeString(this.mail);
     }
 
     @Override

@@ -27,14 +27,12 @@ public class PersonAdapter extends RecyclerView.Adapter<PersonAdapter.PersonView
     private List<Person> personList;
     private Context context;
     private TypedArray icons;
-    private int icon_position;
     private Group group;
 
     public PersonAdapter(Context context) {
         this.context = context;
         this.personList = new ArrayList<>();
         icons = context.getResources().obtainTypedArray(R.array.personlist_row_icons_array);
-        icon_position=0;
     }
 
     public void updateList(List<Person> pl) {

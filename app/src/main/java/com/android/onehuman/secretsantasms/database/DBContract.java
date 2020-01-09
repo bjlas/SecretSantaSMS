@@ -11,15 +11,13 @@ public class DBContract {
         public static final String COLUMN_PERSON_ID = "personID";
         public static final String COLUMN_PERSON_NAME = "personName";
         public static final String COLUMN_PERSON_PHONE = "personPhone";
-        public static final String COLUMN_PERSON_MAIL = "personMail";
 
 
         public static final String SQL_CREATE_TABLE =
                 "CREATE TABLE " + TABLE_NAME + " (" +
                         COLUMN_PERSON_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
                         COLUMN_PERSON_NAME + " TEXT NOT NULL," +
-                        COLUMN_PERSON_PHONE + " TEXT NOT NULL," +
-                        COLUMN_PERSON_MAIL + " TEXT)";
+                        COLUMN_PERSON_PHONE + " TEXT NOT NULL)";
 
 
         public static final String SQL_DELETE_ENTRIES =

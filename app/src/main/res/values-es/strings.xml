@@ -23,7 +23,6 @@
     <string name="edit_deleted">Eliminada!</string>
     <string name="edit_edited">Editada!</string>
     <string name="edit_validation_chips">Esta persona no puede regalar a nadie</string>
-    <string name="edit_validation_mail">Email invalido</string>
     <string name="edit_validation_field_requited">es obligatorio</string>
     <string name="edit_validation_name">Este nombre ya existe</string>
     <string name="edit_validation_phone">Número invalido</string>

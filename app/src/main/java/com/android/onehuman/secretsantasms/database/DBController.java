@@ -31,7 +31,6 @@ public class DBController {
                 "per."+DBContract.PersonEntry.COLUMN_PERSON_ID+", " +
                 "per."+DBContract.PersonEntry.COLUMN_PERSON_NAME+", " +
                 "per."+DBContract.PersonEntry.COLUMN_PERSON_PHONE+", " +
-                "per."+DBContract.PersonEntry.COLUMN_PERSON_MAIL+", " +
                 "sol."+DBContract.SolutionEntry.COLUMN_GIFT_TO+" " +
                 "FROM " +
                 ""+DBContract.PersonEntry.TABLE_NAME+" per " +
@@ -51,10 +50,9 @@ public class DBController {
                 person.setId(cursor.getInt(0));
                 person.setName(cursor.getString(1));
                 person.setPhone(cursor.getString(2));
-                person.setMail(cursor.getString(3));
 
-                if (!cursor.isNull(4)) {
-                    person.setGiftTo(cursor.getString(4));
+                if (!cursor.isNull(3)) {
+                    person.setGiftTo(cursor.getString(3));
                 }
                 personList.add(person);
 
@@ -69,8 +67,7 @@ public class DBController {
         String selectQuery = "SELECT " +
                 "per."+DBContract.PersonEntry.COLUMN_PERSON_ID+", " +
                 "per."+DBContract.PersonEntry.COLUMN_PERSON_NAME+", " +
-                "per."+DBContract.PersonEntry.COLUMN_PERSON_PHONE+", " +
-                "per."+DBContract.PersonEntry.COLUMN_PERSON_MAIL+" " +
+                "per."+DBContract.PersonEntry.COLUMN_PERSON_PHONE+" " +
                 "FROM "+DBContract.PersonEntry.TABLE_NAME+" per, "+DBContract.PersonsInGroupEntry.TABLE_NAME+" pig " +
                 " WHERE pig."+DBContract.PersonsInGroupEntry.COLUMN_GROUP_ID+" = "+group.getGroupID()+" AND per."+DBContract.PersonEntry.COLUMN_PERSON_ID+"=pig."+DBContract.PersonsInGroupEntry.COLUMN_PERSON_ID+"";
 
@@ -92,7 +89,6 @@ public class DBController {
                 person.setId(cursor.getInt(0));
                 person.setName(cursor.getString(1));
                 person.setPhone(cursor.getString(2));
-                person.setMail(cursor.getString(3));
 
                 personList.add(person);
 
@@ -130,7 +126,6 @@ public class DBController {
         ContentValues values = new ContentValues();
         values.put(DBContract.PersonEntry.COLUMN_PERSON_NAME, person.getName());
         values.put(DBContract.PersonEntry.COLUMN_PERSON_PHONE, person.getPhone());
-        values.put(DBContract.PersonEntry.COLUMN_PERSON_MAIL, person.getMail());
 
         return db.insert(DBContract.PersonEntry.TABLE_NAME, null, values);
     }
@@ -139,7 +134,6 @@ public class DBController {
         ContentValues values = new ContentValues();
         values.put(DBContract.PersonEntry.COLUMN_PERSON_NAME, person.getName());
         values.put(DBContract.PersonEntry.COLUMN_PERSON_PHONE, person.getPhone());
-        values.put(DBContract.PersonEntry.COLUMN_PERSON_MAIL, person.getMail());
 
         String selection = DBContract.PersonEntry.COLUMN_PERSON_ID + " = ?";
         String[] selectionArgs = { String.valueOf(person.getId()) };
@@ -182,8 +176,7 @@ public class DBController {
         String selectQuery = "SELECT " +
                 "per."+DBContract.PersonEntry.COLUMN_PERSON_ID+", " +
                 "per."+DBContract.PersonEntry.COLUMN_PERSON_NAME+", " +
-                "per."+DBContract.PersonEntry.COLUMN_PERSON_PHONE+", " +
-                "per."+DBContract.PersonEntry.COLUMN_PERSON_MAIL+" " +
+                "per."+DBContract.PersonEntry.COLUMN_PERSON_PHONE+" " +
                 "FROM " +
                 ""+DBContract.PersonEntry.TABLE_NAME+" per " +
                 "WHERE per."+DBContract.PersonEntry.COLUMN_PERSON_ID+"="+personID+"";
@@ -198,7 +191,6 @@ public class DBController {
                 person.setId(cursor.getInt(0));
                 person.setName(cursor.getString(1));
                 person.setPhone(cursor.getString(2));
-                person.setMail(cursor.getString(3));
             } while (cursor.moveToNext());
         }
         cursor.close();
