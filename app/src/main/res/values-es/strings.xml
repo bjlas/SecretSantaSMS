@@ -46,6 +46,7 @@
 
     <string name="resend_dialog_text">Desea enviar de nuevo el amigo invisible a %1$s?</string>
 
-
+    <string name="sms_dialog_ok_delivered">SMS enviado correctamente al teléfono %1$s de %2$s</string>
+    <string name="sms_dialog_error_delivered">Fallo al enviar el SMS al teléfono %1$s de %2$s</string>
 
 </resources>

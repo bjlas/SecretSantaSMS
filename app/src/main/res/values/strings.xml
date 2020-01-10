@@ -46,6 +46,7 @@
 
     <string name="resend_dialog_text">Do you want to send again Secret Santa to %1$s?</string>
 
-
+    <string name="sms_dialog_ok_delivered">Message sent successfully to phone %1$s of %2$s</string>
+    <string name="sms_dialog_error_delivered">Message cannot be sent to phone %1$s of %2$s</string>
 
 </resources>

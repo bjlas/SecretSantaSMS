@@ -2,23 +2,32 @@ package com.android.onehuman.secretsantasms;
 
 import android.Manifest;
 import android.app.Activity;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 
 import com.android.onehuman.secretsantasms.adapter.GroupAdapter;
 import com.android.onehuman.secretsantasms.database.DBController;
 import com.android.onehuman.secretsantasms.model.Group;
+import com.android.onehuman.secretsantasms.notifications.NotificationUtils;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ActivityCompat;
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.View;
+import android.widget.RemoteViews;
 
 import java.util.List;
 
@@ -93,6 +102,17 @@ public class GroupsList extends AppCompatActivity {
             //TODO
         }
     }
+
+    public void showNotification(View view) {
+        NotificationUtils notificationUtils = new NotificationUtils(activity);
+        notificationUtils.showNotification("title", "message");
+    }
+
+
+
+
+
+
 
 
 }

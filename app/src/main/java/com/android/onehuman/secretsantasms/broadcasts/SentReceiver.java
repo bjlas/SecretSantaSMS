@@ -4,8 +4,12 @@ import android.app.Activity;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
 import android.telephony.SmsManager;
+import android.telephony.SmsMessage;
+import android.widget.Toast;
 
+import com.android.onehuman.secretsantasms.R;
 import com.android.onehuman.secretsantasms.dialog.DialogUtils;
 
 public class SentReceiver extends BroadcastReceiver {
@@ -19,23 +23,31 @@ public class SentReceiver extends BroadcastReceiver {
     }
 
     @Override
-    public void onReceive(Context arg0, Intent arg1) {
+    public void onReceive(Context arg0, Intent intent) {
+
+        String personName = intent.getStringExtra("package.DeliveryReport.name");
+        String phoneNumber = intent.getStringExtra("package.DeliveryReport.phoneNumber");
+        String message = "";
+
         switch (getResultCode()) {
             case Activity.RESULT_OK:
+                message = String.format(context.getResources().getString(R.string.sms_dialog_ok_delivered), phoneNumber, personName);
+                dialogUtils.okDialog(context, context.getResources().getString(R.string.main_dialog_bySMSButton), message);
                 break;
             case SmsManager.RESULT_ERROR_GENERIC_FAILURE:
-                dialogUtils.okDialog(context, "ERROR", "SMS Generic failure");
-                break;
             case SmsManager.RESULT_ERROR_NO_SERVICE:
-                dialogUtils.okDialog(context, "ERROR", "SMS No service");
-                break;
             case SmsManager.RESULT_ERROR_NULL_PDU:
-                dialogUtils.okDialog(context, "ERROR", "SMS Null PDU");
-                break;
             case SmsManager.RESULT_ERROR_RADIO_OFF:
-                dialogUtils.okDialog(context, "ERROR", "SMS Radio off");
+
+                message = String.format(context.getResources().getString(R.string.sms_dialog_error_delivered), phoneNumber, personName);
+                dialogUtils.okDialog(context, context.getResources().getString(R.string.main_dialog_validation_error), message);
                 break;
         }
+
+
+
+
+
     }
 
 

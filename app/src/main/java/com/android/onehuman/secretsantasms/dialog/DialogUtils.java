@@ -142,10 +142,9 @@ public class DialogUtils
                 dbController.deleteSolution(group.getGroupID());
                 for(int index=0; index<solution.size()-1; index++) {
 
-                    smsUtils.sendSMS(solution.get(index).getPhone(), generateSMSMessage(context, group, solution.get(index).getName(), solution.get(index+1).getName()));
+                    smsUtils.sendSMS(solution.get(index).getPhone(), generateSMSMessage(context, group, solution.get(index).getName(), solution.get(index+1).getName()), solution.get(index).getName());
                     dbController.insertSolution(group.getGroupID(), solution.get(index).getId(), solution.get(index+1).getId());
                 }
-                dialogUtils.okDialog(context,context.getResources().getString(R.string.main_dialog_success_title),context.getResources().getString(R.string.main_dialog_success_message));
             }
         });
 
@@ -178,7 +177,7 @@ public class DialogUtils
             public void onClick(View v) {
 
                 if(android.util.Patterns.PHONE.matcher(editTextPhone.getText().toString()).matches() ) {
-                    smsUtils.sendSMS(editTextPhone.getText().toString(), generateSMSMessage(context, group, person.getName(), dbController.getPerson(person.getGiftTo()).getName()));
+                    smsUtils.sendSMS(editTextPhone.getText().toString(), generateSMSMessage(context, group, person.getName(), dbController.getPerson(person.getGiftTo()).getName()), person.getName());
                     dialog.dismiss();
                 } else {
                     dialogUtils.okDialog(context,context.getResources().getString(R.string.main_dialog_validation_error),context.getResources().getString(R.string.edit_validation_phone));
